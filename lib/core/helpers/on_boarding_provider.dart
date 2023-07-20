@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../core/constant/assets.dart';
-import '../sign_in_screen/sign_in_screen.dart';
+import '../constant/assets.dart';
+import '../../view/accounts/login_screen.dart';
 
-class OnBoardingProvider extends ChangeNotifier {
+class OnBoardingProvider extends GetxController {
   int currentIndex = 0;
   String currentImage = onboardingOne;
   String currentText = 'Horse Management';
@@ -20,26 +20,26 @@ class OnBoardingProvider extends ChangeNotifier {
           currenTextTwo =
               'You need to purchase grooming items to groom your horse. Grooming is an integral part of horse care.';
 
-          notifyListeners();
+          update();
           break;
         case 2:
           currentImage = onboardingThree;
           currentText = 'PLANNING & REMINDERS';
           currenTextTwo =
               'Visual alerts and reminders Track and prepare for your next foal';
-          notifyListeners();
+          update();
           break;
         case 3:
           currentImage = onboardingFour;
           currentText = 'PLANNING & REMINDERS';
           currenTextTwo =
               'Track lifetime costs associated with your horse Customizable reports at the tip of your fingers';
-          notifyListeners();
+          update();
           break;
         default:
           break;
       }
-      notifyListeners();
+      update();
     } else {
       Get.offAll(() => SignInScreen());
     }

@@ -3,53 +3,79 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:hourse_lux/core/constant/assets.dart';
 import 'package:hourse_lux/core/constant/colors.dart';
-import 'package:hourse_lux/view/on_boarding_screens/on_boarding_screens.dart';
+import 'package:hourse_lux/core/user_controler.dart';
+import '../../widgets/text_positions.dart';
 import '../customs/auth_pages_share_widget.dart';
-import '../customs/cusotm_text_field_with_text.dart';
 import '../customs/custom_button.dart';
-import '../forgot_password/forgot_password.dart';
-import '../reset_password_screen/reset_password_screen.dart';
-import '../sign_up_screen/sign_up_screen.dart';
 
-class SignInScreen extends StatefulWidget {
-  const SignInScreen({super.key});
-
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
+  final user = Get.put(UserController());
   @override
   Widget build(BuildContext context) {
-    bool rememberMe = false;
     bool value = false;
     return Scaffold(
       body: Column(
         children: [
           Expanded(
             child: AuthPagesShareWidget(
-              textOne: 'Welcome',
-              textTwo: 'Sign in to continue',
+              textOne: 'Create account,',
+              textTwo: 'Sign up to get started',
               children: [
-                CustomTextField(
-                  height: 60.h,
-                  width: double.infinity,
-                  backgroundColor: whiteColor,
-                  hintText: 'Adamsmith@gmail.com',
-                  text: 'Email',
+                MyText.text("Name"),
+                SizedBox(height: 15.h),
+                TextFormField(
+                  controller: user.rPassword,
+                  decoration: InputDecoration(
+                      hintText: "Name"
+                  ),
                 ),
-                SizedBox(height: 20.h),
-                // please add the remember me checkbox here
 
-                CustomTextField(
-                  height: 60.h,
-                  width: double.infinity,
-                  backgroundColor: whiteColor,
-                  hintText: '*********',
-                  text: 'Password',
-                  suffixIcon: Icon(Icons.visibility_off_outlined),
+                SizedBox(height: 20.h),
+                MyText.text("Email"),
+                SizedBox(height: 15.h),
+                TextFormField(
+                  controller: user.rPassword,
+                  decoration: InputDecoration(
+                      hintText: "Email"
+                  ),
                 ),
                 SizedBox(height: 20.h),
+                MyText.text("Phone Number"),
+                SizedBox(height: 15.h),
+                TextFormField(
+                  controller: user.rPassword,
+                  decoration: InputDecoration(
+                      hintText: "PhoneNumber"
+                  ),
+                ),
+                SizedBox(height: 20.h),
+                MyText.text("Password"),
+                SizedBox(height: 15.h),
+                TextFormField(
+                  controller: user.rPassword,
+                  decoration: InputDecoration(
+                      hintText: "*********"
+                  ),
+                ),
+
+                SizedBox(height: 20.h),
+                MyText.text("Confirm Password"),
+                SizedBox(height: 15.h),
+                TextFormField(
+                  controller: user.rPassword,
+                  decoration: InputDecoration(
+                      hintText: "*********"
+                  ),
+                ),
+
+                SizedBox(height: 20.h),
+                //i want to check the remember me checkbox here
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Padding(
@@ -57,20 +83,18 @@ class _SignInScreenState extends State<SignInScreen> {
                     child: Row(
                       children: [
                         Checkbox(
-                          value: rememberMe,
-                          onChanged: (value) {
+                          activeColor: whiteColor,
+                          checkColor: whiteColor,
+                          value: value,
+                          onChanged: (bool? newValue) {
                             setState(() {
-                              rememberMe = value!;
+                              value = newValue!;
                             });
                           },
                         ),
                         Text(
                           'Remember me',
-                          style: TextStyle(
-                              fontFamily: 'SOURCE SANS PRO',
-                              color: whiteColor,
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.w600),
+                          style: Get.textTheme.labelMedium!.copyWith(color: Colors.white),
                         ),
                       ],
                     ),
@@ -78,9 +102,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
                 Center(
                   child: TextButton(
-                    onPressed: () {
-                      Get.to(() => ForgotPasswordScreen());
-                    },
+                    onPressed: () {},
                     child: Text(
                       'Forgot Password?',
                       style: TextStyle(
@@ -93,10 +115,8 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
                 SizedBox(height: 20.h),
                 DefaultButton(
-                  text: 'Sign In',
-                  press: () {
-                    Get.to(() => OnboardingScreens());
-                  },
+                  text: 'Sign Up',
+                  press: () {},
                   textColor: blackColor,
                   borderRadius: 60.r,
                   horizontalPadding: 20.w,
@@ -116,7 +136,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: 40.h),
+                SizedBox(height: 50.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -153,34 +173,31 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                   ],
                 ),
-                SizedBox(height: 10.h),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Don\'t have an account?',
+                SizedBox(height: 30.h),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Don\'t have an account?',
+                      style: TextStyle(
+                          fontFamily: 'SOURCE SANS PRO',
+                          color: whiteColor,
+                          fontSize: 16.sp),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Get.back();
+                      },
+                      child: Text(
+                        'Sign In',
                         style: TextStyle(
                             fontFamily: 'SOURCE SANS PRO',
-                            color: whiteColor,
-                            fontSize: 16.sp),
+                            color: buttonFourColor,
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.bold),
                       ),
-                      TextButton(
-                        onPressed: () {
-                          Get.to(() => SignUpScreen());
-                        },
-                        child: Text(
-                          'Sign Up',
-                          style: TextStyle(
-                              fontFamily: 'SOURCE SANS PRO',
-                              color: buttonFourColor,
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ],
             ),

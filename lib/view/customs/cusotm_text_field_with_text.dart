@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../core/constant/colors.dart';
@@ -31,7 +32,10 @@ class CustomTextField extends StatelessWidget {
                     fontFamily: 'SOURCE SANS PRO',
                     color: greyColor,
                     fontSize: 16.sp,
-                    fontWeight: FontWeight.w600))),
+                    fontWeight: FontWeight.w600
+                ),
+            )
+        ),
         SizedBox(height: 15.h),
         Container(
           height: height,
@@ -64,3 +68,4 @@ class CustomTextField extends StatelessWidget {
     );
   }
 }
+*/

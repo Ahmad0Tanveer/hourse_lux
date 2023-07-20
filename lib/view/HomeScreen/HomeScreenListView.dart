@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:hourse_lux/core/constant/assets.dart';
 import 'package:hourse_lux/core/constant/colors.dart';
+import 'package:hourse_lux/view/HomeScreen/horsdetail_page.dart';
 import 'package:hourse_lux/view/customs/custom_text.dart';
 
 class HomeScreenListView extends StatefulWidget {
   const HomeScreenListView({super.key});
-
   @override
   State<HomeScreenListView> createState() => _HomeScreenListViewState();
 }
@@ -79,10 +80,12 @@ class _HomeScreenListViewState extends State<HomeScreenListView> {
                       ],
                     ),
                     Spacer(),
-                    Icon(
-                      Icons.arrow_forward_ios,
-                      color: blackColor,
-                    )
+                    IconButton(
+                        onPressed: () => Get.to(() => HorseDetailPage()),
+                        icon:   Icon(
+                          Icons.arrow_forward_ios,
+                          color: blackColor,
+                        ))
                   ],
                 ),
                 SizedBox(height: 5.h),

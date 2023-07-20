@@ -2,26 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:hourse_lux/core/constant/colors.dart';
-import 'package:hourse_lux/view/on_boarding_screens/on_boarding_provider.dart';
-import 'package:hourse_lux/view/sign_in_screen/sign_in_screen.dart';
-import 'package:provider/provider.dart';
+import 'package:hourse_lux/core/helpers/on_boarding_provider.dart';
+import 'package:hourse_lux/view/accounts/login_screen.dart';
 
 import '../customs/custom_button.dart';
 import '../customs/custom_text.dart';
 
 class OnboardingScreens extends StatelessWidget {
-  const OnboardingScreens({Key? key}) : super(key: key);
-
+  final boarding = Get.put(OnBoardingProvider());
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => OnBoardingProvider(),
-      child: Consumer<OnBoardingProvider>(
-        builder: (context, model, child) {
+    return GetBuilder(
+        init: boarding,
+        builder: (_) {
           return Scaffold(
             backgroundColor: Colors.transparent,
             body: Image.asset(
-              model.currentImage,
+              boarding.currentImage,
               fit: BoxFit.cover,
               width: double.infinity,
               height: double.infinity,
@@ -38,18 +35,18 @@ class OnboardingScreens extends StatelessWidget {
                 ),
                 child: Padding(
                   padding:
-                      EdgeInsets.symmetric(horizontal: 30.w, vertical: 30.h),
+                  EdgeInsets.symmetric(horizontal: 30.w, vertical: 30.h),
                   child: Column(
                     children: [
                       CustomText(
-                        text: model.currentText,
+                        text: boarding.currentText,
                         color: blackColor,
                         fontSize: 23.sp,
                       ),
                       SizedBox(height: 20.h),
                       CustomText(
                         maxLines: 2,
-                        text: model.currenTextTwo,
+                        text: boarding.currenTextTwo,
                         color: blackColor.withOpacity(0.5),
                         fontSize: 16.sp,
                         fontWeight: FontWeight.normal,
@@ -59,14 +56,14 @@ class OnboardingScreens extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: List.generate(
                           4,
-                          (index) => Padding(
+                              (index) => Padding(
                             padding: EdgeInsets.only(right: 10.w),
                             child: Container(
                               height: 7.h,
                               width: 7.w,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: index == model.currentIndex
+                                color: index == boarding.currentIndex
                                     ? darkBlueColor
                                     : greyColor,
                               ),
@@ -86,7 +83,7 @@ class OnboardingScreens extends StatelessWidget {
                       SizedBox(height: 40.h),
                       RoundedButton(
                         text: 'Next',
-                        press: () => model.changeIndex(),
+                        press: () => boarding.changeIndex(),
                       ),
                     ],
                   ),
@@ -94,8 +91,6 @@ class OnboardingScreens extends StatelessWidget {
               ),
             ),
           );
-        },
-      ),
-    );
+        });
   }
 }

@@ -1,8 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hourse_lux/core/constant/assets.dart';
 import 'package:hourse_lux/core/constant/colors.dart';
-import 'package:hourse_lux/view/sign_in_screen/sign_in_screen.dart';
+import 'on_boarding_screens.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -14,10 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 2), () {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (_) => const SignInScreen()));
-    });
+    Future.delayed(Duration(seconds: 2),() => Get.offAll(() => OnboardingScreens()));
   }
 
   @override

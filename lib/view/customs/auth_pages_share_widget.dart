@@ -15,6 +15,7 @@ class AuthPagesShareWidget extends StatelessWidget {
     return Stack(
       children: [
         Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SizedBox(height: 80.h),
             Padding(
@@ -22,11 +23,9 @@ class AuthPagesShareWidget extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  CustomText(
-                      text: textOne ?? '', color: blackColor, fontSize: 30.sp),
+                  CustomText(text: textOne ?? '', color: blackColor, fontSize: 30.sp),
                   SizedBox(height: 10.h),
-                  CustomText(
-                      text: textTwo ?? '', color: blackColor, fontSize: 22.sp),
+                  CustomText(text: textTwo ?? '', color: blackColor, fontSize: 22.sp),
                 ],
               ),
             ),

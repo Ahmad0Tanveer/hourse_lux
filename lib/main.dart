@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:hourse_lux/view/BottomBar/bottom_nav_bar.dart';
-import 'package:provider/provider.dart';
-import 'core/provider/providers.dart';
+import 'package:hourse_lux/view/accounts/splash_screen.dart';
+
+import 'utils/themes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,13 +25,12 @@ class _MyAppState extends State<MyApp> {
     return ScreenUtilInit(
         designSize: Size(MyApp._designWidth, MyApp._desigHeight),
         builder: (context, widget) {
-          return MultiProvider(
-            providers: providers,
-            child: GetMaterialApp(
-              debugShowCheckedModeBanner: false,
-              home: BottomNavSheetScreen(),
-            ),
+          return GetMaterialApp(
+            theme: theme,
+            debugShowCheckedModeBanner: false,
+            home: SplashScreen(),
           );
-        });
+        }
+    );
   }
 }

@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hourse_lux/core/constant/assets.dart';
 import 'package:hourse_lux/core/constant/colors.dart';
 import 'package:hourse_lux/view/HomeScreen/HomeScreenListView.dart';
-import 'package:hourse_lux/view/HomeScreen/custom_appbar.dart';
+import 'package:hourse_lux/widgets/custom_appbar.dart';
 import 'package:hourse_lux/view/customs/custom_search.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
-
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }

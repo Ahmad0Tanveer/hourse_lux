@@ -3,9 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:hourse_lux/core/constant/colors.dart';
 import 'package:hourse_lux/view/customs/custom_text.dart';
-import 'package:hourse_lux/view/reset_password_screen/reset_password_screen.dart';
+import 'package:hourse_lux/view/accounts/reset_password_screen.dart';
 import '../customs/auth_pages_share_widget.dart';
-import '../customs/cusotm_text_field_with_text.dart';
 import '../customs/custom_button.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
@@ -16,9 +15,10 @@ class ForgotPasswordScreen extends StatefulWidget {
 }
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
+  bool value = false;
+
   @override
   Widget build(BuildContext context) {
-    bool value = false;
     return Scaffold(
       body: Column(
         children: [
@@ -33,19 +33,18 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     fontWeight: FontWeight.w400,
                     color: whiteColor.withOpacity(0.7),
                     text: 'Code has been send to adam*******@gmail.com'),
-                Row(
-                  children: List.generate(
-                      4,
-                      (index) => Padding(
+                /*Row(
+                  children: List.generate(4, (index) => Padding(
                             padding: EdgeInsets.only(left: 10.w),
                             child: CustomTextField(
                                 height: 70.h,
                                 width: 83.w,
                                 backgroundColor: whiteColor,
                                 hintText: '',
-                                text: ''),
+                                text: ''
+                            ),
                           )),
-                ),
+                ),*/
                 SizedBox(height: 50.h),
                 CustomText(
                     fontSize: 14.sp,
