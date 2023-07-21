@@ -43,6 +43,8 @@ class Images{
   static const String horse_head = "assets/icons/horse-head.png";
   static const String logo = "assets/images/logo.png";
   static const String logo2 = "assets/images/logo2.png";
+  static const String horse_headWhite = "assets/images/horse_head.png";
+  static const String horse_injection = "assets/images/horse_injection.png";
   static const String onboardingfour = "assets/images/onboardingfour.png";
   static const String onboardingone = "assets/images/onboardingone.png";
   static const String onboardingthree = "assets/images/onboardingthree.png";
@@ -60,4 +62,19 @@ class Images{
   static const String ToDo = "assets/icons/To Do.png";
   static const String Upload = "assets/icons/Upload.png";
   static const String UserGroups = "assets/icons/User Groups.png";
+}
+class RecordType{
+  static const String deworm1 = "assets/record_type/deworm1.png";
+  static const String boon_injection = "assets/record_type/boon_injection.png";
+  static const String broken_bone = "assets/record_type/broken-bone.png";
+  static const String health_care = "assets/record_type/health-care.png";
+  static const String heart_beat1 = "assets/record_type/heart-beat1.png";
+  static const String horseshoe1 = "assets/record_type/horseshoe1.png";
+  static const String reiki1 = "assets/record_type/reiki1.png";
+  static const String schedule = "assets/images/schedule.png";
+  static const String stethoscope = "assets/record_type/stethoscope.png";
+  static const String supplements = "assets/record_type/supplements.png";
+  static const String syringe = "assets/record_type/syringe.png";
+  static const String test_tube2 = "assets/record_type/test-tube2.png";
+  static const String tooth2 = "assets/record_type/tooth2.png";
 }

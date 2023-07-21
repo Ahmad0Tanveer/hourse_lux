@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hourse_lux/core/constant/colors.dart';
 import 'package:hourse_lux/models/ui/add_home_model.dart';
 import 'package:hourse_lux/widgets/custom_appbar.dart';
+import 'package:hourse_lux/widgets/styles.dart';
 
 class AddHorsePage extends StatefulWidget {
   const AddHorsePage({super.key});
@@ -27,7 +29,25 @@ class _AddHorsePageState extends State<AddHorsePage> {
                   Wrap(
                     alignment: WrapAlignment.center,
                     children: e.menus.map((m) => GestureDetector(
-                      onTap: () => Get.to(() => m.page),
+                      onTap: () {
+                        if(!m.bottomSheet){
+                          Get.to(() => m.page);
+                        } else {
+                          showModalBottomSheet(
+                              context: Get.context!,
+                              isScrollControlled: true,
+                              enableDrag: true,
+                              shape: HelperStyles.sheetShape,
+                              backgroundColor: baseColor,
+                              builder: (context) {
+                                return Container(
+                                  height: MediaQuery.of(context).size.height * 0.9,
+                                  child: m.page,
+                                );
+                              }
+                          );
+                        }
+                      },
                       child: Container(
                         height: 80,
                         width: 100,

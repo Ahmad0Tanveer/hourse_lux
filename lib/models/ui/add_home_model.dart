@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hourse_lux/core/constant/assets.dart';
 import 'package:hourse_lux/view/HomeScreen/add_horses/new_horse_page.dart';
+import 'package:hourse_lux/view/HomeScreen/add_horses/record_type_page.dart';
+
+import '../../view/HomeScreen/add_horses/add_coggins_page.dart';
+import '../../view/HomeScreen/add_horses/add_dental_page.dart';
+import '../../view/HomeScreen/add_horses/add_deworming_page.dart';
 
 class AddHomeModel{
   final String title;
@@ -15,10 +20,12 @@ class SubAddHomeModel{
   final String name;
   final String image;
   final Widget page;
+  bool bottomSheet;
   SubAddHomeModel({
     required this.name,
     required this.image,
-    required this.page
+    required this.page,
+    this.bottomSheet = false,
   });
 }
 
@@ -27,7 +34,7 @@ List<AddHomeModel> allAddData = [
       title: "Horses",
       menus: [
         SubAddHomeModel(page: CreateNewHorse(),image: Images.horse_head, name: 'Horse'),
-        SubAddHomeModel(page: Container(),image: Images.heart, name: 'Health'),
+        SubAddHomeModel(page: RecordTypePage(),image: Images.heart, name: 'Health',bottomSheet: true),
         SubAddHomeModel(page: Container(),image: Images.easy_installation, name: 'Service'),
         SubAddHomeModel(page: Container(),image: Images.renewable, name: 'Renewal'),
         SubAddHomeModel(page: Container(),image: Images.edit, name: 'Notes'),
@@ -54,4 +61,19 @@ List<AddHomeModel> allAddData = [
         SubAddHomeModel(page: Container(),image: Images.ReceiveDollar,name: "Payment Received"),
       ]
   ),
+];
+
+List<SubAddHomeModel> healthTabs = [
+  SubAddHomeModel(name: "Coggins",image: RecordType.test_tube2,page: AddCogginsPage(),bottomSheet: false),
+  SubAddHomeModel(name: "Dental",image: RecordType.tooth2,page: AddDentalPage(),bottomSheet: false),
+  SubAddHomeModel(name: "Deworming",image: RecordType.deworm1,page: AddDewormingPage(),bottomSheet: false),
+  SubAddHomeModel(name: "Therapy",image: RecordType.reiki1,page: Container(),bottomSheet: false),
+  SubAddHomeModel(name: "Vaccination",image: RecordType.syringe,page: Container(),bottomSheet: false),
+  SubAddHomeModel(name: "Vitals",image: RecordType.heart_beat1,page: Container(),bottomSheet: false),
+  SubAddHomeModel(name: "Diagnostic",image: RecordType.stethoscope,page: Container(),bottomSheet: false),
+  SubAddHomeModel(name: "Farrier",image: RecordType.horseshoe1,page: Container(),bottomSheet: false),
+  SubAddHomeModel(name: "General Health",image: RecordType.health_care,page: Container(),bottomSheet: false),
+  SubAddHomeModel(name: "Injury",image: RecordType.broken_bone,page: Container(),bottomSheet: false),
+  SubAddHomeModel(name: "Joint Injection",image: RecordType.boon_injection,page: Container(),bottomSheet: false),
+  SubAddHomeModel(name: "Med/supplements",image: RecordType.supplements,page: Container(),bottomSheet: false),
 ];

@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hourse_lux/core/constant/colors.dart';
 import 'package:hourse_lux/widgets/custom_appbar_2.dart';
+import 'package:hourse_lux/widgets/select_bottom.dart';
+import 'package:hourse_lux/widgets/styles.dart';
 import '../../../widgets/my_input_shadow.dart';
+import 'add_horse_data.dart';
 
 class CreateNewHorse extends StatefulWidget {
   const CreateNewHorse({super.key});
@@ -11,6 +14,9 @@ class CreateNewHorse extends StatefulWidget {
 }
 
 class _CreateNewHorseState extends State<CreateNewHorse> {
+  String selectBreedString = "";
+  String selectColorString = "";
+  String selectSexString = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,44 +71,53 @@ class _CreateNewHorseState extends State<CreateNewHorse> {
             SizedBox(height: 10),
             MyInputShadow(
                 title: "Breed",
-                widget: Container(
-                  height: 50,
-                  padding: EdgeInsets.only(left: 16,right: 16),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Breed", style: Get.textTheme.bodyMedium),
-                      Icon(Icons.arrow_drop_down_outlined),
-                    ],
+                widget: GestureDetector(
+                  onTap: selectBreed,
+                  child: Container(
+                    height: 50,
+                    padding: EdgeInsets.only(left: 16,right: 16),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Breed", style: Get.textTheme.bodyMedium),
+                        Icon(Icons.arrow_drop_down_outlined),
+                      ],
+                    ),
                   ),
                 )
             ),
             MyInputShadow(
                 title: "Color",
-                widget: Container(
-                  height: 50,
-                  padding: EdgeInsets.only(left: 16,right: 16),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Select.....", style: Get.textTheme.bodyMedium),
-                      Icon(Icons.arrow_drop_down_outlined),
-                    ],
+                widget: GestureDetector(
+                  onTap: selectColor,
+                  child: Container(
+                    height: 50,
+                    padding: EdgeInsets.only(left: 16,right: 16),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Select.....", style: Get.textTheme.bodyMedium),
+                        Icon(Icons.arrow_drop_down_outlined),
+                      ],
+                    ),
                   ),
                 )
             ),
             SizedBox(height: 10),
             MyInputShadow(
                 title: "Sex",
-                widget: Container(
-                  height: 50,
-                  padding: EdgeInsets.only(left: 16,right: 16),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Select.....", style: Get.textTheme.bodyMedium),
-                      Icon(Icons.arrow_drop_down_outlined),
-                    ],
+                widget: InkWell(
+                  onTap: selectSex,
+                  child: Container(
+                    height: 50,
+                    padding: EdgeInsets.only(left: 16,right: 16),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Select.....", style: Get.textTheme.bodyMedium),
+                        Icon(Icons.arrow_drop_down_outlined),
+                      ],
+                    ),
                   ),
                 )
             ),
@@ -234,8 +249,8 @@ class _CreateNewHorseState extends State<CreateNewHorse> {
                   height: 55,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                    color: baseColor,
-                    borderRadius: BorderRadius.circular(20)
+                      color: baseColor,
+                      borderRadius: BorderRadius.circular(20)
                   ),
                   child: Text("Add",style: Get.theme.textTheme.labelMedium),
                 ),
@@ -246,5 +261,82 @@ class _CreateNewHorseState extends State<CreateNewHorse> {
         ),
       ),
     );
+  }
+  void selectSex(){
+    showModalBottomSheet(
+        context: Get.context!,
+        shape: HelperStyles.sheetShape,
+        backgroundColor: baseColor,
+        builder: (context){
+          return Container(
+            height: MediaQuery.of(context).size.height * 0.5,
+            child: SelectBottomSheet(
+              onTap: changeGender,
+              title: "Select Horse Sex",
+              options: AddHorseData.sexes,
+              selectedOption: selectSexString,
+            ),
+          );
+        }
+    );
+  }
+  void selectBreed(){
+    showModalBottomSheet(
+      context: Get.context!,
+      shape: HelperStyles.sheetShape,
+        isScrollControlled: true,
+        enableDrag: true,
+        backgroundColor: baseColor,
+        builder: (context) {
+          return Container(
+            height: MediaQuery.of(context).size.height * 0.9,
+            child: SelectBottomSheet(
+              onTap: changeBread,
+              title: "Select Horse Breed",
+              options: AddHorseData.breads,
+              selectedOption: selectBreedString,
+            ),
+          );
+        }
+    );
+
+  }
+  void selectColor() {
+    showModalBottomSheet(
+        context: Get.context!,
+        isScrollControlled: true,
+        enableDrag: true,
+        shape: HelperStyles.sheetShape,
+        backgroundColor: baseColor,
+        builder: (context) {
+          return Container(
+            height: MediaQuery.of(context).size.height * 0.9,
+            child: SelectBottomSheet(
+              onTap: changeColor,
+              title: "Select Horse Color",
+              options: AddHorseData.colors,
+              selectedOption: selectColorString,
+            ),
+          );
+        }
+    );
+  }
+  void changeBread(String vale){
+    setState(() {
+      selectBreedString = vale;
+      Get.back();
+    });
+  }
+  void changeColor(String vale){
+    setState(() {
+      selectColorString = vale;
+      Get.back();
+    });
+  }
+  void changeGender(String vale){
+    setState(() {
+      selectSexString = vale;
+      Get.back();
+    });
   }
 }

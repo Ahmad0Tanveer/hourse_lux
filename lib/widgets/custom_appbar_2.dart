@@ -22,15 +22,16 @@ class _CustomAppBar2State extends State<CustomAppBar2> {
               Text(widget.title,
                   style: Get.theme.textTheme.labelLarge!.copyWith(
                     fontSize: 18,
+                    fontWeight: FontWeight.w700,
                   )
               ),
               SizedBox(width: 50),
             ],
           ),
-          SizedBox(height: 16),
+          SizedBox(height: 12),
           Container(
               margin: EdgeInsets.only(left: 10,right: 10),
-              height: 1,color: Colors.grey)
+              height: 1.5,color: Colors.grey)
         ],
       ),
     );
