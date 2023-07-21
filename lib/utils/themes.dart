@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hourse_lux/core/constant/colors.dart';
 
 ThemeData theme = ThemeData(
-
+  fontFamily: "Quicksand",
   textTheme: TextTheme(
     labelMedium: TextStyle(
         fontFamily: 'SOURCE SANS PRO',
@@ -16,9 +16,21 @@ ThemeData theme = ThemeData(
         fontSize: 20,
         fontWeight: FontWeight.w700
     ),
+    bodySmall: TextStyle(
+        fontFamily: 'Quicksand',
+        color: Color.fromRGBO(44, 58, 75,1),
+        fontSize: 16,
+        fontWeight: FontWeight.w600
+    ),
+    bodyMedium: TextStyle(
+        fontFamily: 'Quicksand',
+        color: Color.fromRGBO(9, 16, 29,1),
+        fontSize: 16,
+        fontWeight: FontWeight.w600
+    ),
     //used and top Text on TextField
     labelSmall: TextStyle(
-        fontFamily: 'SOURCE SANS PRO',
+        fontFamily: 'Quicksand',
         color: Colors.white,
         fontSize: 16,
         fontWeight: FontWeight.w600

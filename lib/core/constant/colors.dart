@@ -11,6 +11,7 @@ const Color whiteColor = Color(0xFFFFFFFF);
 const Color greyColor = Color(0xFF5B5B5B);
 const Color redColor = Color(0xFFFF0000);
 const Color lightGrey = Color(0xFFD9D9D9);
+const Color baseColor = Color.fromRGBO(0, 0, 50,1);
 
 ///
 ///

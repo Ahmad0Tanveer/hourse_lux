@@ -12,7 +12,7 @@ class _CustomAppBar2State extends State<CustomAppBar2> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 55,
+      height: 65,
       child: Column(
         children: [
           Row(
@@ -27,9 +27,10 @@ class _CustomAppBar2State extends State<CustomAppBar2> {
               SizedBox(width: 50),
             ],
           ),
+          SizedBox(height: 16),
           Container(
               margin: EdgeInsets.only(left: 10,right: 10),
-              width: 1,color: Colors.grey)
+              height: 1,color: Colors.grey)
         ],
       ),
     );
