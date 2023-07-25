@@ -3,24 +3,33 @@ import 'package:get/get.dart';
 import 'package:hourse_lux/core/constant/colors.dart';
 import 'package:hourse_lux/widgets/custom_appbar_2.dart';
 import 'package:hourse_lux/widgets/my_input_shadow.dart';
+import 'package:hourse_lux/widgets/selected_horses_widget.dart';
+import 'package:hourse_lux/widgets/styles.dart';
 
-class AddDentalPage extends StatefulWidget {
-  const AddDentalPage({super.key});
+import '../../../widgets/select_bottom.dart';
+import 'add_horse_data.dart';
+
+class AddInjuryPage extends StatefulWidget {
+  const AddInjuryPage({super.key});
   @override
-  State<AddDentalPage> createState() => _AddDentalPageState();
+  State<AddInjuryPage> createState() => _AddInjuryPageState();
 }
 
-class _AddDentalPageState extends State<AddDentalPage> {
+class _AddInjuryPageState extends State<AddInjuryPage> {
+  String selectedType = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
         children: [
-          CustomAppBar2(title: "Add Dental"),
+          CustomAppBar2(title: "Add Injury"),
+          SizedBox(height: 10),
+          SelectedHorseWidget(),
+          SizedBox(height: 10),
           SizedBox(height: 20),
           Container(
             margin: EdgeInsets.only(left: 16),
-            child: Text("Details",style: Get.textTheme.bodyLarge!.copyWith(color: Colors.black)),
+            child: Text("Add Details",style: Get.textTheme.bodyLarge!.copyWith(color: Colors.black)),
           ),
           SizedBox(height: 10),
           MyInputShadow(
@@ -49,13 +58,50 @@ class _AddDentalPageState extends State<AddDentalPage> {
               )
           ),
           SizedBox(height: 10),
+
+          MyInputShadow(
+              title: "Type",
+              widget: InkWell(
+                onTap: selectType,
+                child: Container(
+                  height: 50,
+                  padding: EdgeInsets.only(left: 16,right: 16),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("Select.....", style: Get.textTheme.bodyMedium),
+                      Icon(Icons.arrow_drop_down_outlined),
+                    ],
+                  ),
+                ),
+              )
+          ),
+          SizedBox(height: 10),
           MyInputShadow(
               title: "Administrated By",
+              widget: InkWell(
+                onTap: (){},
+                child: Container(
+                  height: 50,
+                  padding: EdgeInsets.only(left: 16,right: 16),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("Select Contact", style: Get.textTheme.bodyMedium),
+                      Icon(Icons.arrow_drop_down_outlined),
+                    ],
+                  ),
+                ),
+              )
+          ),
+          SizedBox(height: 10),
+          MyInputShadow(
+              title: "Price",
               widget: TextFormField(
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   fillColor: Colors.transparent,
-                  hintText: "Select Dentist....",
+                  hintText: "\$ Price",
                   hintStyle: Get.textTheme.bodyMedium,
                   filled: true,
                 ),
@@ -118,5 +164,29 @@ class _AddDentalPageState extends State<AddDentalPage> {
         ],
       ),
     );
+  }
+  void selectType() {
+    showModalBottomSheet(
+        context: Get.context!,
+        isScrollControlled: true,
+        enableDrag: true,
+        shape: HelperStyles.sheetShape,
+        backgroundColor: baseColor,
+        builder: (context) {
+          return Container(
+            height: MediaQuery.of(context).size.height * 0.9,
+            child: SelectBottomSheet(
+              onTap: changeType,
+              title: "Select Injuries",
+              options: AddHorseData.injuries,
+              selectedOption: selectedType,
+            ),
+          );
+        }
+    );
+  }
+  void changeType(text){
+    selectedType = text;
+    Get.back();
   }
 }

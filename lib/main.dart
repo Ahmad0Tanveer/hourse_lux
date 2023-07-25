@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:hourse_lux/view/accounts/splash_screen.dart';
-
 import 'utils/themes.dart';
 
 void main() {
@@ -11,10 +10,8 @@ void main() {
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
-
   static const double _designWidth = 430;
   static const double _desigHeight = 930;
-
   @override
   State<MyApp> createState() => _MyAppState();
 }

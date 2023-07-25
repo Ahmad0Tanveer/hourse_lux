@@ -4,24 +4,22 @@ import 'package:hourse_lux/core/constant/colors.dart';
 import 'package:hourse_lux/widgets/custom_appbar_2.dart';
 import 'package:hourse_lux/widgets/my_input_shadow.dart';
 
-class AddDentalPage extends StatefulWidget {
-  const AddDentalPage({super.key});
+import '../../../widgets/selected_horses_widget.dart';
+class AddNotePage extends StatefulWidget {
+  const AddNotePage({super.key});
+
   @override
-  State<AddDentalPage> createState() => _AddDentalPageState();
+  State<AddNotePage> createState() => _AddNotePageState();
 }
 
-class _AddDentalPageState extends State<AddDentalPage> {
+class _AddNotePageState extends State<AddNotePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
         children: [
-          CustomAppBar2(title: "Add Dental"),
-          SizedBox(height: 20),
-          Container(
-            margin: EdgeInsets.only(left: 16),
-            child: Text("Details",style: Get.textTheme.bodyLarge!.copyWith(color: Colors.black)),
-          ),
+          CustomAppBar2(title: "Add Note"),
+          SelectedHorseWidget(),
           SizedBox(height: 10),
           MyInputShadow(
               title: "Date",
@@ -50,31 +48,22 @@ class _AddDentalPageState extends State<AddDentalPage> {
           ),
           SizedBox(height: 10),
           MyInputShadow(
-              title: "Administrated By",
-              widget: TextFormField(
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  fillColor: Colors.transparent,
-                  hintText: "Select Dentist....",
-                  hintStyle: Get.textTheme.bodyMedium,
-                  filled: true,
-                ),
-              )
-          ),
-          SizedBox(height: 10),
-          MyInputShadow(
-              title: "Comments",
+              title: "Notes",
               widget: TextFormField(
                 maxLines: 4,
                 minLines: 4,
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   fillColor: Colors.transparent,
-                  hintText: "comments....",
+                  hintText: "Write Notes....",
                   hintStyle: Get.textTheme.bodyMedium,
                   filled: true,
                 ),
               )
+          ),
+          Container(
+            padding: EdgeInsets.only(left: 16),
+            child: Text("Attachments",style: Get.textTheme.bodySmall),
           ),
           SizedBox(height: 10),
           Container(
@@ -85,7 +74,7 @@ class _AddDentalPageState extends State<AddDentalPage> {
                   width: 160,
                   height: 40,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
+                    borderRadius: BorderRadius.circular(4),
                     border: Border.all(width: 1,color: Color.fromRGBO(23, 34, 34, 1),),
                   ),
                   child: Row(
@@ -99,7 +88,20 @@ class _AddDentalPageState extends State<AddDentalPage> {
               ],
             ),
           ),
-          SizedBox(height: 10),
+          SizedBox(height: 16),
+          Container(
+            margin: EdgeInsets.only(right: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  padding: EdgeInsets.only(left: 16),
+                  child: Text("Display Note",style: Get.textTheme.bodySmall),
+                ),
+                Switch(value: false, onChanged: (value){})
+              ],
+            ),
+          ),
           Container(
             margin: EdgeInsets.only(left: 16,right: 16),
             child: GestureDetector(
