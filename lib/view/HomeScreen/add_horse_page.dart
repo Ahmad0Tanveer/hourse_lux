@@ -57,8 +57,9 @@ class _AddHorsePageState extends State<AddHorsePage> {
                             SizedBox(height: 12),
                             Text(m.name,style: Get.theme.textTheme.labelLarge!.copyWith(
                               fontSize: 12,
-                              fontWeight: FontWeight.w600,
-                            ),),
+                              fontWeight: FontWeight.w600),
+                              textAlign: TextAlign.center,
+                            ),
                           ],
                         ),
                       ),

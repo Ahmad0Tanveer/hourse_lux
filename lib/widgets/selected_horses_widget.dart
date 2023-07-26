@@ -18,7 +18,7 @@ class _SelectedHorseWidgetState extends State<SelectedHorseWidget> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Selected Horses",style:Get.textTheme.bodyMedium),
+          Text("Selected Horses".toUpperCase(),style:Get.textTheme.bodyMedium),
           SizedBox(height: 10),
           Image.asset(
             h1,
@@ -33,10 +33,7 @@ class _SelectedHorseWidgetState extends State<SelectedHorseWidget> {
             fontSize: 12,
           )),),
           SizedBox(height: 6),
-          Container(
-            color: Colors.grey,
-            height: 2,
-          ),
+          Container(height: 1,color: Color(0xffD7D7D7),),
         ],
       ),
     );

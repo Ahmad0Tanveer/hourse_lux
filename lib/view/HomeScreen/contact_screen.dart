@@ -5,7 +5,6 @@ import 'package:hourse_lux/core/constant/colors.dart';
 import 'package:hourse_lux/view/HomeScreen/add_contacts/add_contact_dialog.dart';
 import 'package:hourse_lux/view/customs/custom_search.dart';
 import 'package:hourse_lux/view/customs/custom_text.dart';
-
 import 'add_contacts/add_conatact_page.dart';
 
 class ContactScreen extends StatefulWidget {

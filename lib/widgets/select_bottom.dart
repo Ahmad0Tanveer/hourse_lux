@@ -25,20 +25,26 @@ class _SelectBottomSheetState extends State<SelectBottomSheet> {
           margin: EdgeInsets.only(left: 16,right: 16),
           color: Colors.grey,
         ),
+        SizedBox(width: 30),
         Expanded(
             child: ListView(
               children: widget.options.map((e){
                 return GestureDetector(
                   onTap: () =>  widget.onTap(e),
-                  child: Row(
-                    children: [
-                      Checkbox(
-                          shape: CircleBorder(),
-                          value: e == widget.selectedOption,
-                          onChanged: (_) =>  widget.onTap(e)
-                      ),
-                      Text(e,style: Get.textTheme.labelMedium),
-                    ],
+                  child: Container(
+                    height: 30,
+                    child: Row(
+                      children: [
+                        SizedBox(width: 10),
+                        Checkbox(
+                            shape: CircleBorder(),
+                            value: e == widget.selectedOption,
+                            onChanged: (_) =>  widget.onTap(e)
+                        ),
+                        SizedBox(width:4),
+                        Text(e,style: Get.textTheme.labelMedium!.copyWith(fontSize: 18,fontWeight: FontWeight.w700)),
+                      ],
+                    ),
                   ),
                 );
               }).toList(),

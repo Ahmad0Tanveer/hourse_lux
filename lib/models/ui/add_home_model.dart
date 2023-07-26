@@ -6,6 +6,7 @@ import 'package:hourse_lux/view/HomeScreen/add_horses/add_joint_injection_page.d
 import 'package:hourse_lux/view/HomeScreen/add_horses/add_therapy_page.dart';
 import 'package:hourse_lux/view/HomeScreen/add_horses/add_vaccination_page.dart';
 import 'package:hourse_lux/view/HomeScreen/add_horses/add_vitals_page.dart';
+import 'package:hourse_lux/view/HomeScreen/add_horses/herse_select_page.dart';
 import 'package:hourse_lux/view/HomeScreen/add_horses/new_horse_page.dart';
 import 'package:hourse_lux/view/HomeScreen/add_horses/record_type_page.dart';
 
@@ -15,6 +16,8 @@ import '../../view/HomeScreen/add_horses/add_deworming_page.dart';
 import '../../view/HomeScreen/add_horses/add_note_page.dart';
 import '../../view/HomeScreen/add_horses/add_temperature_page.dart';
 import '../../view/HomeScreen/breadings/select_breading_page.dart';
+import '../../view/HomeScreen/renewal_pages/renewal_type_page.dart';
+import '../../view/HomeScreen/service_records/service_record_type.dart';
 
 class AddHomeModel{
   final String title;
@@ -44,8 +47,8 @@ List<AddHomeModel> allAddData = [
       menus: [
         SubAddHomeModel(page: CreateNewHorse(),image: Images.horse_head, name: 'Horse'),
         SubAddHomeModel(page: RecordTypePage(),image: Images.heart, name: 'Health',bottomSheet: true),
-        SubAddHomeModel(page: Container(),image: Images.easy_installation, name: 'Service'),
-        SubAddHomeModel(page: Container(),image: Images.renewable, name: 'Renewal'),
+        SubAddHomeModel(page: HorseSelectPage(nextPage: ServiceRecordTypePage(), title: "Add Service Record", ),image: Images.easy_installation, name: 'Service'),
+        SubAddHomeModel(page: RenewalTypesPage(),image: Images.renewable, name: 'Renewal'),
         SubAddHomeModel(page: AddNotePage(),image: Images.edit, name: 'Notes'),
         SubAddHomeModel(page: AddTemperaturePage(),image: Images.thermometer, name: 'Temperature'),
         SubAddHomeModel(page: SelectBreadingTypePage(),image: Images.Beehive, name: 'Breeding'),

@@ -211,7 +211,7 @@ class _HorseSelectPageState extends State<HorseSelectPage> {
             child:  Container(
               margin: EdgeInsets.only(left: 16,right: 16),
               child: GestureDetector(
-                onTap: () => Get.to(() => widget.nextPage),
+                onTap: () => Get.to(widget.nextPage),
                 child: Container(
                   height: 55,
                   width: Get.width - 32,
