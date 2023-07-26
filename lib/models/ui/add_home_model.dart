@@ -14,6 +14,7 @@ import '../../view/HomeScreen/add_horses/add_dental_page.dart';
 import '../../view/HomeScreen/add_horses/add_deworming_page.dart';
 import '../../view/HomeScreen/add_horses/add_note_page.dart';
 import '../../view/HomeScreen/add_horses/add_temperature_page.dart';
+import '../../view/HomeScreen/breadings/select_breading_page.dart';
 
 class AddHomeModel{
   final String title;
@@ -47,7 +48,7 @@ List<AddHomeModel> allAddData = [
         SubAddHomeModel(page: Container(),image: Images.renewable, name: 'Renewal'),
         SubAddHomeModel(page: AddNotePage(),image: Images.edit, name: 'Notes'),
         SubAddHomeModel(page: AddTemperaturePage(),image: Images.thermometer, name: 'Temperature'),
-        SubAddHomeModel(page: Container(),image: Images.Beehive, name: 'Breeding'),
+        SubAddHomeModel(page: SelectBreadingTypePage(),image: Images.Beehive, name: 'Breeding'),
       ]),
   AddHomeModel(
       title: "Contacts",

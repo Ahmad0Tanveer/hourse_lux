@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:hourse_lux/core/constant/colors.dart';
+import 'package:hourse_lux/view/HomeScreen/add_contacts/add_contact_dialog.dart';
 import 'package:hourse_lux/view/customs/custom_search.dart';
 import 'package:hourse_lux/view/customs/custom_text.dart';
+
+import 'add_contacts/add_conatact_page.dart';
 
 class ContactScreen extends StatefulWidget {
   const ContactScreen({super.key});
@@ -52,14 +56,27 @@ class _ContactScreenState extends State<ContactScreen> {
                     fontWeight: FontWeight.bold,
                   ),
                   Spacer(),
-                  Icon(
-                    Icons.filter_alt_outlined,
-                    color: blackColor,
+                  IconButton(
+                    onPressed: (){
+
+                      Get.dialog(
+                          barrierColor: Colors.transparent,
+                          Dialog(
+                            child: AddContactDialog(),
+                          ));
+                    },
+                    icon: Icon(
+                      Icons.filter_alt_outlined,
+                      color: blackColor,
+                    ),
                   ),
                   SizedBox(width: 7.w),
-                  Icon(
-                    Icons.add_circle_outline,
-                    color: blackColor,
+                  IconButton(
+                    onPressed: () => Get.to(() => AddContactPage()),
+                    icon: Icon(
+                      Icons.add_circle_outline,
+                      color: blackColor,
+                    ),
                   )
                 ],
               ),

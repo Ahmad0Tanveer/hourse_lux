@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hourse_lux/core/constant/assets.dart';
-import 'package:hourse_lux/view/Contact/contact_screen.dart';
+import 'package:hourse_lux/view/HomeScreen/contact_screen.dart';
 import 'package:hourse_lux/view/HomeScreen/home_screen.dart';
 import 'package:hourse_lux/view/ReportScreen/report_screen.dart';
 import 'package:hourse_lux/view/ScheduleScreen/schedule_screen.dart';

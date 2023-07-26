@@ -5,6 +5,7 @@ import 'package:hourse_lux/view/accounts/splash_screen.dart';
 import 'utils/themes.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
