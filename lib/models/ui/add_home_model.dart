@@ -16,6 +16,12 @@ import '../../view/HomeScreen/add_horses/add_deworming_page.dart';
 import '../../view/HomeScreen/add_horses/add_note_page.dart';
 import '../../view/HomeScreen/add_horses/add_temperature_page.dart';
 import '../../view/HomeScreen/breadings/select_breading_page.dart';
+import '../../view/HomeScreen/contacts/add_contact_page.dart';
+import '../../view/HomeScreen/contacts/add_contact_upload.dart';
+import '../../view/HomeScreen/contacts/new_owner_group.dart';
+import '../../view/HomeScreen/new _nvent/new_even_appointment_page.dart';
+import '../../view/HomeScreen/new _nvent/new_event_service_page.dart';
+import '../../view/HomeScreen/new _nvent/new_event_task_page.dart';
 import '../../view/HomeScreen/renewal_pages/renewal_type_page.dart';
 import '../../view/HomeScreen/service_records/service_record_type.dart';
 
@@ -56,16 +62,16 @@ List<AddHomeModel> allAddData = [
   AddHomeModel(
       title: "Contacts",
       menus: [
-        SubAddHomeModel(page: Container(),image: Images.Contacts,name: "Contact"),
-        SubAddHomeModel(page: Container(),image: Images.Upload,name: "Upload"),
-        SubAddHomeModel(page: Container(),image: Images.UserGroups,name: "Owner Group"),
+        SubAddHomeModel(page: AddContactPage(),image: Images.Contacts,name: "Contact"),
+        SubAddHomeModel(page: AddContactUpload(),image: Images.Upload,name: "Upload"),
+        SubAddHomeModel(page: NewOwnerGroup(),image: Images.UserGroups,name: "Owner Group"),
       ]),
   AddHomeModel(
       title: "Schedule",
       menus: [
-        SubAddHomeModel(page: Container(),image: Images.Clock,name: "Service"),
-        SubAddHomeModel(page: Container(),image: Images.edit,name: "Appointment"),
-        SubAddHomeModel(page: Container(),image: Images.ToDo,name: "Task"),
+        SubAddHomeModel(page: NewEventServicePage(),image: Images.Clock,name: "Service"),
+        SubAddHomeModel(page: NewEventAppointmentPage(),image: Images.edit,name: "Appointment"),
+        SubAddHomeModel(page: NewEventTaskPage(),image: Images.ToDo,name: "Task"),
       ]),
   AddHomeModel(
       title: "Financial",

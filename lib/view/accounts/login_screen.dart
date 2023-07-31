@@ -13,7 +13,6 @@ import 'sign_up_screen.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
-
   @override
   State<SignInScreen> createState() => _SignInScreenState();
 }
@@ -41,11 +40,8 @@ class _SignInScreenState extends State<SignInScreen> {
                           hintText: "Adamsmith@gmail.com"
                       ),
                     ),
-
                     SizedBox(height: 20.h),
-                    // please add the remember me checkbox here
                     MyText.text("Password"),
-
                     SizedBox(height: 15.h),
                     TextFormField(
                       controller: user.rPassword,
@@ -54,7 +50,6 @@ class _SignInScreenState extends State<SignInScreen> {
                          suffixIcon: Icon(Icons.visibility_off_outlined),
                       ),
                     ),
-
                     SizedBox(height: 20.h),
                     Align(
                       alignment: Alignment.centerLeft,

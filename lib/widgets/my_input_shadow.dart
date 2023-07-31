@@ -16,13 +16,22 @@ class _MyInputShadowState extends State<MyInputShadow> {
       children: [
         Container(
           padding: EdgeInsets.only(left: 16),
-          child: Text(widget.title,style: Get.textTheme.bodySmall),
+          child: Row(
+            children: [
+              Text(widget.title,style: Get.textTheme.bodySmall),
+              SizedBox(width: 1),
+              Text("*",style: Get.textTheme.bodySmall!.copyWith(
+                color: Colors.red,
+              )),
+            ],
+          ),
         ),
         Card(
             elevation: 10,
             margin: EdgeInsets.all(10),
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10)
+                borderRadius: BorderRadius.circular(10),
+                side: BorderSide(color: Color(0xffD9D9D9),width: 1)
             ),
             child: widget.widget
         ),
