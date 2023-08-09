@@ -23,16 +23,20 @@ class AuthPagesShareWidget extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  CustomText(text: textOne ?? '', color: blackColor, fontSize: 30.sp),
+                  CustomText(text: textOne ?? '', color: blackColor, fontSize: 30.sp,
+                    fontWeight: FontWeight.w700,
+                  ),
                   SizedBox(height: 10.h),
-                  CustomText(text: textTwo ?? '', color: blackColor, fontSize: 22.sp),
+                  CustomText(text: textTwo ?? '', color: blackColor, fontSize: 22.sp,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ],
               ),
             ),
           ],
         ),
         Container(
-          margin: EdgeInsets.only(top: 110.h),
+          margin: EdgeInsets.only(top: 130.h),
           child: Column(
             children: [
               Expanded(

@@ -16,12 +16,29 @@ dependencies:
   get: ^4.6.5
   another_flushbar: ^1.12.30
   flutter_screenutil: ^5.8.4
+  calendar_date_picker2: ^0.5.2
+  google_fonts: any
+  http: ^1.1.0
+  get_storage: any
+  panara_dialogs: ^0.1.4
+
+
+
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^2.0.0
+  flutter_launcher_icons: "^0.13.0"
+
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/app_icon.png"
+  min_sdk_android: 21
 
 flutter:
 
@@ -31,18 +48,23 @@ flutter:
     - assets/fonts/
     - assets/icons/
     - assets/images/
+    - assets/images/app_icon.png
     - assets/record_type/
+    - assets/reports/
 
   fonts:
-    - family: Quicksand
+    - family: Quicksand-Bold
+      fonts:
+        - asset: assets/fonts/Quicksand-Bold.ttf
+    - family: Quicksand-Light
       fonts:
         - asset: assets/fonts/Quicksand-Light.ttf
-          weight: 300
-        - asset: assets/fonts/Quicksand-Regular.ttf
-          weight: 400
+    - family: Quicksand-Medium
+      fonts:
         - asset: assets/fonts/Quicksand-Medium.ttf
-          weight: 500
+    - family: Quicksand-Regular
+      fonts:
+        - asset: assets/fonts/Quicksand-Regular.ttf
+    - family: Quicksand-SemiBold
+      fonts:
         - asset: assets/fonts/Quicksand-SemiBold.ttf
-          weight: 600
-        - asset: assets/fonts/Quicksand-Bold.ttf
-          weight: 700

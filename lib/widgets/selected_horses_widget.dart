@@ -22,8 +22,8 @@ class _SelectedHorseWidgetState extends State<SelectedHorseWidget> {
           SizedBox(height: 10),
           Image.asset(
             h1,
-            height: 60,
-            width: 60,
+            height: 39,
+            width: 39,
           ),
           SizedBox(height: 6),
           Container(

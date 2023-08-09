@@ -8,7 +8,7 @@ import '../../widgets/text_positions.dart';
 import '../HomeScreen/bottom_nav_bar.dart';
 import '../customs/auth_pages_share_widget.dart';
 import '../customs/custom_button.dart';
-import 'forgot_password.dart';
+import 'forget_password_input_email_page.dart';
 import 'sign_up_screen.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -20,6 +20,11 @@ class SignInScreen extends StatefulWidget {
 class _SignInScreenState extends State<SignInScreen> {
   final user = Get.put(UserController());
   @override
+  void initState() {
+    user.initPres();
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
     return GetBuilder(
       init: user,
@@ -29,7 +34,7 @@ class _SignInScreenState extends State<SignInScreen> {
             children: [
               Expanded(
                 child: AuthPagesShareWidget(
-                  textOne: 'Welcome',
+                  textOne: 'Welcome,',
                   textTwo: 'Sign in to continue',
                   children: [
                     MyText.text("Email"),
@@ -71,13 +76,10 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                     Center(
                       child: TextButton(
-                        onPressed: () {
-                          Get.to(() => ForgotPasswordScreen());
-                        },
+                        onPressed: () => Get.to(() => ForgetPasswordPasswordInputEmail()),
                         child: Text(
                           'Forgot Password?',
                           style: TextStyle(
-                              fontFamily: 'SOURCE SANS PRO',
                               color: whiteColor,
                               fontSize: 16.sp,
                               fontWeight: FontWeight.bold),
@@ -135,7 +137,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 10.h),
+                    SizedBox(height: 30.h),
                     Align(
                       alignment: Alignment.bottomCenter,
                       child: Row(
@@ -149,7 +151,9 @@ class _SignInScreenState extends State<SignInScreen> {
                             onPressed: () =>  Get.to(() => SignUpScreen()),
                             child: Text(
                               'Sign Up',
-                              style: Get.textTheme.labelMedium,
+                              style: Get.textTheme.labelMedium!.copyWith(
+                                color: Color(0xffE2BD5A),
+                              ),
                             ),
                           ),
                         ],

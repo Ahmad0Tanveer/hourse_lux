@@ -94,4 +94,29 @@ List<SubAddHomeModel> healthTabs = [
   SubAddHomeModel(name: "Injury",image: RecordType.broken_bone,page: AddInjuryPage(),bottomSheet: false),
   SubAddHomeModel(name: "Joint Injection",image: RecordType.boon_injection,page: AddJointInjectionPage(),bottomSheet: false),
   SubAddHomeModel(name: "Med/supplements",image: RecordType.supplements,page: Container(),bottomSheet: false),
+
+];
+
+List<SubAddHomeModel> reportRecordType = [
+  SubAddHomeModel(name: "Coggins",image: RecordType.test_tube2,page: AddCogginsPage(),bottomSheet: false),
+  SubAddHomeModel(name: "Dental",image: RecordType.tooth2,page: AddDentalPage(),bottomSheet: false),
+  SubAddHomeModel(name: "Deworming",image: RecordType.deworm1,page: AddDewormingPage(),bottomSheet: false),
+  SubAddHomeModel(name: "Therapy",image: RecordType.reiki1,page: AddTherapyPage(),bottomSheet: false),
+  SubAddHomeModel(name: "Vaccination",image: RecordType.syringe,page: AddVaccinationPage(),bottomSheet: false),
+  SubAddHomeModel(name: "Vitals",image: RecordType.heart_beat1,page: AddVitalsPage(),bottomSheet: false),
+  SubAddHomeModel(name: "Diagnostic",image: RecordType.stethoscope,page: AddDiagnosticPage(),bottomSheet: false),
+  SubAddHomeModel(name: "Farrier",image: RecordType.horseshoe1,page: Container(),bottomSheet: false),
+  SubAddHomeModel(name: "General Health",image: RecordType.health_care,page: Container(),bottomSheet: false),
+  SubAddHomeModel(name: "Injury",image: RecordType.broken_bone,page: AddInjuryPage(),bottomSheet: false),
+  SubAddHomeModel(name: "Joint Injection",image: RecordType.boon_injection,page: AddJointInjectionPage(),bottomSheet: false),
+  SubAddHomeModel(name: "Med/supplements",image: RecordType.supplements,page: Container(),bottomSheet: false),
+  SubAddHomeModel(name: "Milk Test",image: RecordType.broken_bone,page: AddInjuryPage(),bottomSheet: false),
+  SubAddHomeModel(name: "Notes",image: RecordType.boon_injection,page: AddJointInjectionPage(),bottomSheet: false),
+  SubAddHomeModel(name: "Passport Renewal",image: RecordType.supplements,page: Container(),bottomSheet: false),
+  SubAddHomeModel(name: "Foaling Record",image: RecordType.broken_bone,page: AddInjuryPage(),bottomSheet: false),
+  SubAddHomeModel(name: "Medication...",image: RecordType.boon_injection,page: AddJointInjectionPage(),bottomSheet: false),
+  SubAddHomeModel(name: "Pregnancy Test...",image: RecordType.supplements,page: Container(),bottomSheet: false),
+  SubAddHomeModel(name: "FEI Renewal...",image: RecordType.broken_bone,page: AddInjuryPage(),bottomSheet: false),
+  SubAddHomeModel(name: "Insemination...",image: RecordType.boon_injection,page: AddJointInjectionPage(),bottomSheet: false),
+  SubAddHomeModel(name: "Semen Collection...",image: RecordType.supplements,page: Container(),bottomSheet: false),
 ];

@@ -6,6 +6,7 @@ import 'package:hourse_lux/view/HomeScreen/add_contacts/add_contact_dialog.dart'
 import 'package:hourse_lux/view/customs/custom_search.dart';
 import 'package:hourse_lux/view/customs/custom_text.dart';
 import 'add_contacts/add_conatact_page.dart';
+import 'add_contacts/contact_detail_page.dart';
 
 class ContactScreen extends StatefulWidget {
   const ContactScreen({super.key});
@@ -15,6 +16,7 @@ class ContactScreen extends StatefulWidget {
 }
 
 class _ContactScreenState extends State<ContactScreen> {
+  bool contactActive = true;
   @override
   Widget build(BuildContext context) {
     final List<String> alphabets = ["A", "B", "C", "D"];
@@ -82,7 +84,48 @@ class _ContactScreenState extends State<ContactScreen> {
             ),
             SizedBox(height: 20.h),
             CustomSearchTextField(),
-            SizedBox(height: 20.h),
+            SizedBox(height: 37.h),
+            Container(
+
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    height: 36,
+                    padding: EdgeInsets.only(left: 12,right: 12),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: baseColor,width: 1),
+                      color: contactActive?baseColor:Colors.transparent,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(4),
+                        bottomLeft:  Radius.circular(4),
+                      ),
+                    ),
+                    child: Text("Contacts",style: TextStyle(
+                      color: contactActive?Colors.white:Colors.black,
+                    ),),
+                  ),
+                  Container(
+                    height: 36,
+                    padding: EdgeInsets.only(left: 12,right: 12),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: !contactActive?baseColor:Colors.transparent,
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(4),
+                        bottomRight:  Radius.circular(4),
+                      ),
+                      border: Border.all(color: baseColor,width: 1),
+                    ),
+                    child: Text("Owner Group",style: TextStyle(
+                      color: !contactActive?Colors.white:Colors.black,
+                    ),),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 37.h),
             Expanded(
               child: ListView.builder(
                 shrinkWrap: true,
@@ -122,29 +165,34 @@ class _ContactScreenState extends State<ContactScreen> {
                         itemBuilder: (BuildContext context, int nestedIndex) {
                           return Column(
                             children: [
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                      left: 20,
-                                      top: 12,
-                                      bottom: 15,
+                              GestureDetector(
+                                onTap: () {
+                                  Get.to(() => ContactDetailPage());
+                                },
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                        left: 20,
+                                        top: 12,
+                                        bottom: 15,
+                                      ),
+                                      child: CustomText(
+                                        text: nestedList[index][nestedIndex],
+                                        color: blackColor,
+                                        fontSize: 15.sp,
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                     ),
-                                    child: CustomText(
-                                      text: nestedList[index][nestedIndex],
+                                    Spacer(),
+                                    Icon(
+                                      Icons.arrow_forward_ios,
                                       color: blackColor,
-                                      fontSize: 15.sp,
-                                      fontWeight: FontWeight.w600,
+                                      size: 18.sp,
                                     ),
-                                  ),
-                                  Spacer(),
-                                  Icon(
-                                    Icons.arrow_forward_ios,
-                                    color: blackColor,
-                                    size: 18.sp,
-                                  ),
-                                  SizedBox(width: 20)
-                                ],
+                                    SizedBox(width: 20)
+                                  ],
+                                ),
                               ),
                             ],
                           );

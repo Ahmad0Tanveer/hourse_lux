@@ -33,19 +33,25 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     fontWeight: FontWeight.w400,
                     color: whiteColor.withOpacity(0.7),
                     text: 'Code has been send to adam*******@gmail.com'),
-                /*Row(
-                  children: List.generate(4, (index) => Padding(
-                            padding: EdgeInsets.only(left: 10.w),
-                            child: CustomTextField(
-                                height: 70.h,
-                                width: 83.w,
-                                backgroundColor: whiteColor,
-                                hintText: '',
-                                text: ''
-                            ),
-                          )),
-                ),*/
-                SizedBox(height: 50.h),
+                SizedBox(height: 80.h),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: List.generate(4, (index) => Container(
+                    width: 70,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.white,
+                    ),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        filled: false,
+                        border: InputBorder.none,
+                      ),
+                    ),
+                  )),
+                ),
+                SizedBox(height: 30.h),
                 CustomText(
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w400,

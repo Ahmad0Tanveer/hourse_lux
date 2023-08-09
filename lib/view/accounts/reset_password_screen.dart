@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:hourse_lux/core/constant/colors.dart';
 import 'package:hourse_lux/core/user_controler.dart';
 import 'package:hourse_lux/view/accounts/login_screen.dart';
+import 'package:hourse_lux/widgets/text_positions.dart';
 import '../customs/auth_pages_share_widget.dart';
-import '../customs/cusotm_text_field_with_text.dart';
 import '../customs/custom_button.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
@@ -30,7 +30,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 textOne: 'Reset password',
                 textTwo: 'Create a new password',
                 children: [
-                  Text("NewPassword",style: Get.theme.textTheme.labelSmall),
+                  MyText.text("New Password"),
                   SizedBox(height: 15.h),
                   TextFormField(
                     controller: user.password,
@@ -38,8 +38,10 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                       hintText: "NewPassword"
                     ),
                   ),
-                  Text("ConfirmPassword",style: Get.theme.textTheme.labelSmall),
+
                   SizedBox(height: 15.h),
+                  MyText.text("Confirm New Password"),
+                  SizedBox(height: 10.h),
                   TextFormField(
                     controller: user.rPassword,
                     decoration: InputDecoration(

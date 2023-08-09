@@ -15,6 +15,13 @@ class _SelectBottomSheetState extends State<SelectBottomSheet> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        SizedBox(height: 16),
+        Container(
+          width: 48,
+          height: 4,
+          margin: EdgeInsets.only(left: 16,right: 16),
+          color: Colors.grey,
+        ),
         Container(
             height: 50,
             alignment: Alignment.center,
@@ -25,23 +32,33 @@ class _SelectBottomSheetState extends State<SelectBottomSheet> {
           margin: EdgeInsets.only(left: 16,right: 16),
           color: Colors.grey,
         ),
-        SizedBox(width: 30),
+        SizedBox(width: 40),
         Expanded(
             child: ListView(
               children: widget.options.map((e){
                 return GestureDetector(
                   onTap: () =>  widget.onTap(e),
                   child: Container(
-                    height: 30,
+                    height: 45,
                     child: Row(
                       children: [
-                        SizedBox(width: 10),
-                        Checkbox(
-                            shape: CircleBorder(),
-                            value: e == widget.selectedOption,
-                            onChanged: (_) =>  widget.onTap(e)
+                        SizedBox(width: 24),
+                        Container(
+                          height: 20,
+                          width: 20,
+                          padding: EdgeInsets.all(2),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.white,width: 1),
+                            shape: BoxShape.circle,
+                          ),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                                color: widget.selectedOption==e?Colors.white:Colors.transparent
+                            ),
+                          ),
                         ),
-                        SizedBox(width:4),
+                        SizedBox(width: 12),
                         Text(e,style: Get.textTheme.labelMedium!.copyWith(fontSize: 18,fontWeight: FontWeight.w700)),
                       ],
                     ),
@@ -49,7 +66,7 @@ class _SelectBottomSheetState extends State<SelectBottomSheet> {
                 );
               }).toList(),
             )
-        )
+        ),
       ],
     );
   }

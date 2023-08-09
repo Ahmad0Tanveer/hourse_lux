@@ -30,7 +30,7 @@ class _CustomAppBar2State extends State<CustomAppBar2> {
             ],
           ),
           SizedBox(height: 12),
-          Container(height: 1,color: Color(0xffD7D7D7),)
+          Container(height: 1,color: Color(0xffD7D7D7),),
         ],
       ),
     );

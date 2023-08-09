@@ -45,7 +45,10 @@ class _FeedSelectHorsePageState extends State<FeedSelectHorsePage> {
                 ),
                 SizedBox(height: 16),
                 InkWell(
-                  onTap: () => Get.to(() => AddFeedPage()),
+                  onTap: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context)=> AddFeedPage()));
+                  },
                   child: Container(
                     margin: EdgeInsets.only(left: 10,right: 10),
                     child: Row(

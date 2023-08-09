@@ -21,6 +21,8 @@ class CustomSearchTextField extends StatelessWidget {
                   cursorColor: darkBlueColor,
                   decoration: InputDecoration(
                     hintText: 'Search',
+                    fillColor: Colors.transparent,
+                    filled: true,
                     border: InputBorder.none,
                   ),
                 ),

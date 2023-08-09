@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hourse_lux/core/constant/assets.dart';
 import 'package:hourse_lux/view/HomeScreen/contact_screen.dart';
 import 'package:hourse_lux/view/HomeScreen/home_screen.dart';
-import 'package:hourse_lux/view/ReportScreen/report_screen.dart';
-import 'package:hourse_lux/view/ScheduleScreen/schedule_screen.dart';
+import 'package:hourse_lux/view/HomeScreen/report_screen.dart';
+import 'package:hourse_lux/view/HomeScreen/schedule_screen.dart';
 
 import '../../view/HomeScreen/add_horse_page.dart';
 
@@ -20,3 +20,4 @@ List<MyBottomBar> allBars = [
   MyBottomBar(image: schedule,label: "",page: ScheduleScreen()),
   MyBottomBar(image: report,label: "",page: ReportScreen()),
 ];
+

@@ -1,36 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:hourse_lux/core/constant/colors.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 ThemeData theme = ThemeData(
-  fontFamily: "Quicksand",
+  fontFamily: GoogleFonts.quicksand().fontFamily,
   textTheme: TextTheme(
     labelMedium: TextStyle(
-        fontFamily: 'SOURCE SANS PRO',
+       // fontFamily: 'Quicksand',
         color: Colors.white,
         fontSize: 16,
         fontWeight: FontWeight.w600
     ),
     bodyLarge: TextStyle(
-        fontFamily: 'Quicksand',
+       // fontFamily: 'Quicksand',
         color: Colors.white,
         fontSize: 20,
         fontWeight: FontWeight.w700
     ),
     bodySmall: TextStyle(
-        fontFamily: 'Quicksand',
+       // fontFamily: 'Quicksand',
         color: Color.fromRGBO(44, 58, 75,1),
         fontSize: 16,
         fontWeight: FontWeight.w600
     ),
     bodyMedium: TextStyle(
-        fontFamily: 'Quicksand',
+      //  fontFamily: 'Quicksand',
         color: Color.fromRGBO(9, 16, 29,1),
         fontSize: 16,
         fontWeight: FontWeight.w600
     ),
     //used and top Text on TextField
     labelSmall: TextStyle(
-        fontFamily: 'Quicksand',
+      //  fontFamily: 'Quicksand',
         color: Colors.white,
         fontSize: 16,
         fontWeight: FontWeight.w600
@@ -48,7 +49,6 @@ ThemeData theme = ThemeData(
       borderRadius: BorderRadius.circular(40),
     ),
     hintStyle: TextStyle(
-        fontFamily: 'SOURCE SANS PRO',
         fontWeight: FontWeight.w600,
         color: blackColor.withOpacity(0.4),
         fontSize: 16

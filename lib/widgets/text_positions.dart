@@ -5,6 +5,7 @@ class MyText{
   static Widget text(text){
     return Row(
       children: [
+        SizedBox(width: 10),
         Text(text,style: Get.theme.textTheme.labelSmall),
       ],
     );

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hourse_lux/core/constant/colors.dart';
-
 import 'add_contact_data.dart';
 
 class AddContactDialog extends StatelessWidget {

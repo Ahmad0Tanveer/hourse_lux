@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hourse_lux/core/constant/colors.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CustomText extends StatelessWidget {
   final String? text;
@@ -33,17 +33,20 @@ class CustomText extends StatelessWidget {
       onTap: onTap,
       child: DefaultTextStyle(
         style: TextStyle(
-          fontFamily: 'Quicksand',
           color: color,
           fontSize: fontSize,
           fontWeight: fontWeight,
           fontStyle: fontStyle,
+          fontFamily: GoogleFonts.quicksand().fontFamily,
         ),
         child: Text(
           text!,
           textAlign: textAlign,
           overflow: overflow,
-          maxLines: maxLines,
+          maxLines: 2,
+          style: TextStyle(
+            fontFamily: GoogleFonts.quicksand().fontFamily,
+          ),
         ),
       ),
     );
