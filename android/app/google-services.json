@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "671280788159",
+    "project_id": "horselux-167fb",
+    "storage_bucket": "horselux-167fb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:671280788159:android:ae820778c0ed8c40dc8c0a",
+        "android_client_info": {
+          "package_name": "com.example.hourse_lux"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "671280788159-8q6orl9oa9g3ue02kq2ookfrpddfc8aj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_KZuOq8aKjNQfSTCioB9raFDHK6yW_WA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "671280788159-8q6orl9oa9g3ue02kq2ookfrpddfc8aj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

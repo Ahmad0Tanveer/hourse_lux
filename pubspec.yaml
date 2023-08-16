@@ -23,6 +23,8 @@ dependencies:
   panara_dialogs: ^0.1.4
   nb_utils: ^6.0.2
   pinput: ^3.0.0
+  firebase_core: any
+  firebase_storage: any
 
 
 

@@ -5,6 +5,8 @@ import 'package:hourse_lux/models/ui/add_home_model.dart';
 import 'package:hourse_lux/widgets/custom_appbar.dart';
 import 'package:hourse_lux/widgets/styles.dart';
 
+import 'home_screen.dart';
+
 class AddHorsePage extends StatefulWidget {
   const AddHorsePage({super.key});
   @override
@@ -15,6 +17,7 @@ class _AddHorsePageState extends State<AddHorsePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
       body: ListView(
         children: [
           CustomAppBar(),

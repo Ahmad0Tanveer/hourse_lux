@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:hourse_lux/core/helpers/keys.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hourse_lux/view/drawer/about_us_page.dart';
 import 'package:hourse_lux/view/drawer/edit_profile.dart';
 import '../../core/constant/assets.dart';
 import '../../core/constant/colors.dart';
+import '../../main.dart';
 import '../../widgets/styles.dart';
+import '../accounts/login_screen.dart';
 import '../customs/custom_button.dart';
 import 'contact_us_page.dart';
-
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
@@ -95,7 +97,7 @@ class MyDrawer extends StatelessWidget {
                   SizedBox(height: 32),
                   DefaultButton(
                     text: 'Logout',
-                    press: (){},
+                    press: handleLogoutButton,
                     textColor: blackColor,
                     borderRadius: 60.r,
                     horizontalPadding: 20.w,
@@ -122,5 +124,9 @@ class MyDrawer extends StatelessWidget {
           );
         }
     );
+  }
+  void handleLogoutButton() async{
+    await box.remove(allKeys.userMap);
+    Get.offAll(() => SignInScreen());
   }
 }

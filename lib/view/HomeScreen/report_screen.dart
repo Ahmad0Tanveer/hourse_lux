@@ -3,12 +3,12 @@ import 'package:get/get.dart';
 import 'package:hourse_lux/view/HomeScreen/add_horses/herse_select_page.dart';
 import 'package:hourse_lux/view/HomeScreen/reports/owner_report_page.dart';
 
+import 'home_screen.dart';
 import 'reports/due_date_report_page.dart';
 import 'reports/feed_select_hores_page.dart';
 import 'reports/report_heaalth_page.dart';
 import 'reports/reports_activity_page.dart';
 import 'reports/select_horse_temperature_report_page.dart';
-import 'reports/temperature_reports_page.dart';
 
 class ReportScreen extends StatefulWidget {
   const ReportScreen({super.key});
@@ -21,6 +21,7 @@ class _ReportScreenState extends State<ReportScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
       body: SafeArea(
         child: Container(
           child: ListView(

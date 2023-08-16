@@ -46,20 +46,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
               width: 160.w,
             ),
           ),
-          GestureDetector(
-            onTap: ()  async {
-              await box.remove(allKeys.userMap);
-              Get.offAll(() => SignInScreen());
-            },
-            child: Padding(
-              padding: const EdgeInsets.only(right: 10),
-              child: Icon(
-                Icons.logout,
-                color: Colors.white,
-                size: 25.sp,
-              ),
-            ),
-          ),
+          SizedBox(width: 25)
         ],
       ),
     );

@@ -7,6 +7,7 @@ import 'package:hourse_lux/view/customs/custom_search.dart';
 import 'package:hourse_lux/view/customs/custom_text.dart';
 import 'add_contacts/add_conatact_page.dart';
 import 'add_contacts/contact_detail_page.dart';
+import 'home_screen.dart';
 
 class ContactScreen extends StatefulWidget {
   const ContactScreen({super.key});
@@ -36,6 +37,7 @@ class _ContactScreenState extends State<ContactScreen> {
       // Add more inner lists here...
     ];
     return SafeArea(
+      key: scaffoldKey,
       child: Scaffold(
         backgroundColor: whiteColor,
         body: Column(
