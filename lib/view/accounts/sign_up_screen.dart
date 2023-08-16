@@ -48,7 +48,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       MyText.text("Email"),
                       SizedBox(height: 15.h),
                       TextFormField(
-                        controller: user.rPassword,
+                        controller: user.email,
                         validator: ValidationHelpers.emailValidator,
                         decoration: InputDecoration(
                             hintText: "Email"
@@ -59,9 +59,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       SizedBox(height: 15.h),
                       TextFormField(
                         validator: ValidationHelpers.phoneNumberValidator,
-                        controller: user.rPassword,
+                        controller: user.phone,
                         decoration: InputDecoration(
-                            hintText: "PhoneNumber"
+                            hintText: "Phone Number"
                         ),
                       ),
                       SizedBox(height: 20.h),
@@ -132,7 +132,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                       ),*/
                       SizedBox(height: 20.h),
-                      DefaultButton(
+                      user.state?Container(
+                        child: CircularProgressIndicator(),
+                      ):DefaultButton(
                         text: 'Sign Up',
                         press: user.handleSignUp,
                         textColor: blackColor,
@@ -183,7 +185,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               ),
                               Text('Google',
                                   style: TextStyle(
-                                      fontFamily: 'SOURCE SANS PRO',
                                       color: whiteColor,
                                       fontSize: 16.sp,
                                       fontWeight: FontWeight.bold)),
@@ -202,9 +203,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 fontSize: 16.sp),
                           ),
                           TextButton(
-                            onPressed: () {
-                              Get.back();
-                            },
+                            onPressed: () => Get.back(),
                             child: Text(
                               'Sign In',
                               style: TextStyle(

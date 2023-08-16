@@ -5,6 +5,7 @@ import 'package:hourse_lux/core/constant/assets.dart';
 import 'package:hourse_lux/core/constant/colors.dart';
 import 'package:hourse_lux/core/helpers/keys.dart';
 import 'package:hourse_lux/main.dart';
+import '../HomeScreen/bottom_nav_bar.dart';
 import 'login_screen.dart';
 import 'on_boarding_screens.dart';
 
@@ -20,10 +21,15 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Future.delayed(Duration(seconds: 2),(){
       if(box.read(allKeys.boardingScreen)??false){
-        Get.offAll(() => SignInScreen());
+        if(box.read(allKeys.userMap) != null){
+          Get.off(() => BottomNavSheetScreen());
+        } else {
+          Get.offAll(() => SignInScreen());
+        }
       } else {
         Get.offAll(() => OnboardingScreens());
       }
+      //Get.offAll(() => OnboardingScreens());
     });
   }
 

@@ -21,6 +21,8 @@ dependencies:
   http: ^1.1.0
   get_storage: any
   panara_dialogs: ^0.1.4
+  nb_utils: ^6.0.2
+  pinput: ^3.0.0
 
 
 
@@ -49,6 +51,7 @@ flutter:
     - assets/icons/
     - assets/images/
     - assets/images/app_icon.png
+    - assets/images/women.png
     - assets/record_type/
     - assets/reports/
 

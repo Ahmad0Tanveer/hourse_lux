@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:hourse_lux/core/helpers/keys.dart';
+import 'package:hourse_lux/main.dart';
 
 import '../core/constant/assets.dart';
 import '../core/constant/colors.dart';
+import '../view/HomeScreen/home_screen.dart';
+import '../view/accounts/login_screen.dart';
 
 class CustomAppBar extends StatefulWidget {
   const CustomAppBar({super.key});
@@ -21,12 +26,17 @@ class _CustomAppBarState extends State<CustomAppBar> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: Icon(
-              Icons.menu,
-              color: whiteColor,
-              size: 25.sp,
+          InkWell(
+            onTap: (){
+              scaffoldKey.currentState!.openDrawer();
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: Icon(
+                Icons.menu,
+                color: whiteColor,
+                size: 25.sp,
+              ),
             ),
           ),
           Padding(
@@ -36,12 +46,18 @@ class _CustomAppBarState extends State<CustomAppBar> {
               width: 160.w,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(right: 10),
-            child: Icon(
-              Icons.menu,
-              color: Colors.transparent,
-              size: 25.sp,
+          GestureDetector(
+            onTap: ()  async {
+              await box.remove(allKeys.userMap);
+              Get.offAll(() => SignInScreen());
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(right: 10),
+              child: Icon(
+                Icons.logout,
+                color: Colors.white,
+                size: 25.sp,
+              ),
             ),
           ),
         ],
