@@ -33,7 +33,7 @@ class _HorseDetailPageState extends State<HorseDetailPage> {
             Container(
                 height: 230,
                 width: Get.width,
-              child: Image.asset("assets/icons/hhorse.png"),
+              child: Image.asset("assets/icons/hhorse.png",fit: BoxFit.fill,),
             ),
             Positioned(
                 bottom: 10,

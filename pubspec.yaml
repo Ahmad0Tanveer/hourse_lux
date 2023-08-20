@@ -23,11 +23,13 @@ dependencies:
   panara_dialogs: ^0.1.4
   nb_utils: ^6.0.2
   pinput: ^3.0.0
-  firebase_core: any
-  firebase_storage: any
+  firebase_core: 2.15.1
+  firebase_storage: 11.2.6
+  image_picker: any
 
 
-
+dependency_overrides:
+  test_api: 0.5.1
 
 
 dev_dependencies:

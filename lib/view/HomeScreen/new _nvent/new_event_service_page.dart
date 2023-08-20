@@ -9,7 +9,6 @@ import 'event_service_type.dart';
 
 class NewEventServicePage extends StatefulWidget {
   const NewEventServicePage({super.key});
-
   @override
   State<NewEventServicePage> createState() => _NewEventServicePageState();
 }

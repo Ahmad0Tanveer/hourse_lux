@@ -1,9 +1,10 @@
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
+import 'new _nvent/new_event_service_page.dart';
+import 'package:hourse_lux/view/HomeScreen/bottom_nav_bar.dart';
 import '../../core/constant/colors.dart';
 import 'home_screen.dart';
+import 'package:get/get.dart';
 
 class ScheduleScreen extends StatefulWidget {
   const ScheduleScreen({super.key});
@@ -12,6 +13,7 @@ class ScheduleScreen extends StatefulWidget {
 }
 
 class _ScheduleScreenState extends State<ScheduleScreen> {
+  final nav = Get.put(MyNav());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +26,10 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
         title: Text("Schedule".toUpperCase(),style: Get.theme.textTheme.bodyMedium),
         actions: [
           TextButton(
-              onPressed: (){},
+              onPressed: (){
+                Get.to(() => NewEventServicePage());
+                //nav.changeNav(2);
+              },
               child: Container(
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
@@ -41,6 +46,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
         children: [
           Container(
             height: 73,
+            padding: EdgeInsets.only(left: 20),
             color: baseColor,
             alignment: Alignment.centerLeft,
             child: Text("Thur, June, 2023",style: TextStyle(
@@ -51,8 +57,11 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
           ),
           CalendarDatePicker2(
             config: CalendarDatePicker2Config(
-              calendarType: CalendarDatePicker2Type.multi,
-
+              calendarType: CalendarDatePicker2Type.single,
+              selectedDayHighlightColor: baseColor,
+              dayTextStyle: TextStyle(
+                fontSize: 14,
+              )
             ),
             value: [DateTime.now()],
             onValueChanged: (dates) {},
@@ -66,11 +75,15 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                 Container(
                   width: 120,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Text("5 AM"),
-                      Image.asset("assets/images/h1.png",width: 53,height: 53),
-                      Text("Ferris"),
+                      Text("5 AM",style: TextStyle(
+                        fontSize: 14,
+                      ),),
+                      Image.asset("assets/images/h1.png",width: 50,height: 50),
+                      Text("Ferris",style: TextStyle(
+                        fontSize: 14,
+                      ),),
                     ],
                   ),
                 ),
@@ -79,49 +92,72 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text("Office Fee: Paying Fee",style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 16,
                       fontWeight: FontWeight.w700
                     ),),
                     Row(
                       children: [
-                        Text("Horse: ",style: TextStyle(fontWeight: FontWeight.w700),),
-                        Text("Jupiter"),
+                        Text("Horse: ",style: TextStyle(fontWeight: FontWeight.w700,
+                          fontSize: 14,
+                        ),),
+                        Text("Jupiter",style: TextStyle(fontWeight: FontWeight.w600,
+                          fontSize: 14,
+                        )),
                       ],
                     ),
                     Row(
                       children: [
-                        Text("Participant(s): ",style: TextStyle(fontWeight: FontWeight.w700),),
-                        Text("Adam Smith"),
+                        Text("Participant(s): ",style: TextStyle(fontWeight: FontWeight.w700,
+                          fontSize: 14,
+                        ),),
+                        Text("Adam Smith",style: TextStyle(fontWeight: FontWeight.w600,
+                          fontSize: 14,
+                        )),
                       ],
                     ),
                     Row(
                       children: [
-                        Text("Admin: ",style: TextStyle(fontWeight: FontWeight.w700),),
-                        Text("John son"),
+                        Text("Admin: ",style: TextStyle(fontWeight: FontWeight.w700,
+                          fontSize: 14,
+                        ),),
+                        Text("John son",style: TextStyle(fontWeight: FontWeight.w600,
+                          fontSize: 14,
+                        )),
                       ],
                     ),
+
                    Container(
                      width: Get.width - 140,
-                     child:  Text("Lorem Ipsum is simply dummy text of the printing and.",overflow: TextOverflow.ellipsis),)
+                     child:  Text("Lorem Ipsum is simply dummy text of the printing and.",
+                       overflow: TextOverflow.ellipsis,
+                       style: TextStyle(
+                         fontSize: 14,
+                       ),
+                     ),
+                   )
                   ],
                 ),
               ],
             ),
           ),
-          SizedBox(width: 10),
+          SizedBox(height: 10),
           Container(
             height: 132,
-            color: Color.fromRGBO(151, 71, 255,1),
+            color: Color(0xff9747FF),
             child: Row(
               children: [
                 Container(
                   width: 120,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Text("5 AM"),
-                      Image.asset("assets/images/h1.png",width: 53,height: 53),
-                      Text("Ferris"),
+                      Text("5 AM",style: TextStyle(
+                        fontSize: 14,
+                      ),),
+                      Image.asset("assets/images/h1.png",width: 50,height: 50),
+                      Text("Ferris",style: TextStyle(
+                        fontSize: 14,
+                      ),),
                     ],
                   ),
                 ),
@@ -130,30 +166,49 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text("Office Fee: Paying Fee",style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 16,
                         fontWeight: FontWeight.w700
                     ),),
                     Row(
                       children: [
-                        Text("Horse: ",style: TextStyle(fontWeight: FontWeight.w700),),
-                        Text("Jupiter"),
+                        Text("Horse: ",style: TextStyle(fontWeight: FontWeight.w700,
+                          fontSize: 14,
+                        ),),
+                        Text("Jupiter",style: TextStyle(fontWeight: FontWeight.w600,
+                          fontSize: 14,
+                        )),
                       ],
                     ),
                     Row(
                       children: [
-                        Text("Participant(s): ",style: TextStyle(fontWeight: FontWeight.w700),),
-                        Text("Adam Smith"),
+                        Text("Participant(s): ",style: TextStyle(fontWeight: FontWeight.w700,
+                          fontSize: 14,
+                        ),),
+                        Text("Adam Smith",style: TextStyle(fontWeight: FontWeight.w600,
+                          fontSize: 14,
+                        )),
                       ],
                     ),
                     Row(
                       children: [
-                        Text("Admin: ",style: TextStyle(fontWeight: FontWeight.w700),),
-                        Text("John son"),
+                        Text("Admin: ",style: TextStyle(fontWeight: FontWeight.w700,
+                          fontSize: 14,
+                        ),),
+                        Text("John son",style: TextStyle(fontWeight: FontWeight.w600,
+                          fontSize: 14,
+                        )),
                       ],
                     ),
+
                     Container(
                       width: Get.width - 140,
-                      child:  Text("Lorem Ipsum is simply dummy text of the printing and.",overflow: TextOverflow.ellipsis),)
+                      child:  Text("Lorem Ipsum is simply dummy text of the printing and.",
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: 14,
+                        ),
+                      ),
+                    )
                   ],
                 ),
               ],

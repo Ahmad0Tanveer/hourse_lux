@@ -8,6 +8,7 @@ import 'package:hourse_lux/core/helpers/keys.dart';
 import 'package:hourse_lux/main.dart';
 import '../view/HomeScreen/bottom_nav_bar.dart';
 import '../view/accounts/forgot_password.dart';
+import '../view/accounts/reset_password_screen.dart';
 import 'api_service_controller.dart';
 
 class UserController extends GetxController {
@@ -130,21 +131,21 @@ class UserController extends GetxController {
           "email": email.text,
         };
         final out = await service.request(endPoint: "verify-otp",body: userMap,type: RequestType.post);
-        print(out.body);
-        /*if(out.statusCode == 404){
+        print(out.statusCode);
+        if(out.statusCode == 404){
           state = true;
           update();
           HelperDialog.errorDialog("Account Not Exits", "User detail not found");
         }else if(out.statusCode == 200){
           state = true;
           update();
-          HelperDialog.nbToast("OTP sent successfully");
-          Get.to(() => ForgotPasswordScreen());
+          Get.to(() => ResetPasswordScreen());
+          HelperDialog.nbToast("OTP Verified successfully");
         }else {
           state = true;
           update();
           HelperDialog.errorDialog("Ohh", "Some thing went wrong");
-        }*/
+        }
       }
     } catch(e){}
     update();
@@ -152,5 +153,4 @@ class UserController extends GetxController {
     update();
   }
   void handleGoogleSignUp() async {}
-  void handleSignOut() async {}
 }

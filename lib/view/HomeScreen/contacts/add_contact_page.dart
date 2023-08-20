@@ -188,10 +188,16 @@ class _AddContactPageState extends State<AddContactPage> {
   }
 
   void changeTitle(t){
-
+    setState(() {
+      selectedTile = t;
+    });
+    Get.back();
   }
 
   void changeType(t){
-
+    setState(() {
+      selectedType = t;
+    });
+    Get.back();
   }
 }

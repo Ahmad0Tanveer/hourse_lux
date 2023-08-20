@@ -33,12 +33,14 @@ class _AboutUsPageState extends State<AboutUsPage> {
               children: [
                 SizedBox(height: 50),
                 Image.asset("assets/images/logo2.png",height: 60),
-                SizedBox(height: 16),
+
+                SizedBox(height: 32),
                 Text("ABOUT US",style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),),
+                SizedBox(height: 16),
                 Container(
                   margin: EdgeInsets.all(16),
                   child: Text("Lorem ipsum dolor sit amet, consectet ur adipiscing elit, sed do eiusmod temp or incididunt ut labore et dolore mag na aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequ at. Duis aute irure dolor in reprehend erit in voluptate velit esse cillum dol ore eu fugiat nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labo re et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitat ion ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute iru re dolor in reprehenderit in voluptate velit esse cillum dol ore eu fugiat n",

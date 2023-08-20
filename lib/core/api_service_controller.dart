@@ -7,12 +7,14 @@ class ApiService {
   final String baseUrl = "https://hurseluxprojectupdate-production.up.railway.app";
   Future request({required endPoint,Map body = const {},RequestType type = RequestType.get}) async {
     Map userMap = box.read(allKeys.userMap)??{};
+    Map<String,String> headers = {
+      "Authorization": "Bearer ${userMap["token"]??{}}",
+    };
+    print(headers);
     if(type == RequestType.get){
-      return await http.get(Uri.parse("${baseUrl}/$endPoint"), headers: {
-        "Authorization": "Bearer ${userMap["token"]??{}}",
-      });
+      return await http.get(Uri.parse("${baseUrl}/$endPoint"), headers: headers);
     } else if(type == RequestType.post){
-      return await http.post(Uri.parse("${baseUrl}/$endPoint"), body: body);
+      return await http.post(Uri.parse("${baseUrl}/$endPoint"), body: body,headers: headers);
     } else if(type == RequestType.put){
 
     } else if(type == RequestType.delete){

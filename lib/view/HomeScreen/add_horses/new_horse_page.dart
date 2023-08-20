@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hourse_lux/core/constant/colors.dart';
+import 'package:hourse_lux/core/horse_controller.dart';
 import 'package:hourse_lux/widgets/custom_appbar_2.dart';
 import 'package:hourse_lux/widgets/select_bottom.dart';
 import 'package:hourse_lux/widgets/styles.dart';
+import '../../../core/helpers/validdation_helper.dart';
 import '../../../widgets/my_input_shadow.dart';
 import 'add_horse_data.dart';
 
@@ -14,252 +16,286 @@ class CreateNewHorse extends StatefulWidget {
 }
 
 class _CreateNewHorseState extends State<CreateNewHorse> {
-  String selectBreedString = "";
-  String selectColorString = "";
-  String selectSexString = "";
+  final horse = Get.put(HorseController());
+  String selectBreedString = "Breed";
+  String selectColorString = "Select.....";
+  String selectSexString = "Select.....";
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        child: ListView(
-          children: [
-            CustomAppBar2(title: "Add new horses"),
-            SizedBox(height: 20),
-            Container(
-              margin: EdgeInsets.only(left: 16),
-              child: Text("BASIC INFO",style: Get.textTheme.bodyLarge!.copyWith(color: Colors.black)),
-            ),
-            SizedBox(height: 10),
-            MyInputShadow(
-                title: "Name",
-                widget: TextFormField(
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    fillColor: Colors.transparent,
-                    hintText: "(required)",
-                    hintStyle: Get.textTheme.bodyMedium,
-                    filled: true,
-                  ),
-                )
-            ),
-            SizedBox(height: 10),
-            MyInputShadow(
-                title: "Show Name",
-                widget: TextFormField(
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    fillColor: Colors.transparent,
-                    hintText: "Show Name",
-                    hintStyle: Get.textTheme.bodyMedium,
-                    filled: true,
-                  ),
-                )
-            ),
-            SizedBox(height: 10),
-            MyInputShadow(
-                title: "Owner",
-                widget: TextFormField(
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    fillColor: Colors.transparent,
-                    hintText: "Owner Name",
-                    hintStyle: Get.textTheme.bodyMedium,
-                    filled: true,
-                  ),
-                )
-            ),
-            SizedBox(height: 10),
-            MyInputShadow(
-                title: "Breed",
-                widget: GestureDetector(
-                  onTap: selectBreed,
-                  child: Container(
-                    height: 50,
-                    padding: EdgeInsets.only(left: 16,right: 16),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text("Breed", style: Get.textTheme.bodyMedium),
-                        Icon(Icons.arrow_drop_down_outlined),
-                      ],
-                    ),
-                  ),
-                )
-            ),
-            MyInputShadow(
-                title: "Color",
-                widget: GestureDetector(
-                  onTap: selectColor,
-                  child: Container(
-                    height: 50,
-                    padding: EdgeInsets.only(left: 16,right: 16),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text("Select.....", style: Get.textTheme.bodyMedium),
-                        Icon(Icons.arrow_drop_down_outlined),
-                      ],
-                    ),
-                  ),
-                )
-            ),
-            SizedBox(height: 10),
-            MyInputShadow(
-                title: "Sex",
-                widget: InkWell(
-                  onTap: selectSex,
-                  child: Container(
-                    height: 50,
-                    padding: EdgeInsets.only(left: 16,right: 16),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text("Select.....", style: Get.textTheme.bodyMedium),
-                        Icon(Icons.arrow_drop_down_outlined),
-                      ],
-                    ),
-                  ),
-                )
-            ),
-            SizedBox(height: 10),
-            Container(
-              padding: EdgeInsets.only(left: 16),
-              child: Text("Photo",style: Get.textTheme.bodySmall),
-            ),
-            SizedBox(height: 10),
-            Container(
-              margin: EdgeInsets.only(left: 12),
-              child: Row(
+    return GetBuilder(
+      init: horse,
+      builder: (_) {
+        return Scaffold(
+          appBar: PreferredSize(
+            child: SafeArea(child: CustomAppBar2(title: "Add new horses")),
+            preferredSize: Size.fromHeight(62),
+          ),
+          body: Container(
+            child: Form(
+              key: horse.form,
+              child: ListView(
                 children: [
+                  SizedBox(height: 20),
                   Container(
-                    width: 120,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4),
-                      border: Border.all(width: 1,color: Color.fromRGBO(23, 34, 34, 1),),
-                    ),
+                    margin: EdgeInsets.only(left: 16),
+                    child: Text("BASIC INFO",style: Get.textTheme.bodyLarge!.copyWith(color: Colors.black)),
+                  ),
+                  SizedBox(height: 10),
+                  MyInputShadow(
+                      title: "Name",
+                      widget: TextFormField(
+                        controller: horse.name,
+                        validator: ValidationHelpers.fieldRequired,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          fillColor: Colors.transparent,
+                          hintText: "(required)",
+                          hintStyle: Get.textTheme.bodyMedium,
+                          filled: true,
+                        ),
+                      )
+                  ),
+                  SizedBox(height: 10),
+                  MyInputShadow(
+                      title: "Show Name",
+                      widget: TextFormField(
+                        controller: horse.showName,
+                        validator: ValidationHelpers.fieldRequired,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          fillColor: Colors.transparent,
+                          hintText: "Show Name",
+                          hintStyle: Get.textTheme.bodyMedium,
+                          filled: true,
+                        ),
+                      )
+                  ),
+                  SizedBox(height: 10),
+                  MyInputShadow(
+                      title: "Owner",
+                      widget: TextFormField(
+                        validator: ValidationHelpers.fieldRequired,
+                        controller: horse.ownerName,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          fillColor: Colors.transparent,
+                          hintText: "Owner Name",
+                          hintStyle: Get.textTheme.bodyMedium,
+                          filled: true,
+                        ),
+                      )
+                  ),
+                  SizedBox(height: 10),
+                  MyInputShadow(
+                      title: "Breed",
+                      widget: GestureDetector(
+                        onTap: selectBreed,
+                        child: Container(
+                          height: 50,
+                          padding: EdgeInsets.only(left: 16,right: 16),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(selectBreedString, style: Get.textTheme.bodyMedium),
+                              Icon(Icons.arrow_drop_down_outlined),
+                            ],
+                          ),
+                        ),
+                      )
+                  ),
+                  MyInputShadow(
+                      title: "Color",
+                      widget: GestureDetector(
+                        onTap: selectColor,
+                        child: Container(
+                          height: 50,
+                          padding: EdgeInsets.only(left: 16,right: 16),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(selectColorString, style: Get.textTheme.bodyMedium),
+                              Icon(Icons.arrow_drop_down_outlined),
+                            ],
+                          ),
+                        ),
+                      )
+                  ),
+                  SizedBox(height: 10),
+                  MyInputShadow(
+                      title: "Sex",
+                      widget: InkWell(
+                        onTap: selectSex,
+                        child: Container(
+                          height: 50,
+                          padding: EdgeInsets.only(left: 16,right: 16),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(selectSexString, style: Get.textTheme.bodyMedium),
+                              Icon(Icons.arrow_drop_down_outlined),
+                            ],
+                          ),
+                        ),
+                      )
+                  ),
+                  SizedBox(height: 10),
+                  Container(
+                    padding: EdgeInsets.only(left: 16),
+                    child: Text("Photo",style: Get.textTheme.bodySmall),
+                  ),
+                  SizedBox(height: 10),
+               horse.file == null?    Container(
+                    margin: EdgeInsets.only(left: 12),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.add),
-                        Text("Add photo"),
+                        Container(
+                          width: 120,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4),
+                            border: Border.all(width: 1,color: Color.fromRGBO(23, 34, 34, 1),),
+                          ),
+                          child: GestureDetector(
+                            onTap: horse.imagePicker,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(Icons.add),
+                                Text("Add photo"),
+                              ],
+                            ),
+                          ),
+                        ),
                       ],
                     ),
+                  ):Image.file(horse.file!),
+                  SizedBox(height: 20),
+                  MyInputShadow(
+                      title: "Microchip",
+                      widget: TextFormField(
+                        validator: ValidationHelpers.fieldRequired,
+                        controller: horse.microsChip,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          fillColor: Colors.transparent,
+                          hintText: "Microchip",
+                          hintStyle: Get.textTheme.bodyMedium,
+                          filled: true,
+                        ),
+                      )
                   ),
+                  SizedBox(height: 25),
+                  Container(
+                    margin: EdgeInsets.only(left: 16),
+                    child: Text("STALL",style: Get.textTheme.bodyLarge!.copyWith(color: Colors.black)),
+                  ),
+                  SizedBox(height: 25),
+                  MyInputShadow(
+                      title: "Stall Name",
+                      widget: TextFormField(
+                        validator: ValidationHelpers.fieldRequired,
+                        controller: horse.stallName,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          fillColor: Colors.transparent,
+                          hintText: "Stall Name",
+                          hintStyle: Get.textTheme.bodyMedium,
+                          filled: true,
+                        ),
+                      )
+                  ),
+                  SizedBox(height: 10),
+                  MyInputShadow(
+                      title: "Stall Notes",
+                      widget: TextFormField(
+                        maxLines: 4,
+                        minLines: 4,
+                        validator: ValidationHelpers.fieldRequired,
+                        controller: horse.stallNot,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          fillColor: Colors.transparent,
+                          hintText: "",
+                          hintStyle: Get.textTheme.bodyMedium,
+                          filled: true,
+                        ),
+                      )
+                  ),
+                  SizedBox(height: 25),
+                  Container(
+                    margin: EdgeInsets.only(left: 16),
+                    child: Text("PADDOCK",style: Get.textTheme.bodyLarge!.copyWith(color: Colors.black)),
+                  ),
+                  SizedBox(height: 20),
+                  MyInputShadow(
+                      title: "Paddock Name",
+                      widget: TextFormField(
+                        validator: ValidationHelpers.fieldRequired,
+                        controller: horse.paddockName,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          fillColor: Colors.transparent,
+                          hintText: "Paddock Name",
+                          hintStyle: Get.textTheme.bodyMedium,
+                          filled: true,
+                        ),
+                      )
+                  ),
+                  SizedBox(height: 10),
+                  MyInputShadow(
+                      title: "Paddock Location",
+                      widget: TextFormField(
+                        controller: horse.paddockLocation,
+                        validator: ValidationHelpers.fieldRequired,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          fillColor: Colors.transparent,
+                          hintText: "Paddock Location",
+                          hintStyle: Get.textTheme.bodyMedium,
+                          filled: true,
+                        ),
+                      )
+                  ),
+                  SizedBox(height: 10),
+                  MyInputShadow(
+                      title: "Paddock Notes",
+                      widget: TextFormField(
+                        minLines: 4,
+                        maxLines: 4,
+                        validator: ValidationHelpers.fieldRequired,
+                        controller: horse.paddockNote,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          fillColor: Colors.transparent,
+                          hintText: "",
+                          hintStyle: Get.textTheme.bodyMedium,
+                          filled: true,
+                        ),
+                      )
+                  ),
+                  SizedBox(height: 20),
+                  Container(
+                    margin: EdgeInsets.only(left: 16,right: 16),
+                    child: GestureDetector(
+                      onTap: () => horse.addHorseData(bread: selectBreedString, color: selectColorString, sex: selectColorString),
+                      child: Container(
+                        height: 55,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            color: baseColor,
+                            borderRadius: BorderRadius.circular(20)
+                        ),
+                        child: Text("Add",style: Get.theme.textTheme.labelMedium),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 50),
                 ],
               ),
             ),
-            SizedBox(height: 20),
-            MyInputShadow(
-                title: "Microchip",
-                widget: TextFormField(
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    fillColor: Colors.transparent,
-                    hintText: "Microchip",
-                    hintStyle: Get.textTheme.bodyMedium,
-                    filled: true,
-                  ),
-                )
-            ),
-            SizedBox(height: 25),
-            Container(
-              margin: EdgeInsets.only(left: 16),
-              child: Text("STALL",style: Get.textTheme.bodyLarge!.copyWith(color: Colors.black)),
-            ),
-            SizedBox(height: 25),
-            MyInputShadow(
-                title: "Stall Name",
-                widget: TextFormField(
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    fillColor: Colors.transparent,
-                    hintText: "Stall Name",
-                    hintStyle: Get.textTheme.bodyMedium,
-                    filled: true,
-                  ),
-                )
-            ),
-            SizedBox(height: 10),
-            MyInputShadow(
-                title: "Stall Notes",
-                widget: TextFormField(
-                  maxLines: 4,
-                  minLines: 4,
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    fillColor: Colors.transparent,
-                    hintText: "",
-                    hintStyle: Get.textTheme.bodyMedium,
-                    filled: true,
-                  ),
-                )
-            ),
-            SizedBox(height: 25),
-            Container(
-              margin: EdgeInsets.only(left: 16),
-              child: Text("PADDOCK",style: Get.textTheme.bodyLarge!.copyWith(color: Colors.black)),
-            ),
-            SizedBox(height: 20),
-            MyInputShadow(
-                title: "Paddock Name",
-                widget: TextFormField(
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    fillColor: Colors.transparent,
-                    hintText: "Paddock Name",
-                    hintStyle: Get.textTheme.bodyMedium,
-                    filled: true,
-                  ),
-                )
-            ),
-            SizedBox(height: 10),
-            MyInputShadow(
-                title: "Paddock Location",
-                widget: TextFormField(
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    fillColor: Colors.transparent,
-                    hintText: "Paddock Location",
-                    hintStyle: Get.textTheme.bodyMedium,
-                    filled: true,
-                  ),
-                )
-            ),
-            SizedBox(height: 10),
-            MyInputShadow(
-                title: "Paddock Notes",
-                widget: TextFormField(
-                  minLines: 4,
-                  maxLines: 4,
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    fillColor: Colors.transparent,
-                    hintText: "",
-                    hintStyle: Get.textTheme.bodyMedium,
-                    filled: true,
-                  ),
-                )
-            ),
-            SizedBox(height: 20),
-            Container(
-              margin: EdgeInsets.only(left: 16,right: 16),
-              child: GestureDetector(
-                child: Container(
-                  height: 55,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                      color: baseColor,
-                      borderRadius: BorderRadius.circular(20)
-                  ),
-                  child: Text("Add",style: Get.theme.textTheme.labelMedium),
-                ),
-              ),
-            ),
-            SizedBox(height: 50),
-          ],
-        ),
-      ),
+          ),
+        );
+      }
     );
   }
   void selectSex(){

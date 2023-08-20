@@ -13,6 +13,9 @@ import 'package:hourse_lux/view/HomeScreen/add_horses/record_type_page.dart';
 import '../../view/HomeScreen/add_horses/add_coggins_page.dart';
 import '../../view/HomeScreen/add_horses/add_dental_page.dart';
 import '../../view/HomeScreen/add_horses/add_deworming_page.dart';
+import '../../view/HomeScreen/add_horses/add_farrier_page.dart';
+import '../../view/HomeScreen/add_horses/add_general_health_page.dart';
+import '../../view/HomeScreen/add_horses/add_med_supplymentary_page.dart';
 import '../../view/HomeScreen/add_horses/add_note_page.dart';
 import '../../view/HomeScreen/add_horses/add_temperature_page.dart';
 import '../../view/HomeScreen/breadings/select_breading_page.dart';
@@ -55,8 +58,8 @@ List<AddHomeModel> allAddData = [
         SubAddHomeModel(page: RecordTypePage(),image: Images.heart, name: 'Health',bottomSheet: true),
         SubAddHomeModel(page: HorseSelectPage(nextPage: ServiceRecordTypePage(), title: "Add Service Record", ),image: Images.easy_installation, name: 'Service'),
         SubAddHomeModel(page: RenewalTypesPage(),image: Images.renewable, name: 'Renewal'),
-        SubAddHomeModel(page: AddNotePage(),image: Images.edit, name: 'Notes'),
-        SubAddHomeModel(page: AddTemperaturePage(),image: Images.thermometer, name: 'Temperature'),
+        SubAddHomeModel(page: HorseSelectPage(nextPage:  AddNotePage(),title: "Add Note"),image: Images.edit, name: 'Notes'),
+        SubAddHomeModel(page: HorseSelectPage(nextPage: AddTemperaturePage(),title: "Add Temperature",),image: Images.thermometer, name: 'Temperature'),
         SubAddHomeModel(page: SelectBreadingTypePage(),image: Images.Beehive, name: 'Breeding'),
       ]),
   AddHomeModel(
@@ -89,11 +92,11 @@ List<SubAddHomeModel> healthTabs = [
   SubAddHomeModel(name: "Vaccination",image: RecordType.syringe,page: AddVaccinationPage(),bottomSheet: false),
   SubAddHomeModel(name: "Vitals",image: RecordType.heart_beat1,page: AddVitalsPage(),bottomSheet: false),
   SubAddHomeModel(name: "Diagnostic",image: RecordType.stethoscope,page: AddDiagnosticPage(),bottomSheet: false),
-  SubAddHomeModel(name: "Farrier",image: RecordType.horseshoe1,page: Container(),bottomSheet: false),
-  SubAddHomeModel(name: "General Health",image: RecordType.health_care,page: Container(),bottomSheet: false),
+  SubAddHomeModel(name: "Farrier",image: RecordType.horseshoe1,page: AddFarrierPage(),bottomSheet: false),
+  SubAddHomeModel(name: "General Health",image: RecordType.health_care,page: AddGeneralHealthPage(),bottomSheet: false),
   SubAddHomeModel(name: "Injury",image: RecordType.broken_bone,page: AddInjuryPage(),bottomSheet: false),
   SubAddHomeModel(name: "Joint Injection",image: RecordType.boon_injection,page: AddJointInjectionPage(),bottomSheet: false),
-  SubAddHomeModel(name: "Med/supplements",image: RecordType.supplements,page: Container(),bottomSheet: false),
+  SubAddHomeModel(name: "Med/supplements",image: RecordType.supplements,page: AddMedSupplyMentary(),bottomSheet: false),
 
 ];
 

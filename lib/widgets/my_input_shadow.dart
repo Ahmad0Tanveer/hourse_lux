@@ -18,6 +18,7 @@ class _MyInputShadowState extends State<MyInputShadow> {
           padding: EdgeInsets.only(left: 16),
           child: Row(
             children: [
+              SizedBox(width: 5),
               Text(widget.title,style: Get.textTheme.bodySmall),
               SizedBox(width: 1),
               Text("*",style: Get.textTheme.bodySmall!.copyWith(

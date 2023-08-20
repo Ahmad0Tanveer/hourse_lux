@@ -8,6 +8,7 @@ import 'firebase_options.dart';
 import 'utils/themes.dart';
 
 late GetStorage box;
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);

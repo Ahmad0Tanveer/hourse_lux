@@ -37,4 +37,11 @@ class ValidationHelpers{
       return null;
     }
   }
+  static String? fieldRequired(string){
+    if( string != null && string.isNotEmpty){
+      return null;
+    } else {
+      return "Required";
+    }
+  }
 }

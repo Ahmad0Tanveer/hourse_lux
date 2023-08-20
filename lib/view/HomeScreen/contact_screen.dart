@@ -2,15 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:hourse_lux/core/constant/colors.dart';
+import 'package:hourse_lux/core/contact_controller.dart';
 import 'package:hourse_lux/view/HomeScreen/add_contacts/add_contact_dialog.dart';
 import 'package:hourse_lux/view/customs/custom_search.dart';
 import 'package:hourse_lux/view/customs/custom_text.dart';
 import 'add_contacts/add_conatact_page.dart';
 import 'add_contacts/contact_detail_page.dart';
+import 'add_contacts/contact_owner_detail_page.dart';
 import 'home_screen.dart';
 
 class ContactScreen extends StatefulWidget {
-  const ContactScreen({super.key});
+  bool selectMode;
+  List<String> filters;
+  ContactScreen({super.key,this.selectMode = false,this.filters = const []});
 
   @override
   State<ContactScreen> createState() => _ContactScreenState();
@@ -18,34 +22,27 @@ class ContactScreen extends StatefulWidget {
 
 class _ContactScreenState extends State<ContactScreen> {
   bool contactActive = true;
+  final contact = Get.put(ContactController());
+  String firstChar = "";
+  @override
+  void initState() {
+    contact.initContacts();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
-    final List<String> alphabets = ["A", "B", "C", "D"];
-    final List<List<String>> nestedList = [
-      [
-        'Ainhoa York',
-        'Avalynn Bruce',
-        'Alonso Bravo',
-        'Avalynn Bruce',
-        'Alonso Bravo',
-      ],
-      [
-        'Brayden Harrington',
-        'Braxton Jefferson',
-        'Bridget Gonzales',
-      ],
-      // Add more inner lists here...
-    ];
+
     return SafeArea(
       key: scaffoldKey,
-      child: Scaffold(
-        backgroundColor: whiteColor,
-        body: Column(
-          children: [
-            SizedBox(height: 15.h),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15),
-              child: Row(
+      child: GetBuilder(
+        init: contact,
+        builder: (_) {
+          return Scaffold(
+            backgroundColor: whiteColor,
+            appBar: AppBar(
+              backgroundColor: Colors.white,
+              elevation: 1000,
+              title: Row(
                 children: [
                   Icon(
                     Icons.menu,
@@ -61,7 +58,6 @@ class _ContactScreenState extends State<ContactScreen> {
                   Spacer(),
                   IconButton(
                     onPressed: (){
-
                       Get.dialog(
                           barrierColor: Colors.transparent,
                           Dialog(
@@ -84,74 +80,91 @@ class _ContactScreenState extends State<ContactScreen> {
                 ],
               ),
             ),
-            SizedBox(height: 20.h),
-            CustomSearchTextField(),
-            SizedBox(height: 37.h),
-            Container(
+            body: ListView(
+              children: [
+                SizedBox(height: 6.h),
+                CustomSearchTextField(),
+                SizedBox(height: 37.h),
+                Container(
 
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    height: 36,
-                    padding: EdgeInsets.only(left: 12,right: 12),
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: baseColor,width: 1),
-                      color: contactActive?baseColor:Colors.transparent,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(4),
-                        bottomLeft:  Radius.circular(4),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      GestureDetector(
+                        onTap:() => setState(() {contactActive = true;}),
+                        child: Container(
+                          height: 36,
+                          padding: EdgeInsets.only(left: 12,right: 12),
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: baseColor,width: 1),
+                            color: contactActive?baseColor:Colors.transparent,
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(4),
+                              bottomLeft:  Radius.circular(4),
+                            ),
+                          ),
+                          child: Text("Contacts",style: TextStyle(
+                            color: contactActive?Colors.white:Colors.black,
+                          ),),
+                        ),
                       ),
-                    ),
-                    child: Text("Contacts",style: TextStyle(
-                      color: contactActive?Colors.white:Colors.black,
-                    ),),
-                  ),
-                  Container(
-                    height: 36,
-                    padding: EdgeInsets.only(left: 12,right: 12),
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      color: !contactActive?baseColor:Colors.transparent,
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(4),
-                        bottomRight:  Radius.circular(4),
+                      GestureDetector(
+                        onTap:() => setState(() {contactActive = false;}),
+                        child: Container(
+                          height: 36,
+                          padding: EdgeInsets.only(left: 12,right: 12),
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            color: !contactActive?baseColor:Colors.transparent,
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(4),
+                              bottomRight:  Radius.circular(4),
+                            ),
+                            border: Border.all(color: baseColor,width: 1),
+                          ),
+                          child: Text("Owner Group",style: TextStyle(
+                            color: !contactActive?Colors.white:Colors.black,
+                          ),),
+                        ),
                       ),
-                      border: Border.all(color: baseColor,width: 1),
-                    ),
-                    child: Text("Owner Group",style: TextStyle(
-                      color: !contactActive?Colors.white:Colors.black,
-                    ),),
+                    ],
                   ),
-                ],
-              ),
-            ),
-            SizedBox(height: 37.h),
-            Expanded(
-              child: ListView.builder(
+                ),
+                SizedBox(height: 37.h),
+              contactActive?
+              ListView.builder(
                 shrinkWrap: true,
-                physics:
-                    ClampingScrollPhysics(), // Disable inner ListView's scrolling
-                itemCount: nestedList.length,
+                physics: NeverScrollableScrollPhysics(), // Disable inner ListView's scrolling
+                itemCount: contact.contacts.length,
                 itemBuilder: (context, index) {
+                  bool show = true;
+                  if(index == 0){
+                    firstChar = contact.contacts[index].fullName[0].toUpperCase();
+                  } else if(firstChar != contact.contacts[index].fullName[0].toUpperCase()){
+                    firstChar = contact.contacts[index].fullName[0].toUpperCase();
+                    show = true;
+                    print(firstChar);
+                  }else {
+                     show = false;
+                  }
                   return Column(
                     children: [
-                      Padding(
+                      show?  Padding(
                         padding: EdgeInsets.symmetric(horizontal: 13),
                         child: Row(
                           children: [
                             SizedBox(width: 10),
                             CustomText(
-                              text: alphabets[index],
+                              text: firstChar,
                               fontSize: 18.sp,
                               color: blackColor,
                               fontWeight: FontWeight.bold,
                             ),
                           ],
                         ),
-                      ),
-                      Padding(
+                      ):Container(),
+                      show?   Padding(
                         padding: EdgeInsets.only(
                           left: 17,
                           right: 17,
@@ -159,55 +172,125 @@ class _ContactScreenState extends State<ContactScreen> {
                           bottom: 15,
                         ),
                         child: Divider(thickness: 1.3),
-                      ),
-                      ListView.builder(
-                        shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        itemCount: nestedList[index].length,
-                        itemBuilder: (BuildContext context, int nestedIndex) {
-                          return Column(
-                            children: [
-                              GestureDetector(
-                                onTap: () {
-                                  Get.to(() => ContactDetailPage());
-                                },
-                                child: Row(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                        left: 20,
-                                        top: 12,
-                                        bottom: 15,
-                                      ),
-                                      child: CustomText(
-                                        text: nestedList[index][nestedIndex],
-                                        color: blackColor,
-                                        fontSize: 15.sp,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                    Spacer(),
-                                    Icon(
-                                      Icons.arrow_forward_ios,
-                                      color: blackColor,
-                                      size: 18.sp,
-                                    ),
-                                    SizedBox(width: 20)
-                                  ],
+                      ):Container(),
+                      Column(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Get.to(() => ContactDetailPage());
+                            },
+                            child: Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                    left: 20,
+                                    top: 12,
+                                    bottom: 15,
+                                  ),
+                                  child: CustomText(
+                                    text: "${contact.contacts[index].fullName} ${contact.contacts[index].lastName}",
+                                    color: blackColor,
+                                    fontSize: 15.sp,
+                                    fontWeight: FontWeight.w600,
+                                  ),
                                 ),
-                              ),
-                            ],
-                          );
-                        },
-                      ),
-                      SizedBox(height: 24.h),
+                                Spacer(),
+                                Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: blackColor,
+                                  size: 18.sp,
+                                ),
+                                SizedBox(width: 20)
+                              ],
+                            ),
+                          ),
+                        ],
+                      )
                     ],
                   );
                 },
+              ):
+              Container(
+                margin: EdgeInsets.only(left: 16,right: 16),
+                child: ListView(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  children: [
+                    SizedBox(height: 8),
+                    Container(height: 1,color: Color(0xffD7D7D7),),
+                    SizedBox(height: 24),
+                    Container(
+                      child: InkWell(
+                        onTap: () => Get.to(() => ContactOwnerGroupDetailPage()),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text("Group 1",style: TextStyle(
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.w700,
+                                ),),
+                                Icon(Icons.arrow_forward_ios_outlined,size: 20,)
+                              ],
+                            ),
+                            SizedBox(height: 16),
+                            Text("Owners: Johnson (50%), Ahmad (50%)",style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                            ),),
+                            SizedBox(height: 8),
+                            Text("Horses: Harry, Ferris",style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                            ),),
+                            SizedBox(height: 24),
+                            Container(height: 1,color: Color(0xffD7D7D7),),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 24),
+                    Container(
+                      child: InkWell(
+                        onTap: () => Get.to(() => ContactOwnerGroupDetailPage()),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text("Group 2",style: TextStyle(
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.w700,
+                                ),),
+                                Icon(Icons.arrow_forward_ios_outlined,size: 20,)
+                              ],
+                            ),
+                            SizedBox(height: 16),
+                            Text("Owners: Johnson (50%), Ahmad (50%)",style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                            ),),
+                            SizedBox(height: 8),
+                            Text("Horses: Harry, Ferris",style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                            ),),
+                            SizedBox(height: 24),
+                            Container(height: 1,color: Color(0xffD7D7D7),),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
+              ],
             ),
-          ],
-        ),
+          );
+        }
       ),
     );
   }
