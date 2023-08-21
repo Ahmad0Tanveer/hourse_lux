@@ -8,4 +8,5 @@ class AddHorseData{
   static List<String> injuries = ["Abrasion", "Colic", "Dehydration", "Eye infection", "Eye injury", "Heat stroke", "Hoof", "Inflammation", "Laceration", "Lameness", "Laminitis", "Poison ", "Puncture wound", "Respiratory", "Scratches ", "Skin ", "Tooth/mouth ", "Ulcer ", "Wound"];
   static List<String> vitals = ["Height", "Pulse", "Respiration", "Temperature", "Weight", "MRI"];
   static List<String> diagnostic = ["Blood Chemistry", "Bone Scan", "CBC", "Fecal", "Lyme Titer ", "MRI", "Radiograph", "Ultrasound"];
+  static List<String> deworming = ["ivercare - ivermectin", "generic - ivermectin", "panacur - fenbendazole", "panacur - powerpac - fenbendazole", "primex equine liquid wormer pyrantel pamoate", "generic - pyrantel pamoate", "pyrantel paste - pyrantel pamoat", "quest plus - moxidectin and praziquantel", "quest - moxidectin", "safe - guard - fenbendalzole", "strongid c 2x - pyrantel tartrate", "strongid paste - pyrantel pamoate", "strongid c - pyrantel tartrate"];
 }

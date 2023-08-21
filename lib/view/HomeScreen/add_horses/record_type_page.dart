@@ -73,7 +73,7 @@ class _RecordTypeState extends State<RecordTypePage> {
             children:  healthTabs.map((e) =>  GestureDetector(
               onTap: () {
                 Get.back();
-                Get.to(() => HorseSelectPage(nextPage: healthTabs[0].page,title: e.name,));
+                Get.to(() => HorseSelectPage(nextPage: e.page,title: e.name,));
               },
               child: myTabWidget(e.image, e.name),
             ),).toList(),

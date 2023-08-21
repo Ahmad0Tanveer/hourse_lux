@@ -10,7 +10,6 @@ class ApiService {
     Map<String,String> headers = {
       "Authorization": "Bearer ${userMap["token"]??{}}",
     };
-    print(headers);
     if(type == RequestType.get){
       return await http.get(Uri.parse("${baseUrl}/$endPoint"), headers: headers);
     } else if(type == RequestType.post){

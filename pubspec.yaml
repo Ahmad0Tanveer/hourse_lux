@@ -26,6 +26,11 @@ dependencies:
   firebase_core: 2.15.1
   firebase_storage: 11.2.6
   image_picker: any
+  shimmer: any
+  url_launcher: ^6.1.12
+  cached_network_image: any
+  flutter_animated_loadingkit: ^0.0.7
+  intl:
 
 
 dependency_overrides:

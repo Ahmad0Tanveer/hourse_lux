@@ -97,7 +97,6 @@ List<SubAddHomeModel> healthTabs = [
   SubAddHomeModel(name: "Injury",image: RecordType.broken_bone,page: AddInjuryPage(),bottomSheet: false),
   SubAddHomeModel(name: "Joint Injection",image: RecordType.boon_injection,page: AddJointInjectionPage(),bottomSheet: false),
   SubAddHomeModel(name: "Med/supplements",image: RecordType.supplements,page: AddMedSupplyMentary(),bottomSheet: false),
-
 ];
 
 List<SubAddHomeModel> reportRecordType = [

@@ -3,6 +3,7 @@ import 'package:hourse_lux/core/constant/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 ThemeData theme = ThemeData(
+  scaffoldBackgroundColor: Colors.white,
   fontFamily: GoogleFonts.quicksand().fontFamily,
   textTheme: TextTheme(
     labelMedium: TextStyle(

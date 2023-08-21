@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hourse_lux/core/constant/colors.dart';
+import 'package:hourse_lux/models/contact_model.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../core/constant/assets.dart';
 
 class ContactDetailPage extends StatefulWidget {
-  const ContactDetailPage({super.key});
+  final ContactModel contact;
+  const ContactDetailPage({super.key,required this.contact});
   @override
   State<ContactDetailPage> createState() => _ContactDetailPageState();
 }
@@ -67,7 +70,6 @@ class _ContactDetailPageState extends State<ContactDetailPage> {
       );
     }
     return Scaffold(
-
       body: ListView(
         children: [
           Container(
@@ -77,40 +79,19 @@ class _ContactDetailPageState extends State<ContactDetailPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(height: 10),
-                Text("Adam smith",style: TextStyle(
+                Text("${widget.contact.firstName} ${widget.contact.lastName}",style: TextStyle(
                   color: Colors.white,
                   fontSize: 22,
                   fontWeight: FontWeight.w700,
                 ),),
 
-                Text("horse owner",style: TextStyle(
+                Text("${widget.contact.contactType}",style: TextStyle(
                   color: Colors.white,
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
                 ),),
                 SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      padding: EdgeInsets.all(3),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(color: Colors.white,width: 1),
-                      ),
-                      child: Icon(Icons.phone,color: Colors.white,size: 22),
-                    ),
-                    SizedBox(width: 16),
-                    Container(
-                      padding: EdgeInsets.all(3),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(color: Colors.white,width: 1),
-                      ),
-                      child: Icon(Icons.message,color: Colors.white,size: 22),
-                    ),
-                  ],
-                ),
+
               ],
             ),
           ),
@@ -129,15 +110,36 @@ class _ContactDetailPageState extends State<ContactDetailPage> {
                   children: [
                     Container(
                       width: Get.width - 100,
-                      child: rowText("PRIMARY PHONE: ", " +92 343 9107919"),
+                      child: rowText("PRIMARY PHONE: ", "${widget.contact.primaryPhone}"),
                     ),
-                    Icon(Icons.phone),
+                    InkWell(
+                      onTap: () async {
+                        final Uri callLaunchUri = Uri(
+                          scheme: 'tel',
+                          path: '${widget.contact.primaryPhone}',
+                        );
+                        if (!await launchUrl(callLaunchUri)) {
+                          throw Exception('Could not launch');
+                        }
+                      },
+                      child: Icon(Icons.phone),
+                    ),
                     SizedBox(width: 10),
-                    Icon(Icons.message),
+                    InkWell(
+                        onTap: () async {
+                          final Uri smsLaunchUri = Uri(
+                            scheme: 'sms',
+                            path: '${widget.contact.primaryPhone}',
+                          );
+                          if (!await launchUrl(smsLaunchUri)) {
+                            throw Exception('Could not launch');
+                          }
+                        },
+                        child: Icon(Icons.message)),
                   ],
                 ),
                 SizedBox(height: 16),
-                rowText("Email: ", " ahmad00tanveer@gmail.com"),
+                rowText("Email: ", "${widget.contact.email}"),
               ],
             ),
           ),

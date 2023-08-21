@@ -1,11 +1,10 @@
 import 'dart:convert';
-import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:hourse_lux/core/api_service_controller.dart';
 import 'package:hourse_lux/core/helpers/enums_herlper.dart';
 import 'package:hourse_lux/models/contact_model.dart';
+import 'package:hourse_lux/models/horse_model.dart';
 
 class ContactController extends GetxController{
   String endPoint = "add-contact-data";
@@ -19,6 +18,7 @@ class ContactController extends GetxController{
   List<ContactModel> contacts = [];
   List<ContactModel> backUp = [];
   List<String> selectedFilters = [];
+
   void addContact({required type,required title}) async {
     state = true;
     update();
@@ -52,8 +52,12 @@ class ContactController extends GetxController{
     }
   }
   void initContacts() async {
+    state = true;
+    update();
     if(contacts.isEmpty){
       var out = await service.request(endPoint: endPoint);
+      state = false;
+      update();
       if(out.statusCode == 200){
         List cs = jsonDecode(out.body)["contacts"];
         contacts = cs.map((e) => ContactModel.fromMap(e)).toList();
@@ -62,10 +66,12 @@ class ContactController extends GetxController{
         print(contacts.length);
         update();
       } else{}
-    } else {}
+    } else {
+      state = false;
+      update();
+    }
   }
   void searchContact(text){
-    log(text);
     contacts = [];
     update();
     if(!text.isEmpty){
@@ -91,7 +97,12 @@ class ContactController extends GetxController{
     }
     update();
   }
-  void applyFilter() async {
+  void setFilters(List<String> filters){
+    selectedFilters = filters;
+    applyFilter(selectMode: true);
+    update();
+  }
+  void applyFilter({selectMode = false}) async {
     contacts = [];
     for(var c in backUp){
       if(selectedFilters.contains(c.contactType)){
@@ -102,7 +113,9 @@ class ContactController extends GetxController{
       contacts = backUp;
       update();
     }
-    update();
-    Get.back();
+    if(!selectMode){
+      update();
+      Get.back();
+    }
   }
 }

@@ -59,7 +59,14 @@ class _SelectBottomSheetState extends State<SelectBottomSheet> {
                           ),
                         ),
                         SizedBox(width: 12),
-                        Text(e,style: Get.textTheme.labelMedium!.copyWith(fontSize: 18,fontWeight: FontWeight.w700)),
+                        Container(
+                          width: Get.width - 60,
+                          child: Text(
+                              e,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: Get.textTheme.labelMedium!.copyWith(fontSize: 18,fontWeight: FontWeight.w700)),
+                        ),
                       ],
                     ),
                   ),
