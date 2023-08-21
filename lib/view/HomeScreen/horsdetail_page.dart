@@ -1,10 +1,13 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hourse_lux/core/constant/colors.dart';
+import 'package:hourse_lux/models/horse_model.dart';
 import 'package:hourse_lux/models/ui/home_page_bar.dart';
 
 class HorseDetailPage extends StatefulWidget {
-  const HorseDetailPage({super.key});
+  final HorseModel horse;
+  const HorseDetailPage({super.key,required this.horse});
   @override
   State<HorseDetailPage> createState() => _HorseDetailPageState();
 }
@@ -33,7 +36,10 @@ class _HorseDetailPageState extends State<HorseDetailPage> {
             Container(
                 height: 230,
                 width: Get.width,
-              child: Image.asset("assets/icons/hhorse.png",fit: BoxFit.fill,),
+              child: CachedNetworkImage(
+                imageUrl: widget.horse.image,
+                fit: BoxFit.fill,
+              ),
             ),
             Positioned(
                 bottom: 10,
@@ -41,13 +47,13 @@ class _HorseDetailPageState extends State<HorseDetailPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Owner: Avalynn Bruce",style: style),
+                    Text("Owner: ${widget.horse.owner}",style: style),
                     SizedBox(height: 10),
-                    Text("Billpayer: Nickolas Church",style: style),
+                    Text("Billpayer: ${widget.horse.billPayer}",style: style),
                     SizedBox(height: 10),
-                    Text("Microchip: Life Chips",style: style),
+                    Text("Microchip: ${widget.horse.microchip}",style: style),
                     SizedBox(height: 10),
-                    Text("Black - Stallion",style: style),
+                    Text("${widget.horse.bread}",style: style),
                     SizedBox(height: 10),
                   ],
                 ))

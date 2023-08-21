@@ -3,9 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:hourse_lux/core/constant/colors.dart';
 import 'package:hourse_lux/core/contact_controller.dart';
+import 'package:hourse_lux/models/contact_model.dart';
 import 'package:hourse_lux/view/HomeScreen/add_contacts/add_contact_dialog.dart';
 import 'package:hourse_lux/view/customs/custom_search.dart';
 import 'package:hourse_lux/view/customs/custom_text.dart';
+import 'package:hourse_lux/widgets/loading_list_shimmer.dart';
 import 'add_contacts/add_conatact_page.dart';
 import 'add_contacts/contact_detail_page.dart';
 import 'add_contacts/contact_owner_detail_page.dart';
@@ -14,7 +16,8 @@ import 'home_screen.dart';
 class ContactScreen extends StatefulWidget {
   bool selectMode;
   List<String> filters;
-  ContactScreen({super.key,this.selectMode = false,this.filters = const []});
+  Function(ContactModel)? onSelect;
+  ContactScreen({super.key,this.selectMode = false,this.filters = const [],this.onSelect});
 
   @override
   State<ContactScreen> createState() => _ContactScreenState();
@@ -133,7 +136,7 @@ class _ContactScreenState extends State<ContactScreen> {
                 ),
                 SizedBox(height: 37.h),
               contactActive?
-              ListView.builder(
+            !contact.state?  ListView.builder(
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(), // Disable inner ListView's scrolling
                 itemCount: contact.contacts.length,
@@ -177,7 +180,12 @@ class _ContactScreenState extends State<ContactScreen> {
                         children: [
                           GestureDetector(
                             onTap: () {
-                              Get.to(() => ContactDetailPage());
+                             if(widget.selectMode){
+                              widget.onSelect!(contact.contacts[index]);
+                              Get.back();
+                             } else {
+                               Get.to(() => ContactDetailPage(contact: contact.contacts[index]));
+                             }
                             },
                             child: Row(
                               children: [
@@ -209,7 +217,9 @@ class _ContactScreenState extends State<ContactScreen> {
                     ],
                   );
                 },
-              ):
+              ):Container(
+                child: LoadingListShimmerEffect(),
+            ):
               Container(
                 margin: EdgeInsets.only(left: 16,right: 16),
                 child: ListView(

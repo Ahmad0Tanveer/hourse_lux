@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animated_loadingkit/flutter_animated_loadingkit.dart';
 import 'package:get/get.dart';
 import 'package:hourse_lux/core/constant/colors.dart';
 import 'package:hourse_lux/core/horse_controller.dart';
@@ -7,6 +8,7 @@ import 'package:hourse_lux/widgets/select_bottom.dart';
 import 'package:hourse_lux/widgets/styles.dart';
 import '../../../core/helpers/validdation_helper.dart';
 import '../../../widgets/my_input_shadow.dart';
+import '../contact_screen.dart';
 import 'add_horse_data.dart';
 
 class CreateNewHorse extends StatefulWidget {
@@ -17,9 +19,9 @@ class CreateNewHorse extends StatefulWidget {
 
 class _CreateNewHorseState extends State<CreateNewHorse> {
   final horse = Get.put(HorseController());
-  String selectBreedString = "Breed";
-  String selectColorString = "Select.....";
-  String selectSexString = "Select.....";
+  String selectBreedString = "";
+  String selectColorString = "";
+  String selectSexString = "";
   @override
   Widget build(BuildContext context) {
     return GetBuilder(
@@ -42,7 +44,7 @@ class _CreateNewHorseState extends State<CreateNewHorse> {
                   ),
                   SizedBox(height: 10),
                   MyInputShadow(
-                      title: "Name",
+                      title: "Nick Name",
                       widget: TextFormField(
                         controller: horse.name,
                         validator: ValidationHelpers.fieldRequired,
@@ -73,15 +75,51 @@ class _CreateNewHorseState extends State<CreateNewHorse> {
                   SizedBox(height: 10),
                   MyInputShadow(
                       title: "Owner",
-                      widget: TextFormField(
-                        validator: ValidationHelpers.fieldRequired,
-                        controller: horse.ownerName,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          fillColor: Colors.transparent,
-                          hintText: "Owner Name",
-                          hintStyle: Get.textTheme.bodyMedium,
-                          filled: true,
+                      widget: InkWell(
+                        onTap: (){
+                          Get.to(ContactScreen(
+                            selectMode: true,
+                            onSelect: horse.selectHorseOwner,
+                          ));
+                        },
+                        child: Container(
+                          height: 45,
+                          padding: EdgeInsets.only(left: 10,right: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(horse.contactOwner!=null?
+                              "${horse.contactOwner!.firstName} ${horse.contactOwner!.lastName}"
+                                  :"Select Contact..."
+                                  , style: Get.textTheme.bodyMedium),
+                              Icon(Icons.arrow_right),
+                            ],
+                          ),
+                        ),
+                      )
+                  ),
+                  SizedBox(height: 10),
+                  MyInputShadow(
+                      title: "Bill Payer",
+                      widget: InkWell(
+                        onTap: (){
+                          Get.to(ContactScreen(
+                            selectMode: true,
+                            onSelect: horse.selectHorseBillPayer,
+                          ));
+                        },
+                        child: Container(
+                          height: 45,
+                          padding: EdgeInsets.only(left: 10,right: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(horse.contactBillPayer!=null?
+                              "${horse.contactBillPayer!.firstName} ${horse.contactBillPayer!.lastName}"
+                                  :"Select Contact...", style: Get.textTheme.bodyMedium),
+                              Icon(Icons.arrow_right),
+                            ],
+                          ),
                         ),
                       )
                   ),
@@ -96,7 +134,7 @@ class _CreateNewHorseState extends State<CreateNewHorse> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(selectBreedString, style: Get.textTheme.bodyMedium),
+                              Text(selectBreedString.isEmpty?"Bread":selectBreedString, style: Get.textTheme.bodyMedium),
                               Icon(Icons.arrow_drop_down_outlined),
                             ],
                           ),
@@ -113,7 +151,7 @@ class _CreateNewHorseState extends State<CreateNewHorse> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(selectColorString, style: Get.textTheme.bodyMedium),
+                              Text(selectColorString.isEmpty?"Select Color ...":selectColorString, style: Get.textTheme.bodyMedium),
                               Icon(Icons.arrow_drop_down_outlined),
                             ],
                           ),
@@ -131,7 +169,7 @@ class _CreateNewHorseState extends State<CreateNewHorse> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(selectSexString, style: Get.textTheme.bodyMedium),
+                              Text(selectSexString.isNotEmpty?selectSexString:"Select...", style: Get.textTheme.bodyMedium),
                               Icon(Icons.arrow_drop_down_outlined),
                             ],
                           ),
@@ -210,7 +248,6 @@ class _CreateNewHorseState extends State<CreateNewHorse> {
                       widget: TextFormField(
                         maxLines: 4,
                         minLines: 4,
-                        validator: ValidationHelpers.fieldRequired,
                         controller: horse.stallNot,
                         decoration: InputDecoration(
                           border: InputBorder.none,
@@ -262,7 +299,6 @@ class _CreateNewHorseState extends State<CreateNewHorse> {
                       widget: TextFormField(
                         minLines: 4,
                         maxLines: 4,
-                        validator: ValidationHelpers.fieldRequired,
                         controller: horse.paddockNote,
                         decoration: InputDecoration(
                           border: InputBorder.none,
@@ -274,7 +310,13 @@ class _CreateNewHorseState extends State<CreateNewHorse> {
                       )
                   ),
                   SizedBox(height: 20),
-                  Container(
+                horse.state?Container(
+                  child: AnimatedLoadingSideWaySurge(
+                    expandWidth: 70,
+                    borderColor: baseColor,
+                    speed: Duration(milliseconds: 600),
+                  ),
+                ):  Container(
                     margin: EdgeInsets.only(left: 16,right: 16),
                     child: GestureDetector(
                       onTap: () => horse.addHorseData(bread: selectBreedString, color: selectColorString, sex: selectColorString),
