@@ -1,4 +1,7 @@
+import 'package:shortuid/shortuid.dart';
+
 class ServiceModel{
+  final String id;
   final String horseId;
   final String serviceType;
   final String date;
@@ -13,8 +16,10 @@ class ServiceModel{
   final String diagId;
   final String value;
   final String extraData;
-
+  final String quantity;
+  final String cost;
   ServiceModel({
+    required this.id,
     required  this.horseId,
     required this.serviceType,
     required  this.date,
@@ -28,7 +33,9 @@ class ServiceModel{
     required this.diagName,
     required this.diagId,
     required this.value,
-    required this.extraData
+    required this.extraData,
+    required this.cost,
+    required this.quantity,
   });
 
   factory ServiceModel.fromJson(Map<String, dynamic> json) {
@@ -47,23 +54,29 @@ class ServiceModel{
       diagId: json['diagId'],
       value: json['value'],
       extraData: json['extraData'],
+      cost: json["cost"]??"",
+      quantity: json["quantity"]??"",
+      id: json["_id"]??""
     );
   }
 
   Map<String, dynamic> toJson() => {
-        'horseId': horseId,
-        'serviceType': serviceType,
-        'date': date,
-        'nextDate': nextDate,
-        'recordType': recordType,
-        'adminName': adminName,
-        'adminId': adminId,
-        'price': price,
-        'image': image,
-        'comment': comment,
-        'diagName': diagName,
-        'diagId': diagId,
-        'value': value,
-        'extraData': extraData,
+    'horseId': horseId,
+    'serviceType': serviceType,
+    'date': date,
+    'nextDate': nextDate,
+    'recordType': recordType,
+    'adminName': adminName,
+    'adminId': adminId,
+    'price': price,
+    'image': image,
+    'comment': comment,
+    'diagName': diagName,
+    'diagId': diagId,
+    'value': value,
+    "cost": cost,
+    "quantity": quantity,
+    'extraData': extraData,
+    "_id": id,
   };
 }

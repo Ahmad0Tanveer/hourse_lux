@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:hourse_lux/core/helpers/keys.dart';
-import 'package:hourse_lux/main.dart';
-
 import '../core/constant/assets.dart';
 import '../core/constant/colors.dart';
-import '../view/HomeScreen/home_screen.dart';
-import '../view/accounts/login_screen.dart';
+import '../view/home/home_screen.dart';
 
 class CustomAppBar extends StatefulWidget {
   const CustomAppBar({super.key});
@@ -17,6 +12,7 @@ class CustomAppBar extends StatefulWidget {
 }
 
 class _CustomAppBarState extends State<CustomAppBar> {
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,9 +23,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           InkWell(
-            onTap: (){
-              scaffoldKey.currentState!.openDrawer();
-            },
+            onTap: () =>  scaffoldKey.currentState!.openDrawer(),
             child: Padding(
               padding: const EdgeInsets.only(left: 10),
               child: Icon(

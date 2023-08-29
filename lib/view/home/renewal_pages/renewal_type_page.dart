@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hourse_lux/view/HomeScreen/add_horses/herse_select_page.dart';
-import 'package:hourse_lux/view/HomeScreen/renewal_pages/coggins_renewal_page.dart';
-import 'package:hourse_lux/view/HomeScreen/renewal_pages/passport_renewal_page.dart';
+import 'package:hourse_lux/view/home/add_horses/herse_select_page.dart';
+import 'package:hourse_lux/view/home/renewal_pages/coggins_renewal_page.dart';
+import 'package:hourse_lux/view/home/renewal_pages/passport_renewal_page.dart';
 import 'package:hourse_lux/widgets/custom_appbar_2.dart';
 import 'FEI_renewal_page.dart';
 import 'lease_renewal_page.dart';

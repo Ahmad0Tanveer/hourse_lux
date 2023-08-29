@@ -40,7 +40,7 @@ class _HorseDetailPageState extends State<HorseDetailPage> {
               ),
             ),
             Positioned(
-                top: 10,
+                top: 24,
                 child: Container(
                   width: Get.width,
                   alignment: Alignment.center,
@@ -74,7 +74,7 @@ class _HorseDetailPageState extends State<HorseDetailPage> {
       body: Column(
         children: [
           horseAppBar(),
-          SizedBox(height: 16),
+          SizedBox(height: 8),
           Container(
             margin: EdgeInsets.only(left: 16,right: 16),
             child: Row(
@@ -101,7 +101,7 @@ class _HorseDetailPageState extends State<HorseDetailPage> {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(top: 16),
+            margin: EdgeInsets.only(top: 8),
             height: 1,color: Color(0xffD7D7D7),),
           selectedBar.widget,
         ],

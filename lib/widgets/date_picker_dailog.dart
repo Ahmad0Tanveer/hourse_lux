@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hourse_lux/core/constant/raw_date.dart';
 import 'package:hourse_lux/core/service_controller.dart';
-
 import '../core/constant/colors.dart';
 
 class MyDatePickerDialog extends StatefulWidget {
@@ -45,9 +44,6 @@ class _MyDatePickerDialogState extends State<MyDatePickerDialog> {
                   config: CalendarDatePicker2Config(
                       calendarType: CalendarDatePicker2Type.single,
                       selectedDayHighlightColor: baseColor,
-                      dayTextStyle: TextStyle(
-                        fontSize: 14,
-                      )
                   ),
                   value: [service.today],
                   onValueChanged: (dates) {

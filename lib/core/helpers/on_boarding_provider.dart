@@ -5,7 +5,6 @@ import 'package:hourse_lux/models/ui/boarding_model.dart';
 import '../constant/assets.dart';
 import '../../view/accounts/login_screen.dart';
 import './keys.dart';
-
 class OnBoardingProvider extends GetxController {
   var controller  = PageController();
   int currentIndex = 0;

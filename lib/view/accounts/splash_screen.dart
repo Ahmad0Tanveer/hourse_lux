@@ -5,7 +5,7 @@ import 'package:hourse_lux/core/constant/assets.dart';
 import 'package:hourse_lux/core/constant/colors.dart';
 import 'package:hourse_lux/core/helpers/keys.dart';
 import 'package:hourse_lux/main.dart';
-import '../HomeScreen/bottom_nav_bar.dart';
+import '../home/bottom_nav_bar.dart';
 import 'login_screen.dart';
 import 'on_boarding_screens.dart';
 

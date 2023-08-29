@@ -6,7 +6,7 @@ import 'package:hourse_lux/core/helpers/enums_herlper.dart';
 import 'package:hourse_lux/core/helpers/herlper_dialogs.dart';
 import 'package:hourse_lux/core/helpers/keys.dart';
 import 'package:hourse_lux/main.dart';
-import '../view/HomeScreen/bottom_nav_bar.dart';
+import '../view/home/bottom_nav_bar.dart';
 import '../view/accounts/forgot_password.dart';
 import '../view/accounts/reset_password_screen.dart';
 import 'api_service_controller.dart';
@@ -151,6 +151,15 @@ class UserController extends GetxController {
     update();
     state = false;
     update();
+  }
+  void updatePasswordRequest() async {
+    if(resetPassword.currentState!.validate()){
+      var out = await service.request(endPoint: "reset-password", body: {
+        "password": password.text,
+        "confirmPassword": password.text,
+      });
+      print(out.body);
+    }
   }
   void handleGoogleSignUp() async {}
 }

@@ -13,6 +13,7 @@ class ServiceTypeHelper{
   static String temperature = "temperature";
   static String generalHealth = "generalHealth";
   static String medSupp = "medSupp";
+  static String service = "service";
 }
 
 String imageHelper({required type}){
@@ -42,6 +43,8 @@ String imageHelper({required type}){
     return "assets/record_type/boon_injection.png";
   } else if(ServiceTypeHelper.medSupp==type){
     return "assets/record_type/supplements.png";
+  } else if(type == ServiceTypeHelper.service){
+    return "assets/icons/easy-installation.png";
   }
   return "assets/record_type/supplements.png";
 }

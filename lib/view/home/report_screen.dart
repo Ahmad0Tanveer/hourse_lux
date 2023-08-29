@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hourse_lux/view/HomeScreen/add_horses/herse_select_page.dart';
-import 'package:hourse_lux/view/HomeScreen/reports/owner_report_page.dart';
+import 'package:hourse_lux/view/home/add_horses/herse_select_page.dart';
+import 'package:hourse_lux/view/home/reports/owner_report_page.dart';
 
 import 'home_screen.dart';
 import 'reports/due_date_report_page.dart';

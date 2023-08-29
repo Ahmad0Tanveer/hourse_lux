@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:hourse_lux/core/api_service_controller.dart';
 import 'package:hourse_lux/core/helpers/enums_herlper.dart';
 import 'package:hourse_lux/models/contact_model.dart';
-import 'package:hourse_lux/models/horse_model.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 class ContactController extends GetxController{
   String endPoint = "add-contact-data";
@@ -39,9 +39,6 @@ class ContactController extends GetxController{
         state = false;
         update();
         Get.back();
-        state = false;
-        update();
-        print(out.body);
       }catch(e){
         state = false;
         update();
@@ -49,6 +46,7 @@ class ContactController extends GetxController{
     } else {
       state = false;
       update();
+      toast("Some thing went wrong");
     }
   }
   void initContacts() async {
@@ -63,7 +61,7 @@ class ContactController extends GetxController{
         contacts = cs.map((e) => ContactModel.fromMap(e)).toList();
         contacts.sort((ContactModel a,ContactModel b) => a.fullName.toUpperCase().compareTo(b.fullName.toUpperCase()));
         backUp = contacts;
-        print(contacts.length);
+        applyFilter(selectMode: true);
         update();
       } else{}
     } else {

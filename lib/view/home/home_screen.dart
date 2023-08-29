@@ -4,8 +4,9 @@ import 'package:get/get.dart';
 import 'package:hourse_lux/core/constant/colors.dart';
 import 'package:hourse_lux/core/horse_controller.dart';
 import 'package:hourse_lux/view/drawer/drawer.dart';
-import 'package:hourse_lux/widgets/HomeScreenListView.dart';
 import 'package:hourse_lux/widgets/custom_appbar.dart';
+
+import '../../widgets/HomeScreenListView.dart';
 
 final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 

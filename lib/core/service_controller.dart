@@ -9,9 +9,10 @@ import 'package:hourse_lux/models/contact_model.dart';
 import 'package:hourse_lux/widgets/date_picker_dailog.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:shortuid/shortuid.dart';
 import '../models/horse_model.dart';
 import '../models/service_model.dart';
-import '../view/HomeScreen/bottom_nav_bar.dart';
+import '../view/home/bottom_nav_bar.dart';
 import 'helpers/service_type_helper.dart';
 
 class ServiceController extends GetxController{
@@ -21,12 +22,17 @@ class ServiceController extends GetxController{
   DateTime today = DateTime.now();
   DateTime? nextDate;
   bool state = false;
+  bool loadingActivity = false;
   late ServiceModel service;
   final picker = ImagePicker();
   var note = TextEditingController();
   var price = TextEditingController();
   var value = TextEditingController();
+  var quantity = TextEditingController(text: "1");
+  var cost = "";
   final storage = FirebaseStorage.instance;
+  late ServiceModel updateModel;
+  List<ServiceModel> activities = [];
   File? file;
   final api = ApiService();
   void imagePicker() async {
@@ -46,22 +52,27 @@ class ServiceController extends GetxController{
     update();
   }
   void saveServiceData({required String type,required String recordType,Map extra = const {}}) async {
-    state = true;
-    update();
     if(ServiceTypeHelper.notes == recordType && note.text.isEmpty){
-      toast("Enter Some Note");
+      toast("Enter Some Note",bgColor: Colors.red);
       return;
     }
     if(recordType == ServiceTypeHelper.temperature && value.text.isEmpty){
-      toast("Enter Some Temperature Value");
+      toast("Enter Some Temperature Value",bgColor: Colors.red);
       return;
     }
+    if(recordType != ServiceTypeHelper.temperature && ServiceTypeHelper.notes != recordType &&  adminContact == null ){
+      toast("Please Select Contact",bgColor: Colors.red);
+      return;
+    }
+    state = true;
+    update();
     await createServiceModel(type: type, recordType: recordType,extra: extra);
     var out = await api.request(endPoint: endPoint,type: RequestType.post,body: service.toJson());
     state = false;
     update();
     if(out.statusCode == 200){
       toast("Add Successfully",bgColor: Colors.green);
+      print(out.body);
       Get.offAll(() => BottomNavSheetScreen());
     }
   }
@@ -92,6 +103,7 @@ class ServiceController extends GetxController{
       url = await ref.getDownloadURL();
     }
     service = ServiceModel(
+        id: ShortUid.create(),
         horseId: selectedHorse!.sId,
         serviceType: type,
         date: today.toString(),
@@ -105,8 +117,57 @@ class ServiceController extends GetxController{
         diagName: "",
         diagId: "",
         value: value.text,
+        cost: cost.isNotEmpty?cost: "",
+        quantity: quantity.text.isNotEmpty?quantity.text: "",
         extraData: jsonEncode(extra)
     );
+  }
+  void horseActivity(id) async {
+    activities = [];
+    loadingActivity = true;
+    update();
+   try{
+     var data = await api.request(endPoint: "services-get/${id}",body: {},type: RequestType.post);
+     loadingActivity = true;
+     update();
+     if(data.statusCode == 200){
+       List cs = jsonDecode(data.body);
+       for(var s in cs){
+         ServiceModel serviceModel = ServiceModel.fromJson(s);
+         activities.add(serviceModel);
+       }
+       activities.sort((a, b) => b.date.compareTo(a.date));
+       update();
+     }
+   }catch(e){
+     loadingActivity = false;
+     update();
+   }
+  }
+  void initServiceModel(ServiceModel model) async {
+    updateModel = model;
+    update();
+  }
+  void deleteServiceRequest(id) async {
+
+  }
+  void changeQuantity(value){
+    print(value.runtimeType);
+    num q = num.parse(value);
+    num p = num.parse(price.text);
+    cost = (q * p).toStringAsFixed(0);
+    update();
+  }
+  void changePrice(value){
+    num p = num.parse(value);
+    num q = num.parse(quantity.text);
+    cost = (q * p).toStringAsFixed(0);
+    update();
+  }
+  void setPrice(p){
+    price.text = p;
+    cost = p;
+    update();
   }
   void clearData(){
     state = false;
@@ -116,6 +177,5 @@ class ServiceController extends GetxController{
     today = DateTime.now();
     nextDate = null;
     file = null;
-    update();
   }
 }

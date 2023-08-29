@@ -5,7 +5,7 @@ publish_to: "None"
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.19.2 <3.1.0'
+  sdk: '>=3.1.0 <4.0.0'
 
 dependencies:
   flutter:
@@ -15,8 +15,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: ^4.6.5
   another_flushbar: ^1.12.30
-  flutter_screenutil: ^5.8.4
-  calendar_date_picker2: ^0.5.2
+  flutter_screenutil: 5.9.0
+  calendar_date_picker2: 0.5.3
   google_fonts: any
   http: ^1.1.0
   get_storage: any
@@ -31,10 +31,9 @@ dependencies:
   cached_network_image: any
   flutter_animated_loadingkit: ^0.0.7
   intl:
+  shortuid: ^1.0.0
 
 
-dependency_overrides:
-  test_api: 0.5.1
 
 
 dev_dependencies:

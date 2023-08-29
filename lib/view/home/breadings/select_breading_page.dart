@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hourse_lux/view/HomeScreen/add_horses/herse_select_page.dart';
-import 'package:hourse_lux/view/HomeScreen/breadings/add_insemination_page.dart';
-import 'package:hourse_lux/view/HomeScreen/breadings/add_mil_test_page.dart';
-import 'package:hourse_lux/view/HomeScreen/breadings/add_ovulation_page.dart';
+import 'package:hourse_lux/view/home/add_horses/herse_select_page.dart';
+import 'package:hourse_lux/view/home/breadings/add_insemination_page.dart';
+import 'package:hourse_lux/view/home/breadings/add_mil_test_page.dart';
+import 'package:hourse_lux/view/home/breadings/add_ovulation_page.dart';
 import 'package:hourse_lux/widgets/custom_appbar_2.dart';
 
 import 'breadings_data.dart';

@@ -9,7 +9,8 @@ import 'package:hourse_lux/models/contact_model.dart';
 import 'package:hourse_lux/models/horse_model.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:nb_utils/nb_utils.dart';
-import '../view/HomeScreen/horsdetail_page.dart';
+import '../view/home/bottom_nav_bar.dart';
+import '../view/home/horsdetail_page.dart';
 import 'api_service_controller.dart';
 import '../core/helpers/keys.dart';
 
@@ -69,9 +70,9 @@ class HorseController extends GetxController{
         var out = await service.request(endPoint: "addnewhorse-data", body: body, type: RequestType.post);
         state = false;
         update();
-        print(out.body);
         if(out.statusCode == 200){
           var h = jsonDecode(out.body)["newaddNewHorse"];
+          print(h);
           HorseModel newHorse = HorseModel.fromJson(h);
           horses.add(newHorse);
           backup = horses;
@@ -86,6 +87,7 @@ class HorseController extends GetxController{
         contactOwner = null;
         contactBillPayer = null;
         update();
+        Get.offAll(() => BottomNavSheetScreen());
       } else {
         state = false;
         update();

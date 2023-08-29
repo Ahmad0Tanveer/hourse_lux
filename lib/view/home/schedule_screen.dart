@@ -1,7 +1,7 @@
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/material.dart';
 import 'new _nvent/new_event_service_page.dart';
-import 'package:hourse_lux/view/HomeScreen/bottom_nav_bar.dart';
+import 'package:hourse_lux/view/home/bottom_nav_bar.dart';
 import '../../core/constant/colors.dart';
 import 'home_screen.dart';
 import 'package:get/get.dart';

@@ -19,10 +19,16 @@ class SignInScreen extends StatefulWidget {
 
 class _SignInScreenState extends State<SignInScreen> {
   final user = Get.put(UserController());
+  bool secure = true;
   @override
   void initState() {
     user.initPres();
     super.initState();
+  }
+  void changeState(){
+    setState(() {
+      secure = !secure;
+    });
   }
   @override
   Widget build(BuildContext context) {
@@ -54,9 +60,13 @@ class _SignInScreenState extends State<SignInScreen> {
                       TextFormField(
                         controller: user.password,
                         validator: ValidationHelpers.passwordValidator,
+                        obscureText: secure,
                         decoration: InputDecoration(
                             hintText: "*********",
-                           suffixIcon: Icon(Icons.visibility_off_outlined),
+                           suffixIcon: IconButton(
+                             icon: secure?Icon(Icons.visibility):Icon(Icons.visibility_off_outlined),
+                             onPressed: changeState,
+                           ),
                         ),
                       ),
                       SizedBox(height: 20.h),

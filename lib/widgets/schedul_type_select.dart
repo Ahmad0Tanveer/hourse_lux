@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../view/HomeScreen/new _nvent/new_even_appointment_page.dart';
-import '../view/HomeScreen/new _nvent/new_event_service_page.dart';
-import '../view/HomeScreen/new _nvent/new_event_task_page.dart';
+import '../view/home/new _nvent/new_even_appointment_page.dart';
+import '../view/home/new _nvent/new_event_service_page.dart';
+import '../view/home/new _nvent/new_event_task_page.dart';
 import 'my_input_shadow.dart';
 
 class ScheduleTypeSelect extends StatefulWidget {

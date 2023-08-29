@@ -4,9 +4,10 @@ import 'package:get/get.dart';
 import 'package:hourse_lux/core/constant/colors.dart';
 import 'package:hourse_lux/core/contact_controller.dart';
 import 'package:hourse_lux/models/contact_model.dart';
-import 'package:hourse_lux/view/HomeScreen/add_contacts/add_contact_dialog.dart';
+import 'package:hourse_lux/view/home/add_contacts/add_contact_dialog.dart';
 import 'package:hourse_lux/view/customs/custom_search.dart';
 import 'package:hourse_lux/view/customs/custom_text.dart';
+import 'package:hourse_lux/view/drawer/drawer.dart';
 import 'package:hourse_lux/widgets/loading_list_shimmer.dart';
 import 'add_contacts/add_conatact_page.dart';
 import 'add_contacts/contact_detail_page.dart';
@@ -44,14 +45,21 @@ class _ContactScreenState extends State<ContactScreen> {
         builder: (_) {
           return Scaffold(
             backgroundColor: whiteColor,
+            drawer: MyDrawer(),
             appBar: AppBar(
               backgroundColor: Colors.white,
+              automaticallyImplyLeading: false,
               elevation: 1000,
               title: Row(
                 children: [
-                  Icon(
-                    Icons.menu,
-                    color: blackColor,
+                  InkWell(
+                    onTap: (){
+                      scaffoldKey.currentState!.openDrawer();
+                    },
+                    child: Icon(
+                      Icons.menu,
+                      color: blackColor,
+                    ),
                   ),
                   SizedBox(width: 20.w),
                   CustomText(

@@ -319,7 +319,7 @@ class _CreateNewHorseState extends State<CreateNewHorse> {
                 ):  Container(
                     margin: EdgeInsets.only(left: 16,right: 16),
                     child: GestureDetector(
-                      onTap: () => horse.addHorseData(bread: selectBreedString, color: selectColorString, sex: selectColorString),
+                      onTap: () => horse.addHorseData(bread: selectBreedString, color: selectColorString, sex: selectSexString),
                       child: Container(
                         height: 55,
                         alignment: Alignment.center,

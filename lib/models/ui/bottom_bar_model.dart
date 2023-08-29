@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hourse_lux/core/constant/assets.dart';
-import 'package:hourse_lux/view/HomeScreen/contact_screen.dart';
-import 'package:hourse_lux/view/HomeScreen/home_screen.dart';
-import 'package:hourse_lux/view/HomeScreen/report_screen.dart';
-import 'package:hourse_lux/view/HomeScreen/schedule_screen.dart';
+import 'package:hourse_lux/view/home/contact_screen.dart';
+import 'package:hourse_lux/view/home/home_screen.dart';
+import 'package:hourse_lux/view/home/report_screen.dart';
+import 'package:hourse_lux/view/home/schedule_screen.dart';
 
-import '../../view/HomeScreen/add_horse_page.dart';
+import '../../view/home/add_horse_page.dart';
 
 class MyBottomBar{
   final String label;

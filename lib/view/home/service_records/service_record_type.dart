@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hourse_lux/view/HomeScreen/service_records/add_body_cliper_page.dart';
+import 'package:hourse_lux/core/service_controller.dart';
+import 'package:hourse_lux/view/home/service_records/add_body_cliper_page.dart';
 import 'package:hourse_lux/widgets/custom_appbar_2.dart';
 import 'package:hourse_lux/widgets/selected_horses_widget.dart';
 
-class ServiceRecordTypePage extends StatelessWidget {
+class ServiceRecordTypePage extends StatefulWidget {
   const ServiceRecordTypePage({super.key});
+
+  @override
+  State<ServiceRecordTypePage> createState() => _ServiceRecordTypePageState();
+}
+
+class _ServiceRecordTypePageState extends State<ServiceRecordTypePage> {
+  final service = Get.put(ServiceController());
   @override
   Widget build(BuildContext context) {
     Widget breadWidget(title,price){
@@ -14,18 +22,24 @@ class ServiceRecordTypePage extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(height: 17),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(title),
-                Row(
-                  children: [
-                    Text("\$ $price",style: Get.textTheme.bodyLarge!.copyWith(color: Colors.black,fontWeight: FontWeight.w400,fontSize: 15)),
-                    SizedBox(width: 8),
-                    Icon(Icons.arrow_forward_ios_rounded,size: 20),
-                  ],
-                ),
-              ],
+            InkWell(
+              onTap: () {
+                service.setPrice(price);
+                Get.to(() => AddBodyClipperPage(type: title));
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(title),
+                  Row(
+                    children: [
+                      Text("\$ $price",style: Get.textTheme.bodyLarge!.copyWith(color: Colors.black,fontWeight: FontWeight.w400,fontSize: 15)),
+                      SizedBox(width: 8),
+                      Icon(Icons.arrow_forward_ios_rounded,size: 20),
+                    ],
+                  ),
+                ],
+              ),
             ),
             SizedBox(height: 10),
             Container(height: 1,color: Color(0xffD7D7D7),)
@@ -39,12 +53,18 @@ class ServiceRecordTypePage extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(height: 17),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(title),
-                Icon(Icons.arrow_forward_ios_rounded,size: 20),
-              ],
+            InkWell(
+              onTap: (){
+                service.setPrice("0");
+                Get.to(() => AddBodyClipperPage(type: title));
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(title),
+                  Icon(Icons.arrow_forward_ios_rounded,size: 20),
+                ],
+              ),
             ),
             SizedBox(height: 10),
             Container(height: 1,color: Color(0xffD7D7D7),),
@@ -65,16 +85,14 @@ class ServiceRecordTypePage extends StatelessWidget {
             child: Text("Choose Record Type",style: Get.textTheme.bodyLarge!.copyWith(color: Colors.black)),
           ),
           SizedBox(height: 10),
-          InkWell(
-              onTap: () => Get.to(() => AddBodyClipperPage()),
-              child: breadWidget("Bodyclip","100")),
+          breadWidget("Bodyclip","100"),
           breadWidget("Coaching (Daily)","100"),
           arrowWidget("Equipment"),
-          breadWidget("Flat Rate","3,000"),
+          breadWidget("Flat Rate","3000"),
           breadWidget("Lesson","65"),
           arrowWidget("Lodging"),
           breadWidget("Longe","30"),
-          breadWidget("Monthly Board","1,100"),
+          breadWidget("Monthly Board","1100"),
           breadWidget("Office Fee","25"),
           arrowWidget("Other"),
           breadWidget("Ride","50"),
