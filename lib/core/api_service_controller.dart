@@ -17,7 +17,7 @@ class ApiService {
     } else if(type == RequestType.put){
 
     } else if(type == RequestType.delete){
-
+      return await http.delete(Uri.parse("${baseUrl}/$endPoint"),headers: headers);
     } else if(type == RequestType.patch){
 
     } else {

@@ -16,15 +16,17 @@ class HomePageActivityWidget extends StatefulWidget {
 class _HomePageActivityWidgetState extends State<HomePageActivityWidget> {
   final horse = Get.put(HorseController());
   final service = Get.put(ServiceController());
-  @override
-  void initState() {
-    service.horseActivity({horse.details.sId});
-    super.initState();
-  }
   String showDate = "";
   bool show = true;
   @override
+  void initState() {
+    service.horseActivity(horse.details.sId);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+
     Widget showServiceData(ServiceModel model){
       var date = DateTime.parse(model.date);
       var parseDara = DateFormat.yMMMMEEEEd().format(date);
@@ -59,10 +61,14 @@ class _HomePageActivityWidgetState extends State<HomePageActivityWidget> {
         init: service,
         builder: (context) {
           if(!service.loadingActivity){
-            return ListView(
-              shrinkWrap: true,
-              padding: EdgeInsets.zero,
-              children: service.activities.map((e) => showServiceData(e)).toList(),
+             showDate = "";
+             show = true;
+            return Expanded(
+              child: ListView(
+                shrinkWrap: true,
+                padding: EdgeInsets.zero,
+                children: service.activities.map((e) => showServiceData(e)).toList(),
+              ),
             );
           } else {
             return LoadingListShimmerEffect();

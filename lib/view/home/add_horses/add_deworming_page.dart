@@ -225,7 +225,7 @@ class _AddDewormingPageState extends State<AddDewormingPage> {
             height: MediaQuery.of(context).size.height * 0.9,
             child: SelectBottomSheet(
               onTap: changeType,
-              title: "Select Therapy Record",
+              title: "Select Deworming Records",
               options: AddHorseData.deworming,
               selectedOption: selectedType,
             ),

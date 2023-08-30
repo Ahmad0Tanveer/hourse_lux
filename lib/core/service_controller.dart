@@ -13,6 +13,7 @@ import 'package:shortuid/shortuid.dart';
 import '../models/horse_model.dart';
 import '../models/service_model.dart';
 import '../view/home/bottom_nav_bar.dart';
+import 'helpers/cache_helper.dart';
 import 'helpers/service_type_helper.dart';
 
 class ServiceController extends GetxController{
@@ -31,7 +32,7 @@ class ServiceController extends GetxController{
   var quantity = TextEditingController(text: "1");
   var cost = "";
   final storage = FirebaseStorage.instance;
-  late ServiceModel updateModel;
+  ServiceModel? updateModel;
   List<ServiceModel> activities = [];
   File? file;
   final api = ApiService();
@@ -106,6 +107,7 @@ class ServiceController extends GetxController{
         id: ShortUid.create(),
         horseId: selectedHorse!.sId,
         serviceType: type,
+        userId: CacheHelper.userId(),
         date: today.toString(),
         nextDate: nextDate.toString(),
         recordType: recordType,
@@ -123,15 +125,17 @@ class ServiceController extends GetxController{
     );
   }
   void horseActivity(id) async {
+    print(id);
     activities = [];
     loadingActivity = true;
     update();
    try{
-     var data = await api.request(endPoint: "services-get/${id}",body: {},type: RequestType.post);
-     loadingActivity = true;
+     var out = await api.request(endPoint: "services-get/${id}",body: {},type: RequestType.post);
+     loadingActivity = false;
+     print(out.body);
      update();
-     if(data.statusCode == 200){
-       List cs = jsonDecode(data.body);
+     if(out.statusCode == 200){
+       List cs = jsonDecode(out.body);
        for(var s in cs){
          ServiceModel serviceModel = ServiceModel.fromJson(s);
          activities.add(serviceModel);
@@ -140,15 +144,48 @@ class ServiceController extends GetxController{
        update();
      }
    }catch(e){
+     print(e);
      loadingActivity = false;
      update();
    }
   }
   void initServiceModel(ServiceModel model) async {
     updateModel = model;
+    if(model.recordType== ServiceTypeHelper.service){
+      setPrice(model.cost);
+      quantity.text = model.quantity;
+    }
+    today =  DateTime.parse(model.date);
+    nextDate = DateTime.tryParse(model.nextDate);
+    price.text = model.price;
+    value.text = model.value;
+    note.text = model.comment;
+    adminContact = ContactModel(
+      id: model.adminId,
+      contactType: "",
+      title: "",
+      firstName: model.adminName.split(" ").first,
+      lastName:  model.adminName.split(" ").last,
+      primaryPhone: "",
+      email: "",
+      fullName: model.adminName,
+    );
     update();
   }
   void deleteServiceRequest(id) async {
+    String point = "filters/$id";
+    print(point);
+    var out = await api.request(endPoint: point,type: RequestType.delete);
+    print(out.body);
+    print(id);
+    for(var ac in activities){
+      if(ac.id == id){
+        activities.remove(ac);
+        toast("Deleted Successfully",bgColor: Colors.green);
+        update();
+        Get.back();
+      }
+    }
 
   }
   void changeQuantity(value){
@@ -156,12 +193,18 @@ class ServiceController extends GetxController{
     num q = num.parse(value);
     num p = num.parse(price.text);
     cost = (q * p).toStringAsFixed(0);
+    if(updateModel!= null){
+      updateModel!.cost = cost;
+    }
     update();
   }
   void changePrice(value){
     num p = num.parse(value);
     num q = num.parse(quantity.text);
     cost = (q * p).toStringAsFixed(0);
+    if(updateModel!= null){
+      updateModel!.cost = cost;
+    }
     update();
   }
   void setPrice(p){

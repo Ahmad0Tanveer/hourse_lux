@@ -13,6 +13,7 @@ import '../view/home/bottom_nav_bar.dart';
 import '../view/home/horsdetail_page.dart';
 import 'api_service_controller.dart';
 import '../core/helpers/keys.dart';
+import 'helpers/cache_helper.dart';
 
 class HorseController extends GetxController{
   final service = ApiService();
@@ -100,12 +101,11 @@ class HorseController extends GetxController{
     update();
   }
   void initHorses() async {
-    Map userMap = box.read(allKeys.userMap)??{};
-    final String id = userMap["User"]["_id"]??"";
+
     state = true;
     update();
     if(horses.isEmpty){
-      var out = await service.request(endPoint: "addnewhorse-data/$id");
+      var out = await service.request(endPoint: "addnewhorse-data/${CacheHelper.userId()}");
       state = false;
       update();
       if(out.statusCode == 200){
