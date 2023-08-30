@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:671280788159:android:ae820778c0ed8c40dc8c0a",
+        "mobilesdk_app_id": "1:671280788159:android:8b7ad0f960915bf7dc8c0a",
         "android_client_info": {
-          "package_name": "com.example.hourse_lux"
+          "package_name": "com.horselux.horselux"
         }
       },
       "oauth_client": [
@@ -29,6 +29,13 @@
             {
               "client_id": "671280788159-8q6orl9oa9g3ue02kq2ookfrpddfc8aj.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "671280788159-1dd77fb1531b5tsqh7r2qb81celrfitc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.hourseLux"
+              }
             }
           ]
         }

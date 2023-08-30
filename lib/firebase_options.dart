@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyA_KZuOq8aKjNQfSTCioB9raFDHK6yW_WA',
-    appId: '1:671280788159:android:ae820778c0ed8c40dc8c0a',
+    appId: '1:671280788159:android:8b7ad0f960915bf7dc8c0a',
     messagingSenderId: '671280788159',
     projectId: 'horselux-167fb',
     storageBucket: 'horselux-167fb.appspot.com',
@@ -59,11 +59,11 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyChybQsz0X_y-VqmkuWwgN_e5OhQl382og',
-    appId: '1:671280788159:ios:74e9f6a2ef180a63dc8c0a',
+    appId: '1:671280788159:ios:fc2148a041edde33dc8c0a',
     messagingSenderId: '671280788159',
     projectId: 'horselux-167fb',
     storageBucket: 'horselux-167fb.appspot.com',
-    iosClientId: '671280788159-1dd77fb1531b5tsqh7r2qb81celrfitc.apps.googleusercontent.com',
-    iosBundleId: 'com.example.hourseLux',
+    iosClientId: '671280788159-kh1k652plmbq1cvkqq6iif7mim21i9gj.apps.googleusercontent.com',
+    iosBundleId: 'com.horselux.horselux',
   );
 }
