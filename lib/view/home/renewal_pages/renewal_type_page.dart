@@ -4,11 +4,24 @@ import 'package:hourse_lux/view/home/add_horses/herse_select_page.dart';
 import 'package:hourse_lux/view/home/renewal_pages/coggins_renewal_page.dart';
 import 'package:hourse_lux/view/home/renewal_pages/passport_renewal_page.dart';
 import 'package:hourse_lux/widgets/custom_appbar_2.dart';
+import '../../../core/service_controller.dart';
 import 'FEI_renewal_page.dart';
 import 'lease_renewal_page.dart';
 
-class RenewalTypesPage extends StatelessWidget {
+class RenewalTypesPage extends StatefulWidget {
   const RenewalTypesPage({super.key});
+
+  @override
+  State<RenewalTypesPage> createState() => _RenewalTypesPageState();
+}
+
+class _RenewalTypesPageState extends State<RenewalTypesPage> {
+  final service = Get.put(ServiceController());
+  @override
+  void dispose() {
+    service.clearData();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     Widget textDraw(image,text,next,title){

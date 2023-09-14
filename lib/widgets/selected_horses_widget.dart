@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../core/constant/assets.dart';
 import '../core/service_controller.dart';
 
 class SelectedHorseWidget extends StatefulWidget {

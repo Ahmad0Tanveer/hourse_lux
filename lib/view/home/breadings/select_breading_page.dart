@@ -4,9 +4,11 @@ import 'package:hourse_lux/view/home/add_horses/herse_select_page.dart';
 import 'package:hourse_lux/view/home/breadings/add_insemination_page.dart';
 import 'package:hourse_lux/view/home/breadings/add_mil_test_page.dart';
 import 'package:hourse_lux/view/home/breadings/add_ovulation_page.dart';
+import 'package:hourse_lux/view/home/breadings/add_pregnancy_check_page.dart';
 import 'package:hourse_lux/widgets/custom_appbar_2.dart';
-
+import 'add_semen_collection_page.dart';
 import 'breadings_data.dart';
+
 class SelectBreadingTypePage extends StatelessWidget {
   const SelectBreadingTypePage({super.key});
   @override
@@ -37,9 +39,9 @@ class SelectBreadingTypePage extends StatelessWidget {
           SizedBox(height: 20),
           Container(
             width: Get.width,
-            alignment: Alignment.center,
+            alignment: Alignment.centerLeft,
             margin: EdgeInsets.only(left: 16),
-            child: Text("Selected Type Of Event",style: Get.textTheme.bodyLarge!.copyWith(color: Colors.black,fontSize: 15)),
+            child: Text("Selected Type Of Event",style: Get.textTheme.bodyLarge!.copyWith(color: Colors.black,fontSize: 15,fontWeight: FontWeight.w700)),
           ),
           SizedBox(height: 10),
           InkWell(
@@ -59,11 +61,11 @@ class SelectBreadingTypePage extends StatelessWidget {
             child: breadWidget(BreadingData.types[3]),
           ),
           InkWell(
-            onTap: (){},
+            onTap: () => Get.to(HorseSelectPage(nextPage: AddPregnancyCheck(), title: "Add ${BreadingData.types[4]}")),
             child: breadWidget(BreadingData.types[4]),
           ),
           InkWell(
-            onTap: (){},
+            onTap: () => Get.to(HorseSelectPage(nextPage: AddSemenCollectionPage(), title: "Add ${BreadingData.types[5]}")),
             child: breadWidget(BreadingData.types[5]),
           ),
         ],

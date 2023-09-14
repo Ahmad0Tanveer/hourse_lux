@@ -9,6 +9,8 @@ class ApiService {
     Map userMap = box.read(allKeys.userMap)??{};
     Map<String,String> headers = {
       "Authorization": "Bearer ${userMap["token"]??{}}",
+      "Access-Control-Allow-Origin": "*",
+      'Accept': '*/*'
     };
     if(type == RequestType.get){
       return await http.get(Uri.parse("${baseUrl}/$endPoint"), headers: headers);

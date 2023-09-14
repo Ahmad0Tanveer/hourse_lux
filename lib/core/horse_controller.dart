@@ -4,7 +4,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:hourse_lux/core/helpers/enums_herlper.dart';
-import 'package:hourse_lux/main.dart';
 import 'package:hourse_lux/models/contact_model.dart';
 import 'package:hourse_lux/models/horse_model.dart';
 import 'package:image_picker/image_picker.dart';
@@ -12,7 +11,6 @@ import 'package:nb_utils/nb_utils.dart';
 import '../view/home/bottom_nav_bar.dart';
 import '../view/home/horsdetail_page.dart';
 import 'api_service_controller.dart';
-import '../core/helpers/keys.dart';
 import 'helpers/cache_helper.dart';
 
 class HorseController extends GetxController{
@@ -73,15 +71,12 @@ class HorseController extends GetxController{
         update();
         if(out.statusCode == 200){
           var h = jsonDecode(out.body)["newaddNewHorse"];
-          print(h);
           HorseModel newHorse = HorseModel.fromJson(h);
           horses.add(newHorse);
           backup = horses;
           update();
           form.currentState?.reset();
-        } else {
-          print(out.body);
-        }
+        } else {}
         state = false;
         update();
         file = null;

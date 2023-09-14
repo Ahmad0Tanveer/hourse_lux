@@ -31,7 +31,9 @@ class _ReportScreenState extends State<ReportScreen> {
                  children: [
                    Container(
                      height: 230,
-                     child: Image.asset("assets/icons/hhorse.png"),
+                     child: Image.asset("assets/icons/hhorse.png",
+                       fit: BoxFit.fill,
+                     ),
                    ),
                    Align(
                      alignment: Alignment.center,

@@ -18,7 +18,12 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   final user = Get.put(UserController());
   bool value = false;
-
+  bool secure = true;
+  void changeState(){
+    setState(() {
+      secure = !secure;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return GetBuilder(
@@ -71,7 +76,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         controller: user.password,
                         validator: ValidationHelpers.passwordValidator,
                         decoration: InputDecoration(
-                            hintText: "*********"
+                            hintText: "*********",
+                          suffixIcon: IconButton(
+                            icon: secure?Icon(Icons.visibility):Icon(Icons.visibility_off_outlined),
+                            onPressed: changeState,
+                          ),
                         ),
                       ),
 
@@ -88,36 +97,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           }
                         },
                         decoration: InputDecoration(
-                            hintText: "*********"
+                            hintText: "*********",
+                          suffixIcon: IconButton(
+                            icon: secure?Icon(Icons.visibility):Icon(Icons.visibility_off_outlined),
+                            onPressed: changeState,
+                          ),
                         ),
                       ),
 
                       SizedBox(height: 20.h),
-                      //i want to check the remember me checkbox here
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: EdgeInsets.only(left: 20.w),
-                          child: Row(
-                            children: [
-                              Checkbox(
-                                activeColor: whiteColor,
-                                checkColor: whiteColor,
-                                value: value,
-                                onChanged: (bool? newValue) {
-                                  setState(() {
-                                    value = newValue!;
-                                  });
-                                },
-                              ),
-                              Text(
-                                'Remember me',
-                                style: Get.textTheme.labelMedium!.copyWith(color: Colors.white),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+
                       /*Center(
                         child: TextButton(
                           onPressed: () {},

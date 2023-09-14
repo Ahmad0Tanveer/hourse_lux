@@ -43,8 +43,8 @@ class _AddNotePageState extends State<AddNotePage> {
                     ),
                   )
               ),
-              SizedBox(height: 10),
-              MyInputShadow(
+              //SizedBox(height: 10),
+              /*MyInputShadow(
                   title: "Time",
                   widget: TextFormField(
                     decoration: InputDecoration(
@@ -55,7 +55,7 @@ class _AddNotePageState extends State<AddNotePage> {
                       filled: true,
                     ),
                   )
-              ),
+              ),*/
               SizedBox(height: 10),
               MyInputShadow(
                   title: "Notes",

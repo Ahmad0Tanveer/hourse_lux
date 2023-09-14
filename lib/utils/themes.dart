@@ -3,6 +3,7 @@ import 'package:hourse_lux/core/constant/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 ThemeData theme = ThemeData(
+
   scaffoldBackgroundColor: Colors.white,
   fontFamily: GoogleFonts.quicksand().fontFamily,
   textTheme: TextTheme(
@@ -50,7 +51,7 @@ ThemeData theme = ThemeData(
       borderRadius: BorderRadius.circular(40),
     ),
     hintStyle: TextStyle(
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w300,
         color: blackColor.withOpacity(0.4),
         fontSize: 16
     ),

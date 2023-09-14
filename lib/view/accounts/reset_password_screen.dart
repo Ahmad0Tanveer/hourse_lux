@@ -17,6 +17,12 @@ class ResetPasswordScreen extends StatefulWidget {
 
 class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   final user = Get.put(UserController());
+  bool secure = true;
+  void changeState(){
+    setState(() {
+      secure = !secure;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,10 +38,15 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   MyText.text("New Password"),
                   SizedBox(height: 15.h),
                   TextFormField(
+                    obscureText: secure,
                     controller: user.password,
                     validator: ValidationHelpers.passwordValidator,
                     decoration: InputDecoration(
-                      hintText: "NewPassword"
+                      hintText: "New Password",
+                      suffixIcon: IconButton(
+                        icon: secure?Icon(Icons.visibility):Icon(Icons.visibility_off_outlined),
+                        onPressed: changeState,
+                      ),
                     ),
                   ),
 
@@ -43,6 +54,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   MyText.text("Confirm New Password"),
                   SizedBox(height: 10.h),
                   TextFormField(
+                    obscureText: secure,
                     controller: user.rPassword,
                     validator: (_){
                       if(user.password.text != user.rPassword.text){
@@ -51,12 +63,18 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                       return null;
                     },
                     decoration: InputDecoration(
-                        hintText: "ConfirmPassword"
+                        hintText: "Confirm Password",
+                      suffixIcon: IconButton(
+                        icon: secure?Icon(Icons.visibility):Icon(Icons.visibility_off_outlined),
+                        onPressed: changeState,
+                      ),
                     ),
                   ),
 
                   SizedBox(height: 100.h),
-                  DefaultButton(
+                  user.state?  Container(
+                    child: CircularProgressIndicator(),
+                  ): DefaultButton(
                     text: 'Save',
                     press: user.updatePasswordRequest,
                     textColor: blackColor,

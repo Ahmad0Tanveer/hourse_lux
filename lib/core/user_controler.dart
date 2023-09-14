@@ -1,11 +1,12 @@
 import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:hourse_lux/core/helpers/enums_herlper.dart';
 import 'package:hourse_lux/core/helpers/herlper_dialogs.dart';
 import 'package:hourse_lux/core/helpers/keys.dart';
 import 'package:hourse_lux/main.dart';
+import 'package:nb_utils/nb_utils.dart';
+import '../view/accounts/login_screen.dart';
 import '../view/home/bottom_nav_bar.dart';
 import '../view/accounts/forgot_password.dart';
 import '../view/accounts/reset_password_screen.dart';
@@ -131,19 +132,14 @@ class UserController extends GetxController {
           "email": email.text,
         };
         final out = await service.request(endPoint: "verify-otp",body: userMap,type: RequestType.post);
-        print(out.statusCode);
+        state = true;
+        update();
         if(out.statusCode == 404){
-          state = true;
-          update();
           HelperDialog.errorDialog("Account Not Exits", "User detail not found");
         }else if(out.statusCode == 200){
-          state = true;
-          update();
-          Get.to(() => ResetPasswordScreen());
           HelperDialog.nbToast("OTP Verified successfully");
+          Get.to(() => ResetPasswordScreen());
         }else {
-          state = true;
-          update();
           HelperDialog.errorDialog("Ohh", "Some thing went wrong");
         }
       }
@@ -153,13 +149,30 @@ class UserController extends GetxController {
     update();
   }
   void updatePasswordRequest() async {
+    state = true;
+    update();
     if(resetPassword.currentState!.validate()){
-      var out = await service.request(endPoint: "reset-password", body: {
-        "password": password.text,
-        "confirmPassword": password.text,
-      });
-      print(out.body);
+      try{
+        var out = await service.request(endPoint: "reset-password", body: {
+          "email": email.text,
+          "password": password.text,
+          "confirmPassword": password.text,
+        },type: RequestType.post);
+        state = false;
+        update();
+        print(out.body);
+        if(out.statusCode == 200){
+          toast("Password Updated Successfully",bgColor: greenColor);
+          Get.offAll(() => SignInScreen());
+        } else {
+          toast("Some thing wrong");
+        }
+      }catch(e){
+        toast("Some thing wrong");
+      }
     }
+    state = true;
+    update();
   }
   void handleGoogleSignUp() async {}
 }

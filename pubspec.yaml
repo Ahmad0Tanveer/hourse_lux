@@ -32,6 +32,7 @@ dependencies:
   flutter_animated_loadingkit: ^0.0.7
   intl:
   shortuid: ^1.0.0
+  table_calendar: ^3.0.9
 
 
 

@@ -1,4 +1,6 @@
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hourse_lux/core/service_controller.dart';
@@ -34,7 +36,10 @@ class _ActivityServiceWidgetState extends State<ActivityServiceWidget> {
       );
       if(widget.model.recordType== ServiceTypeHelper.service){
         return Text("${widget.model.serviceType} : \$${widget.model.cost}",style: style);
-      }else {
+      }else if(widget.model.recordType== ServiceTypeHelper.breading) {
+        Map data = jsonDecode(widget.model.extraData);
+        return Text("${data["subType"]??""} ${widget.model.value}",style: style);
+      }{
         return Text("${transformString (widget.model.recordType)} ${widget.model.value}",style: style);
       }
     }

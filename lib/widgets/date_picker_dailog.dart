@@ -121,6 +121,7 @@ class _SelectNextDateDialogState extends State<SelectNextDateDialog> {
                 ),
                 CalendarDatePicker2(
                   config: CalendarDatePicker2Config(
+                      firstDate: DateTime.now(),
                       calendarType: CalendarDatePicker2Type.single,
                       selectedDayHighlightColor: baseColor,
                       dayTextStyle: TextStyle(

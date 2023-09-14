@@ -19,8 +19,8 @@ void main() async {
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
-  static const double _designWidth = 430;
-  static const double _desigHeight = 930;
+  static const double width = 430;
+  static const double height = 930;
   @override
   State<MyApp> createState() => _MyAppState();
 }
@@ -29,7 +29,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-        designSize: Size(MyApp._designWidth, MyApp._desigHeight),
+        designSize: Size(MyApp.width, MyApp.height),
         builder: (context, widget) {
           return GetMaterialApp(
             theme: theme,

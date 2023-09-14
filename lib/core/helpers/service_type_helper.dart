@@ -1,10 +1,12 @@
+import '../constant/assets.dart';
+
 class ServiceTypeHelper{
   static String coggings = "coggings";
   static String injury = "injury";
   static String dental = "dental";
   static String therapy = "therapy";
   static String vaccination = "vaccination";
-  static String jointInjection = "jointInjection";
+  static String jointInjection = "Joint Injection";
   static String diagnostics = "diagnostics";
   static String deworming = "deworming";
   static String ferrier = "ferrier";
@@ -14,6 +16,8 @@ class ServiceTypeHelper{
   static String generalHealth = "generalHealth";
   static String medSupp = "medSupp";
   static String service = "service";
+  static String breading = "Breading";
+  static String renewals = "Renewals";
 }
 
 String imageHelper({required type}){
@@ -45,6 +49,12 @@ String imageHelper({required type}){
     return "assets/record_type/supplements.png";
   } else if(type == ServiceTypeHelper.service){
     return "assets/icons/easy-installation.png";
+  }
+  else if(type == ServiceTypeHelper.breading){
+    return Images.Beehive;
+  }
+  else if(type == ServiceTypeHelper.renewals){
+    return Images.renewable;
   }
   return "assets/record_type/supplements.png";
 }

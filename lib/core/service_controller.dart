@@ -30,6 +30,10 @@ class ServiceController extends GetxController{
   var price = TextEditingController();
   var value = TextEditingController();
   var quantity = TextEditingController(text: "1");
+  var under = TextEditingController();
+  var ultraSound = TextEditingController();
+  var mediationNote = TextEditingController();
+
   var cost = "";
   final storage = FirebaseStorage.instance;
   ServiceModel? updateModel;
@@ -61,7 +65,7 @@ class ServiceController extends GetxController{
       toast("Enter Some Temperature Value",bgColor: Colors.red);
       return;
     }
-    if(recordType != ServiceTypeHelper.temperature && ServiceTypeHelper.notes != recordType &&  adminContact == null ){
+    if( recordType != ServiceTypeHelper.renewals  &&  recordType != ServiceTypeHelper.coggings  && recordType != ServiceTypeHelper.temperature && ServiceTypeHelper.notes != recordType &&  adminContact == null ){
       toast("Please Select Contact",bgColor: Colors.red);
       return;
     }
@@ -73,17 +77,19 @@ class ServiceController extends GetxController{
     update();
     if(out.statusCode == 200){
       toast("Add Successfully",bgColor: Colors.green);
-      print(out.body);
       Get.offAll(() => BottomNavSheetScreen());
     }
   }
   void selectDate(d){
+    print(" Current");
     today = d;
-    print(d);
+    print(today);
     update();
   }
   void selectNextDate(d){
+    print("Next Date");
     nextDate = d;
+    print(nextDate);
     update();
   }
   void dateDialogOpen(){
@@ -103,6 +109,9 @@ class ServiceController extends GetxController{
       await ref.putFile(file!);
       url = await ref.getDownloadURL();
     }
+    print("Before Model");
+    print("$today");
+    print("$nextDate");
     service = ServiceModel(
         id: ShortUid.create(),
         horseId: selectedHorse!.sId,
@@ -123,16 +132,17 @@ class ServiceController extends GetxController{
         quantity: quantity.text.isNotEmpty?quantity.text: "",
         extraData: jsonEncode(extra)
     );
+    print("Time Date");
+    print(service.toJson());
   }
   void horseActivity(id) async {
-    print(id);
     activities = [];
     loadingActivity = true;
     update();
    try{
      var out = await api.request(endPoint: "services-get/${id}",body: {},type: RequestType.post);
-     loadingActivity = false;
      print(out.body);
+     loadingActivity = false;
      update();
      if(out.statusCode == 200){
        List cs = jsonDecode(out.body);
@@ -217,8 +227,6 @@ class ServiceController extends GetxController{
     adminContact = null;
     note.clear();
     price.clear();
-    today = DateTime.now();
-    nextDate = null;
     file = null;
   }
 }

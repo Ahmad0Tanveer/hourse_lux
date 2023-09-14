@@ -5,6 +5,7 @@ import 'package:hourse_lux/core/constant/assets.dart';
 import 'package:hourse_lux/core/constant/colors.dart';
 import 'package:hourse_lux/core/helpers/keys.dart';
 import 'package:hourse_lux/main.dart';
+import '../../core/contact_controller.dart';
 import '../home/bottom_nav_bar.dart';
 import 'login_screen.dart';
 import 'on_boarding_screens.dart';
@@ -16,8 +17,10 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  final contact = Get.put(ContactController());
   @override
   void initState() {
+    contact.initContacts();
     super.initState();
     Future.delayed(Duration(seconds: 2),(){
       if(box.read(allKeys.boardingScreen)??false){
@@ -29,7 +32,6 @@ class _SplashScreenState extends State<SplashScreen> {
       } else {
         Get.offAll(() => OnboardingScreens());
       }
-      //Get.offAll(() => OnboardingScreens());
     });
   }
 

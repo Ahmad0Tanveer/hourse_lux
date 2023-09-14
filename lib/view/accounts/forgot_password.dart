@@ -101,7 +101,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   ),
                   SizedBox(height: 150.h),
                   DefaultButton(
-                    text: 'Varify',
+                    text: 'Verify',
                     press: user.verifyOtp,
                     textColor: blackColor,
                     borderRadius: 60.r,
