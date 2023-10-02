@@ -10,12 +10,15 @@ class HorseModel {
   String image;
   String microchip;
   String stallNotes;
+  String stallNumber;
+  String paddockName;
   String paddockLocation;
   String sId;
   String createdAt;
   String updatedAt;
   String billPayerId;
   String ownerId;
+
   HorseModel({
     required this.userId,
     required this.neckName,
@@ -34,28 +37,31 @@ class HorseModel {
     required this.updatedAt,
     required this.billPayerId,
     required this.ownerId,
+    required this.paddockName,
+    required this.stallNumber,
   });
 
   factory HorseModel.fromJson(Map<String, dynamic> json) {
     return HorseModel(
-      userId : json['userId'],
-      neckName : json['neckName'],
-      showName : json['showName'],
-      owner : json['owner'],
-      billPayer: json['billPayer'],
-      bread: json['bread'],
-      color: json['color'],
-      image: json["img"]??"",
-      sex: json['sex'],
-      microchip: json['microchip'],
-      stallNotes: json['stallNotes'],
-      paddockLocation: json['paddockLocation'],
-      sId: json['_id'],
-      createdAt: json['createdAt'],
-      updatedAt: json['updatedAt'],
-      billPayerId: json['billPayerId'],
-      ownerId: json['ownerId'],
-    );
+        userId: json['userId'],
+        neckName: json['neckName'],
+        showName: json['showName'],
+        owner: json['owner'],
+        billPayer: json['billPayer'],
+        bread: json['bread'],
+        color: json['color'],
+        image: json["img"] ?? "",
+        sex: json['sex'],
+        microchip: json['microchip'],
+        stallNotes: json['stallNotes'],
+        paddockLocation: json['paddockLocation'],
+        sId: json['_id'],
+        createdAt: json['createdAt'],
+        updatedAt: json['updatedAt'],
+        billPayerId: json['billPayerId'],
+        ownerId: json['ownerId'],
+        paddockName: json['paddockName'] ?? "",
+        stallNumber: json['stallNumber'] ?? "");
   }
 
   Map<String, dynamic> toJson() {
@@ -77,6 +83,8 @@ class HorseModel {
     data['updatedAt'] = this.updatedAt;
     data["billPayerId"] = this.billPayerId;
     data["ownerId"] = this.ownerId;
+    data["paddockName"] = this.paddockName;
+    data["stallNumber"] = this.stallNumber;
     return data;
   }
 }

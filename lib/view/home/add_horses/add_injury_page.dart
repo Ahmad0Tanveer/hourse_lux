@@ -79,7 +79,6 @@ class _AddInjuryPageState extends State<AddInjuryPage> {
                     )
                 ),
                 SizedBox(height: 10),
-
                 MyInputShadow(
                     title: "Type",
                     widget: InkWell(

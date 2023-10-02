@@ -55,7 +55,7 @@ class UserController extends GetxController {
       if(out.statusCode == 200){
         Map data = jsonDecode(out.body);
         await box.write(allKeys.userMap, data);
-        Get.to(() => BottomNavSheetScreen());
+        Get.offAll(() => BottomNavSheetScreen());
       }else {
         HelperDialog.errorDialog("", "Check Email/Password");
       }
@@ -82,7 +82,7 @@ class UserController extends GetxController {
       }else if(out.statusCode == 200){
         Map data = jsonDecode(out.body);
         await box.write(allKeys.userMap, data);
-        Get.to(() => BottomNavSheetScreen());
+        Get.offAll(() => BottomNavSheetScreen());
       }else {
         HelperDialog.errorDialog("Ohh", "Some thing went wrong");
       }
@@ -130,6 +130,7 @@ class UserController extends GetxController {
       if(opt.text.isNotEmpty){
         Map<String,dynamic> userMap = {
           "email": email.text,
+          "otp": opt.text,
         };
         final out = await service.request(endPoint: "verify-otp",body: userMap,type: RequestType.post);
         state = true;

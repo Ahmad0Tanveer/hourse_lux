@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hourse_lux/widgets/loading_list_shimmer.dart';
+
+import '../core/supplement_controller.dart';
+import '../view/home/add_horses/supplement/add_new_supplement.dart';
+
 class SelectBottomSheet extends StatefulWidget {
   final List<String> options;
   final String title;
@@ -75,6 +80,118 @@ class _SelectBottomSheetState extends State<SelectBottomSheet> {
             )
         ),
       ],
+    );
+  }
+}
+class MedSupSelectBottomSheet extends StatefulWidget {
+  final List<String> options;
+  final String title;
+  final String selectedOption;
+  final Function(String) onTap;
+  const MedSupSelectBottomSheet({super.key,required this.options,required this.title,required this.selectedOption,required this.onTap});
+  @override
+  State<MedSupSelectBottomSheet> createState() => _MedSupSelectBottomSheet();
+}
+
+class _MedSupSelectBottomSheet extends State<MedSupSelectBottomSheet> {
+  final supplement = Get.put(SupplementController());
+  @override
+  void initState() {
+    supplement.initSupplements();
+    super.initState();
+  }
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder(
+      init: supplement,
+      builder: (_) {
+        return Column(
+          children: [
+            SizedBox(height: 16),
+            Container(
+              width: 48,
+              height: 4,
+              margin: EdgeInsets.only(left: 16,right: 16),
+              color: Colors.grey,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(width: 40),
+                Container(
+                    height: 50,
+                    alignment: Alignment.center,
+                    child: Text(widget.title,style: Get.textTheme.labelMedium,)),
+                IconButton(
+                    onPressed: () => Get.to(() => AddNewSupplementPage()),
+                    icon: Icon(Icons.add_circle,color: Colors.white)
+                ),
+              ],
+            ),
+            Container(
+              width: Get.width,
+              height: 1,
+              margin: EdgeInsets.only(left: 16,right: 16),
+              color: Colors.grey,
+            ),
+            SizedBox(width: 40),
+            supplement.state? LoadingListShimmerEffect() :Expanded(
+                child: ListView(
+                  children: supplement.supplements.map((e){
+                    return GestureDetector(
+                      onTap: () =>  widget.onTap(e.bName),
+                      child: Container(
+                        height: 50,
+                        margin: EdgeInsets.only(top: 10),
+                        child: Row(
+                          children: [
+                            SizedBox(width: 24),
+                            Container(
+                              height: 20,
+                              width: 20,
+                              padding: EdgeInsets.all(2),
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.white,width: 1),
+                                shape: BoxShape.circle,
+                              ),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: widget.selectedOption==e?Colors.white:Colors.transparent
+                                ),
+                              ),
+                            ),
+                            SizedBox(width: 12),
+                           Column(
+                             children: [
+                               Container(
+                                 width: Get.width - 60,
+                                 child: Text(
+                                     e.bName,
+                                     maxLines: 1,
+                                     overflow: TextOverflow.ellipsis,
+                                     style: Get.textTheme.labelMedium!.copyWith(fontSize: 18,fontWeight: FontWeight.w700)),
+                               ),
+                               Container(
+                                 width: Get.width - 60,
+                                 child: Text(
+                                     "Drug: ${e.dName}",
+                                     maxLines: 1,
+                                     overflow: TextOverflow.ellipsis,
+                                     style: Get.textTheme.labelMedium!.copyWith(fontSize: 18,fontWeight: FontWeight.w700)),
+                               ),
+                             ],
+                           ),
+                          ],
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                )
+            ),
+          ],
+        );
+      }
     );
   }
 }

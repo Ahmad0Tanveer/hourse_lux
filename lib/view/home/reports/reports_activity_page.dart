@@ -22,24 +22,28 @@ class ReportsActivityPage extends StatefulWidget {
 
 class _ReportsActivityPageState extends State<ReportsActivityPage> {
   final activity = Get.put(ActivityController());
-  String showDate = "";
   bool show = true;
+  String showDate = "";
   @override
   void initState() {
     activity.init();
     super.initState();
   }
   @override
+  void dispose() {
+    super.dispose();
+  }
+  @override
   Widget build(BuildContext context) {
     Widget showServiceData(ServiceModel model){
       var date = DateTime.parse(model.date);
-      var parseDara = DateFormat.yMMMMEEEEd().format(date);
-      if(showDate.isEmpty){
-        showDate = DateFormat.yMMMMEEEEd().format(date);
-      } else if(parseDara != showDate){
-        showDate = DateFormat.yMMMMEEEEd().format(date);
+      var parsedDate = DateFormat.yMMMMEEEEd().format(date);
+      if (showDate.isEmpty) {
+        showDate = parsedDate;
+      } else if (parsedDate != showDate) {
+          showDate = parsedDate;
       } else {
-        show = false;
+          show = false;
       }
       return Container(
         child: Column(
@@ -73,6 +77,8 @@ class _ReportsActivityPageState extends State<ReportsActivityPage> {
       body: GetBuilder(
         init: activity,
         builder: (_) {
+           show = true;
+           showDate = "";
           return ListView(
             children: [
               SizedBox(height: 16),
@@ -180,7 +186,7 @@ class _ReportsActivityPageState extends State<ReportsActivityPage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Text("Past Month",style: TextStyle(
+                          Text("All Times",style: TextStyle(
                             color: Colors.white,
                             fontSize: 18,
                             fontWeight: FontWeight.w700,
@@ -195,7 +201,7 @@ class _ReportsActivityPageState extends State<ReportsActivityPage> {
               SizedBox(height: 30),
               SizedBox(height: 16),
               activity.state?LoadingListShimmerEffect():
-                  Wrap(children: activity.services.map((e) => showServiceData(e)).toList()),
+              Wrap(children: activity.services.map((e) => showServiceData(e)).toList()),
             ],
           );
         }

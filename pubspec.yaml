@@ -12,27 +12,28 @@ dependencies:
     sdk: flutter
 
 
-  cupertino_icons: ^1.0.2
-  get: ^4.6.5
+  cupertino_icons: 1.0.6
+  get: 4.6.6
   another_flushbar: ^1.12.30
   flutter_screenutil: 5.9.0
   calendar_date_picker2: 0.5.3
-  google_fonts: any
+  google_fonts: 6.0.0
   http: ^1.1.0
   get_storage: any
   panara_dialogs: ^0.1.4
-  nb_utils: ^6.0.2
-  pinput: ^3.0.0
-  firebase_core: 2.15.1
-  firebase_storage: 11.2.6
-  image_picker: any
+  nb_utils: 6.0.4
+  pinput: 3.0.1
+  firebase_core: 2.16.0
+  firebase_storage: 11.2.7
+  image_picker: 1.0.4
   shimmer: any
-  url_launcher: ^6.1.12
+  url_launcher: 6.1.14
   cached_network_image: any
   flutter_animated_loadingkit: ^0.0.7
   intl:
   shortuid: ^1.0.0
-  table_calendar: ^3.0.9
+  table_calendar: any
+  sn_progress_dialog: ^1.1.3
 
 
 

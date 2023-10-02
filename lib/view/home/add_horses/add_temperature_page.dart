@@ -50,7 +50,7 @@ class _AddTemperaturePageState extends State<AddTemperaturePage> {
                   )
               ),
               SizedBox(height: 10),
-              MyInputShadow(
+              /*MyInputShadow(
                   title: "Time",
                   widget: TextFormField(
                     decoration: InputDecoration(
@@ -61,10 +61,10 @@ class _AddTemperaturePageState extends State<AddTemperaturePage> {
                       filled: true,
                     ),
                   )
-              ),
+              ),*/
               SizedBox(height: 10),
               MyInputShadow(
-                  title: "Value",
+                  title: "Value (°F)",
                   widget: TextFormField(
                     controller: service.value,
                     decoration: InputDecoration(

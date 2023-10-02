@@ -25,7 +25,7 @@ class ContactController extends GetxController {
   List<OwnerGroup> groups = [];
   String selectedHorseId = "";
   Map<String, String> sharesName = {};
-  Map<String, String> shares = {"id": ""};
+  Map<String, String> shares = {"": ""};
   List<ContactModel> contacts = [];
   List<ContactModel> backUp = [];
   List<String> selectedFilters = [];
@@ -199,9 +199,39 @@ class ContactController extends GetxController {
     shares["${c.id}"] = "";
     update();
   }
-
+  void updateContactId(String id,{required type, required title}) async {
+    state = true;
+    update();
+    Map<String,String> body = {
+      "contact_type": type,
+      "title": title,
+      "first_name": firstName.text,
+      "last_name": lastName.text,
+      "primary_phone": phoneNumber.text,
+      "email": email.text
+    };
+    try{
+      var out = await service.request(endPoint: "update/$id",body: body,type: RequestType.put);
+      state = false;
+      update();
+      if (out.statusCode == 200) {
+        toast("Updated Successfully", bgColor: redColor);
+      } else {
+        toast(
+          "Failed Updated",
+          bgColor: redColor,
+        );
+      }
+    }catch(e) {
+      state = false;
+      toast(
+        "Failed Updated",
+        bgColor: redColor,
+      );
+      update();
+    }
+  }
   void initOwnerGroups() async {
-    print("Outner");
     state = true;
     update();
     try {

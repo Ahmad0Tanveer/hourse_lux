@@ -68,14 +68,18 @@ class _RecordTypeState extends State<RecordTypePage> {
         Container(
           margin: EdgeInsets.only(left: 16,right: 16),
           child: Wrap(
-            alignment: WrapAlignment.spaceBetween,
+            alignment: WrapAlignment.start,
+            runAlignment: WrapAlignment.center,
             runSpacing: 8,
-            children:  healthTabs.map((e) =>  GestureDetector(
-              onTap: () {
-                Get.back();
-                Get.to(() => HorseSelectPage(nextPage: e.page,title: e.name,));
-              },
-              child: myTabWidget(e.image, e.name),
+            children:  healthTabs.map((e) =>  Container(
+              width: Get.width/3 - 12,
+              child: GestureDetector(
+                onTap: () {
+                  Get.back();
+                  Get.to(() => HorseSelectPage(nextPage: e.page,title: e.name,));
+                },
+                child: myTabWidget(e.image, e.name),
+              ),
             ),).toList(),
           ),
         ),

@@ -74,6 +74,7 @@ class ServiceController extends GetxController{
     await createServiceModel(type: type, recordType: recordType,extra: extra);
     var out = await api.request(endPoint: endPoint,type: RequestType.post,body: service.toJson());
     state = false;
+    print(out.body);
     update();
     if(out.statusCode == 200){
       toast("Add Successfully",bgColor: Colors.green);
@@ -81,15 +82,11 @@ class ServiceController extends GetxController{
     }
   }
   void selectDate(d){
-    print(" Current");
     today = d;
-    print(today);
     update();
   }
   void selectNextDate(d){
-    print("Next Date");
     nextDate = d;
-    print(nextDate);
     update();
   }
   void dateDialogOpen(){
@@ -109,9 +106,6 @@ class ServiceController extends GetxController{
       await ref.putFile(file!);
       url = await ref.getDownloadURL();
     }
-    print("Before Model");
-    print("$today");
-    print("$nextDate");
     service = ServiceModel(
         id: ShortUid.create(),
         horseId: selectedHorse!.sId,
@@ -132,8 +126,6 @@ class ServiceController extends GetxController{
         quantity: quantity.text.isNotEmpty?quantity.text: "",
         extraData: jsonEncode(extra)
     );
-    print("Time Date");
-    print(service.toJson());
   }
   void horseActivity(id) async {
     activities = [];
@@ -196,7 +188,41 @@ class ServiceController extends GetxController{
         Get.back();
       }
     }
-
+  }
+  void updateRecord({required String id,required Map<String,String> map}) async{
+    state = true;
+    String url = "";
+    if(file != null){
+      var ref = storage.ref("horses/${file!.path.split("/").last}");
+      await ref.putFile(file!);
+      url = await ref.getDownloadURL();
+      map["image"] = url;
+    }
+    update();
+    try {
+      String point = "services-name/$id";
+     var out = await api.request(endPoint: point, type: RequestType.put, body: map);
+      if(out.statusCode == 200) {
+        state = false;
+        toast("Updated Successfully",bgColor: Colors.green);
+        for(var service in activities){
+          if(service.id == id){
+            Map<String,dynamic> m = service.toJson();
+            map.forEach((key, value) {
+                m[key] = value;
+            });
+            ServiceModel ss = ServiceModel.fromJson(m);
+            activities[activities.indexOf(service)] = ss;
+            update();
+          }
+        }
+      }
+      update();
+    } catch(e){
+      state = false;
+      toast("Some thing went Wrong",bgColor: Colors.green);
+      update();
+    }
   }
   void changeQuantity(value){
     print(value.runtimeType);

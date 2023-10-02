@@ -18,6 +18,7 @@ class ServiceModel{
   String extraData;
   String quantity;
   String cost;
+
   ServiceModel({
     required this.id,
     required this.userId,

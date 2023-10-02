@@ -17,13 +17,9 @@ class ApiService {
     } else if(type == RequestType.post){
       return await http.post(Uri.parse("${baseUrl}/$endPoint"), body: body,headers: headers);
     } else if(type == RequestType.put){
-
+      return await http.put(Uri.parse("${baseUrl}/$endPoint"), body: body,headers: headers);
     } else if(type == RequestType.delete){
       return await http.delete(Uri.parse("${baseUrl}/$endPoint"),headers: headers);
-    } else if(type == RequestType.patch){
-
-    } else {
-
-    }
+    } else if(type == RequestType.patch){} else {}
   }
 }

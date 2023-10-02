@@ -58,3 +58,4 @@ String imageHelper({required type}){
   }
   return "assets/record_type/supplements.png";
 }
+

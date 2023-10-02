@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hourse_lux/core/constant/colors.dart';
 import 'package:hourse_lux/models/contact_model.dart';
+import 'package:hourse_lux/view/home/update/update_contact_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../core/constant/assets.dart';
 
@@ -125,7 +126,19 @@ class _ContactDetailPageState extends State<ContactDetailPage> {
                       icon: Icon(
                         Icons.delete_outline,
                         color: Colors.white,
-                      )))
+                      )
+                  )
+              ),
+              Positioned(
+                  right: 40,
+                  child: IconButton(
+                      onPressed: () => Get.to(() => UpdateContact(contact: widget.contact)),
+                      icon: Icon(
+                        Icons.edit,
+                        color: Colors.white,
+                      )
+                  )
+              )
             ],
           ),
           SizedBox(height: 16),

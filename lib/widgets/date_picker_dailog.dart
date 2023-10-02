@@ -42,6 +42,7 @@ class _MyDatePickerDialogState extends State<MyDatePickerDialog> {
                 ),
                 CalendarDatePicker2(
                   config: CalendarDatePicker2Config(
+                    lastDate: DateTime.now(),
                       calendarType: CalendarDatePicker2Type.single,
                       selectedDayHighlightColor: baseColor,
                   ),
@@ -101,6 +102,11 @@ class _SelectNextDateDialogState extends State<SelectNextDateDialog> {
     return GetBuilder(
         init: service,
         builder: (_) {
+          var style = TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w700,
+            fontSize: 18,
+          );
           return Container(
             height: 500,
             width: Get.width,
@@ -112,12 +118,8 @@ class _SelectNextDateDialogState extends State<SelectNextDateDialog> {
                   color: baseColor,
                   alignment: Alignment.centerLeft,
                   child: service.nextDate != null?
-                  Text("${service.nextDate!.day} ${months[service.nextDate!.month-1]}, ${service.nextDate!.year}")
-                      :Text("${service.today.day} ${months[service.today.month-1]}, ${service.today.year}",style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 18,
-                  ),),
+                  Text("${service.nextDate!.day} ${months[service.nextDate!.month-1]}, ${service.nextDate!.year}",style: style)
+                      :Text("${service.today.day} ${months[service.today.month-1]}, ${service.today.year}",style: style),
                 ),
                 CalendarDatePicker2(
                   config: CalendarDatePicker2Config(

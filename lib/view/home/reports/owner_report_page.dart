@@ -1,10 +1,15 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:hourse_lux/core/constant/assets.dart';
 import 'package:hourse_lux/core/constant/colors.dart';
-import 'package:hourse_lux/view/customs/custom_text.dart';
+import 'package:hourse_lux/core/contact_controller.dart';
+import 'package:hourse_lux/models/contact_model.dart';
 import 'package:hourse_lux/widgets/custom_appbar_2.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import '../../../core/service_controller.dart';
+import '../../customs/custom_text.dart';
 
 class OwnerReportPage extends StatefulWidget {
   const OwnerReportPage({super.key});
@@ -13,6 +18,21 @@ class OwnerReportPage extends StatefulWidget {
 }
 
 class _OwnerReportPageState extends State<OwnerReportPage> {
+  final service = Get.put(ServiceController());
+  final contact = Get.put(ContactController());
+  ContactModel? contactModel;
+
+  @override
+  void initState() {
+    for(var c in contact.contacts){
+      if(service.selectedHorse!.ownerId == c.id){
+        setState(() {
+          contactModel = c;
+        });
+      }
+    }
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     var titleStyle = TextStyle(
@@ -51,10 +71,9 @@ class _OwnerReportPageState extends State<OwnerReportPage> {
             margin: EdgeInsets.only(left: 10,right: 10),
             child: Row(
               children: [
-                Image.asset(
-                  h1,
-                  height: 60.h,
-                  width: 60.h,
+                CircleAvatar(
+                  radius: 30,
+                  backgroundImage: CachedNetworkImageProvider(service.selectedHorse!.image),
                 ),
                 SizedBox(width: 24.w),
                 Column(
@@ -63,7 +82,7 @@ class _OwnerReportPageState extends State<OwnerReportPage> {
                     Row(
                       children: [
                         CustomText(
-                          text: "HARRY",
+                          text: "${service.selectedHorse!.neckName}",
                           fontSize: 15.sp,
                           color: blackColor,
                           fontWeight: FontWeight.bold,
@@ -80,7 +99,7 @@ class _OwnerReportPageState extends State<OwnerReportPage> {
                           fontWeight: FontWeight.w600,
                         ),
                         CustomText(
-                          text: " Avalynn Bruce",
+                          text: contactModel != null? " ${contactModel!.firstName} ${contactModel!.lastName}":"",
                           fontSize: 14.sp,
                           color: greyColor,
                           fontWeight: FontWeight.w600,
@@ -90,7 +109,6 @@ class _OwnerReportPageState extends State<OwnerReportPage> {
                     SizedBox(height: 4.h),
                   ],
                 ),
-
               ],
             ),
           ),
@@ -111,14 +129,34 @@ class _OwnerReportPageState extends State<OwnerReportPage> {
                   children: [
                    Container(
                      width: Get.width - 100,
-                     child: rowText("PRIMARY PHONE: ", " +92 343 9107919"),
+                     child: rowText("PRIMARY PHONE: ", contactModel != null? " ${contactModel!.primaryPhone}":""),
                    ),
-                    Icon(Icons.phone_enabled),
+                    InkWell(
+                        onTap: () async {
+                          final Uri callLaunchUri = Uri(
+                            scheme: 'tel',
+                            path: '${contactModel!.primaryPhone}',
+                          );
+                          if (!await launchUrl(callLaunchUri)) {
+                            throw Exception('Could not launch');
+                          }
+                        },
+                        child: Icon(Icons.phone_enabled)),
                     SizedBox(width: 10),
-                    Icon(Icons.message),
+                    InkWell(
+                        onTap: () async {
+                          final Uri smsLaunchUri = Uri(
+                            scheme: 'sms',
+                            path: '${contactModel!.primaryPhone}',
+                          );
+                          if (!await launchUrl(smsLaunchUri)) {
+                            throw Exception('Could not launch');
+                          }
+                        },
+                        child: Icon(Icons.message)),
                   ],
                 ),
-                rowText("eMAIL: ", " ahmad00tanveer@gmail.com"),
+                rowText("EMAIL: ", contactModel != null? " ${contactModel!.email}":""),
               ],
             ),
           ),

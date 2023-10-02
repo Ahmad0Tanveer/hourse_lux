@@ -99,7 +99,6 @@ class _ServiceRecordTypePageState extends State<ServiceRecordTypePage> {
           breadWidget("Show Ride","50"),
           arrowWidget("Travel Expense"),
           breadWidget("Treadmill","20"),
-          breadWidget("Treadmill","30"),
           breadWidget("Warmup Ride","50"),
           SizedBox(height: 50),
         ],

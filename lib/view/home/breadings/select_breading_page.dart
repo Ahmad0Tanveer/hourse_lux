@@ -8,6 +8,7 @@ import 'package:hourse_lux/view/home/breadings/add_pregnancy_check_page.dart';
 import 'package:hourse_lux/widgets/custom_appbar_2.dart';
 import 'add_semen_collection_page.dart';
 import 'breadings_data.dart';
+import 'foaling_breading_rocords.dart';
 
 class SelectBreadingTypePage extends StatelessWidget {
   const SelectBreadingTypePage({super.key});
@@ -49,7 +50,7 @@ class SelectBreadingTypePage extends StatelessWidget {
             child: breadWidget(BreadingData.types[0]),
           ),
           InkWell(
-            onTap: (){},
+            onTap: () => Get.to(HorseSelectPage(nextPage: FoalingBreadRecord(), title: "Add ${BreadingData.types[1]}")),
             child: breadWidget(BreadingData.types[1]),
           ),
           InkWell(

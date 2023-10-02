@@ -55,8 +55,7 @@ class ScheduleController extends GetxController {
       String month = today.month <= 9 ? "0${today.month}" : "${today.month}";
       String day = today.day <= 9 ? "0${today.day}" : "${today.day}";
       for (var data in backup) {
-        if (data.nextDate.split("T00:00:00.000Z").first ==
-            "${today.year}-$month-$day") {
+        if (data.nextDate.split("T00:00:00.000Z").first == "${today.year}-$month-$day") {
           services.add(data);
         }
       }
